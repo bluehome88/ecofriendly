@@ -1,0 +1,52 @@
+/*
+Theme Name: Storefront Child
+Description: Child theme for Storefront theme
+Author: ThemeFusion
+Author URI: https://theme-fusion.com
+Template: storefront
+Version: 1.0.0
+Text Domain:  storefront
+*/
+
+body,
+button,
+input,
+textarea{
+	font-family: "Helvetica Neue", "HelveticaNeue-Light", "Helvetica Neue Light", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.col-full{
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+    padding: 0 !important;
+}
+.storefront-breadcrumb{
+    display: none !important;
+}
+.hfe-site-logo-img{
+	max-height: 75px;
+}
+
+.wpcf7-form-control-wrap input, 
+.wpcf7-form-control-wrap textarea{
+	border: 1px solid #f2f2f2;
+	width: 100%;
+}
+
+.wpcf7-form p{
+	
+}
+.col-full > .woocommerce{
+	max-width: 1240px;
+	margin: 0 auto;
+}
+.grecaptcha-badge { visibility: hidden; }
+
+.page-template-template-fullwidth div#primary{
+	max-width: inherit;
+	padding: 0;
+}
+.page-template-template-fullwidth:not(.page-id-12):not(.page-id-13) main.site-main{
+	padding: 0;
+}

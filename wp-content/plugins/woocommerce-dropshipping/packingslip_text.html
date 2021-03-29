@@ -1,0 +1,60 @@
+Order Number : <?php echo 'Order #'.$order_info['id']; ?>
+
+Packing Company Name : <?php echo $order_info['options']['packing_slip_company_name']; ?>
+
+Packing Slip Address : <?php echo $order_info['options']['packing_slip_address']; ?>
+
+Packing Service Email : <?php echo $order_info['options']['packing_slip_customer_service_email']; ?>
+
+Packing Service Phone : <?php echo $order_info['options']['packing_slip_customer_service_phone']; ?>
+           
+		   
+SHIP TO:                
+                
+Name : <?php if(strlen($order_info['shipping_info']['name']) > 0){echo $order_info['shipping_info']['name'];} ?>
+
+Company : <?php if(strlen($order_info['shipping_info']['shipping_company']) > 0){echo $order_info['shipping_info']['shipping_company'];} ?>
+
+Address 1 : <?php echo $order_info['shipping_info']['shipping_address_1']; ?>
+
+Address 2 : <?php if(strlen($order_info['shipping_info']['shipping_address_2']) > 0) {echo $order_info['shipping_info']['shipping_address_2']; } ?>
+
+City : <?php echo $order_info['shipping_info']['shipping_city'];?>
+
+State : <?php echo $order_info['shipping_info']['shipping_state'];?>
+
+Postcode : <?php echo $order_info['shipping_info']['shipping_postcode']; ?>
+
+Phone : <?php echo $order_info['shipping_info']['phone']; ?>
+
+Customer Note : <?php if(!empty($order_info['ordernote'])) { echo $order_info['ordernote']; } ?>
+
+Chosen Shipping Method: <?php echo $order_info['shipping_info']['shipping_method']; ?>
+           
+
+<?php 
+	$rows = '';
+	foreach($order_info[$supplier_info['slug']] as $prod_info)
+	{
+?>
+<?php echo "SkU: ".$prod_info['sku'];?> <?php echo "Product Name: " .$prod_info['name'];?> <?php echo 'Qty: '.$prod_info['qty'];?>                   
+<?php		
+			foreach($prod_info['variation_data'] as $key=>$value)
+			{
+			?>
+			<?php echo $value;?> 
+			<?php
+				
+			}
+			foreach($prod_info['order_item_meta'] as $meta)
+			{
+			?>
+			<?php echo trim($meta->value);?> 
+			
+			<?php
+			}
+	} 
+?>
+
+
+<?php echo $order_info['options']['packing_slip_thankyou']; ?>

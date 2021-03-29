@@ -1,0 +1,231 @@
+{
+                            "rate": {
+                              "destination":{  
+                                "country": "AU",
+                                "postal_code": "2289",
+                                "province": "NSW",
+                                "city": "Adamstown",
+                                "name": null,
+                                "address1": "19 south st",
+                                "address2": "",
+                                "address3": null,
+                                "phone": null,
+                                "fax": null,
+                                "address_type": null,
+                                "company_name": null
+                              },
+                              "items":[{
+                    "name": "Sanitary Bag Dispenser",
+                    "sku": null,
+                    "quantity": 1,
+                    "grams": 0.242,
+                    "height": 5,
+                    "width": 16,
+                    "length": 24.5,
+                    "price": 34.50,
+                    "dimensions_unit": "cm",
+                    "vendor": null,
+                    "requires_shipping": true,
+                    "taxable": true,
+                    "fulfillment_service": "manual"
+                  },{
+                    "name": "Eco-shell Air Freshener - Lavender & Geranium",
+                    "sku": null,
+                    "quantity": 1,
+                    "grams": 0.19,
+                    "height": 5,
+                    "width": 7,
+                    "length": 24,
+                    "price": 69,
+                    "dimensions_unit": "cm",
+                    "vendor": null,
+                    "requires_shipping": true,
+                    "taxable": true,
+                    "fulfillment_service": "manual"
+                  }]
+                            }
+                          }{
+                            "rate": {
+                              "destination":{  
+                                "country": "AU",
+                                "postal_code": "2289",
+                                "province": "NSW",
+                                "city": "Adamstown",
+                                "name": null,
+                                "address1": "19 south st",
+                                "address2": "",
+                                "address3": null,
+                                "phone": null,
+                                "fax": null,
+                                "address_type": null,
+                                "company_name": null
+                              },
+                              "items":[{
+                    "name": "Sanitary Bag Dispenser",
+                    "sku": null,
+                    "quantity": 1,
+                    "grams": 0.242,
+                    "height": 5,
+                    "width": 16,
+                    "length": 24.5,
+                    "price": 34.50,
+                    "dimensions_unit": "cm",
+                    "vendor": null,
+                    "requires_shipping": true,
+                    "taxable": true,
+                    "fulfillment_service": "manual"
+                  },{
+                    "name": "Eco-shell Air Freshener - Lavender & Geranium",
+                    "sku": null,
+                    "quantity": 1,
+                    "grams": 0.19,
+                    "height": 5,
+                    "width": 7,
+                    "length": 24,
+                    "price": 69,
+                    "dimensions_unit": "cm",
+                    "vendor": null,
+                    "requires_shipping": true,
+                    "taxable": true,
+                    "fulfillment_service": "manual"
+                  }]
+                            }
+                          }{
+                            "rate": {
+                              "destination":{  
+                                "country": "AU",
+                                "postal_code": "2289",
+                                "province": "NSW",
+                                "city": "Adamstown",
+                                "name": null,
+                                "address1": "19 south st",
+                                "address2": "",
+                                "address3": null,
+                                "phone": null,
+                                "fax": null,
+                                "address_type": null,
+                                "company_name": null
+                              },
+                              "items":[{
+                    "name": "Sanitary Bag Dispenser",
+                    "sku": null,
+                    "quantity": 1,
+                    "grams": 0.242,
+                    "height": 5,
+                    "width": 16,
+                    "length": 24.5,
+                    "price": 34.50,
+                    "dimensions_unit": "cm",
+                    "vendor": null,
+                    "requires_shipping": true,
+                    "taxable": true,
+                    "fulfillment_service": "manual"
+                  },{
+                    "name": "Eco-shell Air Freshener - Lavender & Geranium",
+                    "sku": null,
+                    "quantity": 1,
+                    "grams": 0.19,
+                    "height": 5,
+                    "width": 7,
+                    "length": 24,
+                    "price": 69,
+                    "dimensions_unit": "cm",
+                    "vendor": null,
+                    "requires_shipping": true,
+                    "taxable": true,
+                    "fulfillment_service": "manual"
+                  }]
+                            }
+                          }{
+                            "rate": {
+                              "destination":{  
+                                "country": "AU",
+                                "postal_code": "2289",
+                                "province": "NSW",
+                                "city": "Adamstown",
+                                "name": null,
+                                "address1": "19 south st",
+                                "address2": "",
+                                "address3": null,
+                                "phone": null,
+                                "fax": null,
+                                "address_type": null,
+                                "company_name": null
+                              },
+                              "items":[{
+                    "name": "Sanitary Bag Dispenser",
+                    "sku": null,
+                    "quantity": 1,
+                    "grams": 0.242,
+                    "height": 5,
+                    "width": 16,
+                    "length": 24.5,
+                    "price": 34.50,
+                    "dimensions_unit": "cm",
+                    "vendor": null,
+                    "requires_shipping": true,
+                    "taxable": true,
+                    "fulfillment_service": "manual"
+                  },{
+                    "name": "Eco-shell Air Freshener - Lavender & Geranium",
+                    "sku": null,
+                    "quantity": 1,
+                    "grams": 0.19,
+                    "height": 5,
+                    "width": 7,
+                    "length": 24,
+                    "price": 69,
+                    "dimensions_unit": "cm",
+                    "vendor": null,
+                    "requires_shipping": true,
+                    "taxable": true,
+                    "fulfillment_service": "manual"
+                  }]
+                            }
+                          }{
+                            "rate": {
+                              "destination":{  
+                                "country": "AU",
+                                "postal_code": "2289",
+                                "province": "NSW",
+                                "city": "Adamstown",
+                                "name": null,
+                                "address1": "19 south st",
+                                "address2": "",
+                                "address3": null,
+                                "phone": null,
+                                "fax": null,
+                                "address_type": null,
+                                "company_name": null
+                              },
+                              "items":[{
+                    "name": "Sanitary Bag Dispenser",
+                    "sku": null,
+                    "quantity": 1,
+                    "grams": 0.242,
+                    "height": 5,
+                    "width": 16,
+                    "length": 24.5,
+                    "price": 34.50,
+                    "dimensions_unit": "cm",
+                    "vendor": null,
+                    "requires_shipping": true,
+                    "taxable": true,
+                    "fulfillment_service": "manual"
+                  },{
+                    "name": "Eco-shell Air Freshener - Lavender & Geranium",
+                    "sku": null,
+                    "quantity": 1,
+                    "grams": 0.19,
+                    "height": 5,
+                    "width": 7,
+                    "length": 24,
+                    "price": 69,
+                    "dimensions_unit": "cm",
+                    "vendor": null,
+                    "requires_shipping": true,
+                    "taxable": true,
+                    "fulfillment_service": "manual"
+                  }]
+                            }
+                          }{}{}{}{}{}

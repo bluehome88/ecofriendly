@@ -1,0 +1,225 @@
+	<style>
+	.ordernum_date{color:#96588a;}
+	.cus_note {background-color:#96588a;color:#fff;}
+	.payment_type{background-color:#96588a;color:#fff;border-top:1px solid #ccc;}
+	.shipping_method{background-color:#96588a;color:#fff;border-top:1px solid #ccc;}
+	.product_table {background-color: #ccc;}
+	.p_image{width:15px;height: 15px;}
+	</style>
+	<?php
+		/*$options = get_option( 'wc_dropship_manager' );
+		$logourl = $options['packing_slip_url_to_logo'];
+		$fullinfo = $options['full_information'];
+		$show_logo = $options['show_logo'];
+		if($fullinfo == '1' && $logourl != '' && $show_logo == '1' ) {
+		} */
+	?>
+	<!--<table class="ordernum_date" style="border-bottom:1px solid #000;" align="left" style="width:180mm;" cellpadding="5" cellspacing="0"  >
+		<tr><td>
+			<img style="float:left;" class="logo_image" src="<?php // echo $logourl; ?>">
+		</td></tr>
+	</table>-->
+	
+	<table class="ordernum_date" border="0" align="center" style="width:180mm;" cellpadding="5" cellspacing="0"  >
+		<tr><td><h4 align="right">[<?php echo 'Order #'.$order_info['id']; ?>]<span>
+			<?php if($order_info['options']['order_date'] == '1' && $order_info['options']['full_information'] == '1') {  ?> (<?php echo date('F d,Y');  ?>) <?php } ?></span></h4></td></tr>
+	</table>
+    <table class="top_address" align="center" cellpadding="5" cellspacing="0" style="width:180mm;" >
+        <tbody>
+			<!--<tr>
+				<td width="47%">
+				
+					<table width="100%" cellpadding="5" cellspacing="0">
+						<tr>
+							<td width="100%" align="left">
+								<h4><?php echo $order_info['options']['packing_slip_company_name']; ?></h4>
+								<?php echo $order_info['options']['packing_slip_address']; ?><br />
+								<?php echo $order_info['options']['packing_slip_customer_service_email']; ?><br />
+								<?php echo $order_info['options']['packing_slip_customer_service_phone']; ?><br /><br />
+							</td>
+						</tr>
+					</table>
+					
+				</td>
+				<td width="6%">&nbsp;</td>
+				<td width="47%">
+				
+					<table width="100%" cellpadding="5" cellspacing="0">
+						<tr>
+							<td width="100%" align="left">
+								<b>Ship To</b>:
+							</td>
+						</tr>
+						<tr>
+							<td width="100%" align="left">
+								<?php if(strlen($order_info['shipping_info']['name']) > 0){echo $order_info['shipping_info']['name'].'<br />';} ?>
+								<?php if(strlen($order_info['shipping_info']['shipping_company']) > 0){echo $order_info['shipping_info']['shipping_company'].'<br />';} ?>
+								<?php echo $order_info['shipping_info']['shipping_address_1'].'<br />'; ?>
+                				<?php if(strlen($order_info['shipping_info']['shipping_address_2']) > 0) {echo $order_info['shipping_info']['shipping_address_2'].'<br />'; } ?>
+                				<?php echo $order_info['shipping_info']['shipping_city'].' '.$order_info['shipping_info']['shipping_state'].' '.$order_info['shipping_info']['shipping_postcode'].'<br />'; ?>
+								<?php echo $order_info['shipping_info']['phone'].'<br />'; ?>
+                			</td>
+						</tr>
+					</table>
+				</td>
+			</tr>-->
+			<?php if(isset($order_info['ordernote'] ) ) { ?>
+            <tr>
+				<td class="cus_note" colspan="3"><?php echo $order_info['ordernote']; ?></td>
+			</tr>
+			<?php }  ?>
+			<?php if( $order_info['shipping_info']['shipping_method'] != '' ) { ?>
+            <tr>
+				<td class="shipping_method" colspan="3">Chosen Shipping Method: <?php echo $order_info['shipping_info']['shipping_method']; ?></td>
+			</tr>
+            <?php } 
+
+            if( $order_info['options']['full_information'] == '1' && $order_info['options']['payment_method'] == '1' ) { ?>
+            <tr>
+				<td class="payment_type" colspan="3">Payment Type : <?php echo get_post_meta( $order_info['id'], '_payment_method_title', true ); ?></td>
+			</tr>
+			<?php } ?>
+        </tbody>
+    </table>
+    <table><tr><td></td></tr></table>
+    <table class="products-tab" style="border:1px solid #000;width:180mm;" border="1" align="center" cellpadding="8" cellspacing="0" >
+        <thead class="product_table" border="0" style="background: #ccc;">
+            <tr class="product_table" border="0" >
+            	<?php if( $order_info['options']['full_information'] == '1' && $order_info['options']['product_image'] == '1' ) { ?>	
+            	<th border="0" align="left"><b><u>Image</u></b></th>
+            	<?php } ?>	
+                <th border="0" align="left"><b><u>SKU</u></b></th>
+				<th border="0" align="center"><b><u>Product</u></b></th>
+                <th border="0" align="center"><b><u>Quantity</u></b></th>
+                <?php if($order_info['options']['full_information'] == '1' && $order_info['options']['product_price'] == '1' ) { ?><th border="0" align="center"><b><u>Price</u></b></th> <?php } ?>
+            </tr>
+        </thead>
+        <tbody border="0">
+	<?php 
+		$rows = '';
+		foreach($order_info[$supplier_info['slug']] as $prod_info)
+		{
+			$order = wc_get_order( $order_info['id']);
+			$imgurl = $prod_info['imgurl'];
+			$dummyimg = plugin_dir_url( __FILE__ ).'no.png';
+			$price = $prod_info['price'];
+
+			$rows .= '<tr border="0">';
+			if($order_info['options']['full_information'] == '1' && $order_info['options']['product_image'] == '1' ) { 
+				if($imgurl !=''){
+					$rows.='<td align="center"><img class="p_image" src="'.$imgurl.'"></td>';
+				}else{
+					$rows.='<td align="center"><img class="p_image" src="'.$dummyimg.'"></td>';
+				}
+			} 
+			$rows .= '<td align="left" >'.$prod_info['sku'].'</td>
+				<td align="left" >'.$prod_info['variation_name'].'<br/>';
+				
+					$rows .= ' '.$prod_info['variation_labels'];
+				
+				foreach($prod_info['order_item_meta'] as $meta)
+				{
+					$rows .= '<br /> '.$meta->key.':'.trim($meta->value);
+				}
+				$rows .= '</td>
+				<td align="center">'.$prod_info['qty'].'</td>';
+				if($order_info['options']['full_information'] == '1' && $order_info['options']['product_price'] == '1' ) { 
+					$rows .= '<td align="center">'.$price .'</td>';
+				}
+			$rows .='</tr>';
+		}	
+		echo $rows;
+	?>
+        </tbody>
+    </table>
+    <table><tr><td></td></tr></table>
+    <?php if(($order_info['options']['billing_address'] == '1') || ( $order_info['options']['shipping_address'] == '1')){ ?>
+    <table border="0" align="center" cellpadding="5" cellspacing="0" style="border:1px solid #000;width:180mm;" >
+        <tbody>
+			<tr>
+			    
+			    <td width="30%">
+					<table width="100%" cellpadding="5" cellspacing="0">
+						<tr>
+							<td width="100%" align="left">
+								<b>Company Address</b>:
+							</td>
+						</tr>
+						<tr>
+							<td width="100%" align="left">
+								<h4><?php echo $order_info['options']['packing_slip_company_name']; ?></h4>
+								<?php echo $order_info['options']['packing_slip_address']; ?><br />
+								<?php echo $order_info['options']['packing_slip_customer_service_email']; ?><br />
+								<?php echo $order_info['options']['packing_slip_customer_service_phone']; ?><br /><br />
+							</td>
+						</tr>
+					</table>
+				</td>
+				
+			    <td width="5%">&nbsp;</td>
+				
+				<td width="30%">
+					<?php if($order_info['options']['billing_address'] == '1' ) { ?>
+				    <table width="100%" cellpadding="5" cellspacing="0">
+						<tr>
+							<td width="100%" align="left">
+								<b>Billing Address</b>:
+							</td>
+						</tr>
+						<tr>
+							<td width="100%" align="left">
+								<?php echo $order_info['billing_info']['name']; ?><br/>
+								<?php echo $order_info['billing_info']['phone']; ?><br/>
+								<?php echo $order_info['billing_info']['billing_address_1']; ?><br/>
+								<?php echo $order_info['billing_info']['billing_city']; ?><br/>
+								<?php echo $order_info['billing_info']['billing_postcode']; ?><br/>
+								<?php echo $order_info['billing_info']['billing_country']; ?><br/>
+								<?php echo $order_info['billing_info']['billing_email']; ?><br/>
+							</td>
+						</tr>
+					</table>
+				    <?php } ?>
+				</td>
+				
+				<td width="5%">&nbsp;</td>
+				
+				<td width="30%">
+					<?php if($order_info['options']['shipping_address'] == '1' ) { ?>
+				    <table width="100%" cellpadding="5" cellspacing="0">
+						<tr>
+							<td width="100%" align="left">
+								<b>Shipping Address</b>:
+							</td>
+						</tr>
+						<tr>
+							<td width="100%" align="left">
+								<?php if(strlen($order_info['shipping_info']['name']) > 0){echo $order_info['shipping_info']['name'].'<br />';} ?>
+								<?php if(strlen($order_info['shipping_info']['shipping_company']) > 0){echo $order_info['shipping_info']['shipping_company'].'<br />';} ?>
+								<?php echo $order_info['shipping_info']['shipping_address_1'].'<br />'; ?>
+                				<?php if(strlen($order_info['shipping_info']['shipping_address_2']) > 0) {echo $order_info['shipping_info']['shipping_address_2'].'<br />'; } ?>
+                				<?php echo $order_info['shipping_info']['shipping_city'].' '.$order_info['shipping_info']['shipping_state'].' '.$order_info['shipping_info']['shipping_postcode'].'<br />'; ?>
+								<?php if($order_info['options']['billing_phone'] == '1' ) { echo $order_info['shipping_info']['billing_phone'].'<br />'; } ?>
+                			</td>
+						</tr>
+					</table>
+				    <?php 
+				} ?>
+				</td>
+			</tr>
+        </tbody>
+    </table>
+    <?php } ?>
+   <table><tr><td></td></tr></table>
+    <?php if($order_info['options']['full_information'] == '1' && $order_info['options']['order_complete_link'] == '1') { ?>
+    <table>
+    	<tr>
+    		<td style="text-align: center;">
+		       To mark this order as shipped please click the following link:<br/> 
+		       <?php echo bloginfo('url') ?>/wp-admin/admin-ajax.php?action=woocommerce_dropshippers_mark_as_shipped&orderid=<?php echo $order_info['id']; ?>
+       	</td>
+    	</tr>
+    </table>
+    <?php } ?>
+    <h4 align="center">
+        <?php echo $order_info['options']['packing_slip_thankyou']; ?>
+    </h4>

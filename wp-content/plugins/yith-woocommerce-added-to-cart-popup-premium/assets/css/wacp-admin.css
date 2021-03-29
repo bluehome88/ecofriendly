@@ -1,0 +1,148 @@
+/*################
+* ADMIN STYLE
+##################*/
+
+#yith-wacp-custom-panel {
+    border: 1px solid #dbdada;
+    background: #fff;
+}
+#yith-wacp-custom-panel .yith-wacp-table-wrapper {
+    border-top: 0;
+    padding: 0 20px 35px;
+}
+#yith-wacp-custom-panel h2 {
+    border: none;
+}
+#yith-wacp-custom-panel .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    margin: 0;
+}
+
+table.excluded_categories td,
+table.excluded_categories th,
+table.excluded_products td,
+table.excluded_products th {
+    vertical-align: middle;
+}
+
+table.excluded_categories .column-image,
+table.excluded_products .column-image {
+    width: 52px;
+    text-align: center;
+    white-space: nowrap;
+}
+table.excluded_categories .column-image img,
+table.excluded_products .column-image img {
+    margin: 0;
+    width: auto;
+    height: auto;
+    max-width: 40px;
+    max-height: 40px;
+}
+table.excluded_categories .column-slug,
+table.excluded_categories .column-name {
+    width: 25%;
+}
+table.excluded_categories .column-count {
+    width: 74px;
+}
+table.excluded_categories .column-actions,
+table.excluded_products .column-actions {
+    width: 100px;
+}
+
+table.excluded_products .column-stock .in-stock {
+    color: #42af2c;
+}
+table.excluded_products .column-stock .out-of-stock {
+    color: #db1b1b;
+}
+
+#yith-add-exclusion-cat,
+#yith-add-exclusion-prod {
+    border-top: 0;
+    border-bottom: 0;
+    padding: 20px;
+}
+
+#yith-add-exclusion-prod label,
+#yith-add-exclusion-cat label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#yith-wacp-overlay-opacity_value,
+#yith-wacp-related-columns_value {
+    background: none;
+    border: none;
+    line-height: 30px;
+}
+#yith-wacp-overlay-opacity_slider,
+#yith-wacp-related-columns_slider {
+    margin: 15px 15px 15px 0;
+    height: 5px !important;
+}
+#yith-wacp-overlay-opacity_slider .ui-slider-handle.ui-state-default.ui-corner-all,
+#yith-wacp-related-columns_slider .ui-slider-handle.ui-state-default.ui-corner-all {
+    border-radius: 50%;
+    border: 1px solid #c0c0c0;
+    background: #e0e0e0;
+}
+
+td.yith_wacp_select_prod .description {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+#yith_wacp_panel_style .yit_options .description {
+    float: none;
+    width: auto;
+    margin-left: 0;
+    font-size: 12px;
+}
+
+.yith_box_size_settings input[type="text"],
+.yith_image_size_settings input[type="text"] {
+    width: auto !important;
+}
+
+#yith_wacp_panel_style input.colorpick {
+    width: 6em;
+}
+
+#yith-wacp-mini-cart-position_draggable_container {
+    width: 350px;
+    height: 300px;
+    border: 1px solid #ccc;
+    background: #eee;
+}
+#yith-wacp-mini-cart-position_draggable {
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    background-image: url("../images/mini-cart.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80%;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    cursor: move;
+    display: none;
+}
+
+#yith_wacp_panel_mini-cart .yith-plugin-fw-upload-img-preview img,
+#yith_wacp_panel_style .yith-plugin-fw-upload-img-preview img {
+    max-width: 32px !important;
+    height: auto;
+}
+
+.yith_box_size_settings > *:not(div),
+.yith_image_size_settings > *:not(div) {
+    display: inline-block;
+    vertical-align: middle !important;
+    margin-right: 5px;
+}
+.yith_image_size_settings label[for="yith-wacp-image-size-crop"] {
+    margin-left: 10px;
+}

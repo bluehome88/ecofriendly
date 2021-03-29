@@ -1,0 +1,120 @@
+*** WooCommerce Dropshipping Changelog ***
+
+2019.08.21 -version 1.2.18
+* New setting 'Show user phone number to supplier' checkbox in backend dropshipping settings area
+* If the above setting is checked, then customers phone number will also be sent in the notification email as well as attached pdf
+* Updated the TCPDF library to the new stable version 6.2.25. This will remove all corresponding errors those were coming in error logs
+* There were certain woo hooks (e.g. create_term, delete_term, save_post) those were written in the plugin starting from the beginning. Those are corrected.
+* Corrected certain code standards while assigning supplier role to the created suppliers.
+* jquery-ui module was earlier imported from CDN. Changed it to get imported using wp standards.
+
+2019.07.08 -version 1.2.17-beta
+* When Add supplier auto create user with dropshipper role and recieve login detail through email.
+* Dropshipper login with detail and check order list. 
+* Dropshipper mark order complete from order list section.
+* Dropshipper print packing slip from supplier area.
+* Dropshipper Add Order Shipping info like date,Shipping Company,notes etc.
+* Shipping info Show into order detail page in admin area.
+
+2019.07.01 -version 1.2.16
+* Fixed - corrupted pdf in mail attachment.
+* PDF attachment recieve in mail according backend checkbox selection.
+
+2019.06.18 -version 1.2.15
+* Add Function - Reciever not recieve email if product is digital product.
+
+2019.06.18 -version 1.2.14
+* Update TCPDF library
+* Update woocommerce deprecated functions
+
+2019.06.11 -version 1.2.13
+* Removed unwanted text from supplier mail subject.
+* get_woocommerce_term_meta() update this function with new function get_term_meta().
+* Woocommerce admin order page Dropship Supplier column, If the Order is not a Drop Ship order, then it should show nothing in this column else show supplier name, product name and quantity.
+* fix dbug.log file errors.
+* Term condition update.
+* Condition for Customer doesn't wants to send pdf in mail for supplier.
+* Update TCPDF library
+
+2019.05.20 -version 1.2.12
+* Fixed double pdf attachement
+* Fixed tooltip in dropshiiping email settings
+* Fixed completion order link in mail
+
+* Allow website admin to add "From Name" and "From Email ID" in dropshipping email settings, via which email notifications will be sent
+* Provided an option to website admin, to sent email notifications via SMTP or PHP mail
+* Fixed - 500 error while modifying supplier email id
+* Fixed - Product Variation not showing in PDF and Email.
+* Order Completion email for supplier option from backend.
+* Send "mark order complete" URL link in PDF and Email.
+* Fixed - Corrupted pdf issue in webmail. 
+
+2019.04.17 -version 1.2.11
+* fixed - customer recieve csv file in mail if disable csv option from backend.
+* fieed - Admin recieve multiple mail of same order.
+
+2019.04.10 -version 1.2.10
+* Fixed - Refund section not showing.
+* Create Dropship user automatic.
+* Supplier mark order complete with link in pdf and email.
+
+
+2019.03.29 - version 1.2.9
+* Add Supplier on Order Listing page in admin	
+* Add Supplier on Order Detail page in admin
+* Add Bulk Assign product supplier for product
+* Billing User Email In PDF and Email.
+
+2019.03.28 - version 1.2.8
+* Fixed 'r' append in end of cc email id.
+* Update variation function wc3 compatible.
+* Send Email to supplier when order place and order complete.
+* Send Billing User email in pdf.
+* Changes in pdf slip layout.
+* Correct logo appearance in pdf slip.
+* PDF Data customization From admin.
+
+2019.02.22 - version 1.2.7
+* Update supplier email to include CSV attachment.
+
+2019.02.15 - version 1.2.6
+* Update supplier email to support Outlook and various email clients.  
+* Packing slip updated to include HTML and Text versions.
+
+2019.02.06 - version 1.2.5
+* Resolve supplier email bug.
+
+2019.01.25 - version 1.2.4
+* Update to support both HTML and Text Supplier emails.
+
+2018.08.15 - version 1.2.3
+* Add Order Notes to the Packing Slip.
+
+2018.05.14 - version 1.2.2
+* Fixed packing slip to include all product variation information
+
+2017.09.15 - version 1.2.1
+* Fixed packing slip not showing correct order ID
+* Fixed custom packing slip directory points to old plugin name
+
+2017.09.06 - version 1.2.0
+* Fix for can't save CSV Indicator column
+* Add customer company name to supplier email/PDF
+* Fix for WooCommerce Order Number is Not Included on packing slip
+* Add compatibility with Product Add-Ons extension
+
+2017.06.08 - version 1.1.2
+ * Fix - Update the plugin header to include the new Woo keys.
+
+2017.05.25 - version 1.1.1
+
+* Product variation attribute information included on packing slip
+
+2017.02.23 - version 1.1.0
+
+* Adjustable PDF header logo width in settings
+* Product shipping information included on packing slip
+* Product attribute information included on packing slip
+
+2016.10.18 - version 1.0.0
+* Initial release.

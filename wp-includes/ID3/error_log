@@ -1,0 +1,16 @@
+[11-Jul-2020 00:43:46 UTC] PHP Fatal error:  Uncaught Error: Class 'getid3_handler' not found in /home/ecohygieneaustra/public_html/wp-includes/ID3/module.audio.ac3.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/ecohygieneaustra/public_html/wp-includes/ID3/module.audio.ac3.php on line 18
+[13-Jul-2020 21:37:04 UTC] PHP Fatal error:  Uncaught Error: Class 'getid3_handler' not found in /home/ecohygieneaustra/public_html/wp-includes/ID3/module.audio.ac3.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/ecohygieneaustra/public_html/wp-includes/ID3/module.audio.ac3.php on line 18
+[22-Jul-2020 12:59:38 UTC] PHP Fatal error:  Uncaught Error: Class 'getid3_handler' not found in /home/ecohygieneaustra/public_html/wp-includes/ID3/module.audio.ac3.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/ecohygieneaustra/public_html/wp-includes/ID3/module.audio.ac3.php on line 18
+[05-Aug-2020 20:27:26 UTC] PHP Fatal error:  Uncaught Error: Class 'getid3_handler' not found in /home/ecohygieneaustra/public_html/wp-includes/ID3/module.audio.ac3.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/ecohygieneaustra/public_html/wp-includes/ID3/module.audio.ac3.php on line 18
