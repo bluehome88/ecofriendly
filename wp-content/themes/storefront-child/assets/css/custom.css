@@ -14,16 +14,16 @@
 /* cart message info */
 
 .woocommerce-message, .woocommerce-info, .woocommerce-error {
-  border-top-color: #8bc34a;
+  border-top-color: #4EAF50;
   border-left: none;
 }
 
 .woocommerce-message::before, .woocommerce-info::before, .woocommerce-error::before, .woocommerce-info .showcoupon {
-  color: #8bc34a;
+  color: #4EAF50;
 }
 
 .woocommerce-info .showcoupon:hover {
-  color: #8bc34a;
+  color: #4EAF50;
 }
 
 .woocommerce-info .showcoupon:focus {
@@ -38,8 +38,8 @@
   padding-bottom: 15px;
   padding-left: 35px;
   color: #ffffff;
-  border-color: #8bc34a;
-  background-color: #8bc34a;
+  border-color: #4EAF50;
+  background-color: #4EAF50;
   line-height: 1 !important;
 }
 

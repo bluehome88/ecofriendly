@@ -88,7 +88,7 @@ section#content {
 }
 
 .blog_element>a:hover {
-    color: #8BC34A !important;
+    color: #4EAF50 !important;
 }
 
 .blog_element.image {
@@ -120,7 +120,7 @@ section#content {
 }
 
 .blog_element.title h3:hover {
-    color: #8BC34A;
+    color: #4EAF50;
 }
 
 .blog_element.content {

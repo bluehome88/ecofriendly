@@ -73,7 +73,7 @@
     color: #333333;
 }
 #masthead .site-header-cart .widget_shopping_cart .product_list_widget li a.remove:hover {
-    border-color: #8bc34a;
+    border-color: #4EAF50;
 }
 #masthead .site-header-cart .widget_shopping_cart .product_list_widget li a.remove:hover::before {
     color: #72aa31;
@@ -92,7 +92,7 @@
     margin-bottom: 0;
 }
 #masthead .woocommerce-mini-cart__total .woocommerce-Price-amount {
-    color: #8bc34a;
+    color: #4EAF50;
 }
 #masthead .woocommerce-mini-cart__buttons {
     padding: 15px;

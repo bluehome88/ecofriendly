@@ -19,7 +19,7 @@ a, a:focus, a:hover, a:visited {
 }
 
 a, .page-title {
-  /* color: #8bc34a !important; */
+  /* color: #4EAF50 !important; */
 }
 
 /* woo default */
@@ -41,8 +41,8 @@ input[type="email"], input[type="number"], input[type="password"], input[type="r
 
 .woocommerce a.button, .woocommerce button.button, .woocommerce .woocommerce-message a.button, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce input.button, .woocommerce input.button:disabled, .woocommerce input.button:disabled[disabled], .woocommerce input.button:disabled:hover, .woocommerce input.button:disabled[disabled]:hover, .woocommerce #respond input#submit, .woocommerce button.button.alt.disabled, .wc-block-grid__products .wc-block-grid__product .wp-block-button__link, .wc-block-grid__product-onsale {
   color: #ffffff;
-  border-color: #8bc34a !important;
-  background-color: #8bc34a !important;
+  border-color: #4EAF50 !important;
+  background-color: #4EAF50 !important;
 }
 
 @media (min-width: 922px) {

@@ -76,7 +76,7 @@ footer .elementor-widget-heading h4 {
     width: 1em;
     height: 1em;
     font-family: "Font Awesome 5 Free";
-    color: #8bc34a;
+    color: #4EAF50;
 }
 
 .contact-form-formclass input[type=submit]{
@@ -146,16 +146,16 @@ a:focus, button:focus, .button.alt:focus, input[type="submit"]:focus, .yith-wacp
     background-color: white;
 }
 .yith-wacp-content table.cart-list td.item-remove a:hover {
-    border-color: #8bc34a;
+    border-color: #4EAF50;
 }
 .yith-wacp-content table.cart-list td.item-remove a:hover::after {
     color: #72aa31;
 }
 .star-rating span:before {
-  color: #8bc34a;
+  color: #4EAF50;
 }
 .woocommerce .woocommerce-LoopProduct-link .star-rating::before {
-  color: #8bc34a;
+  color: #4EAF50;
   opacity: 1;
 }
 .woocommerce-LoopProduct-link .woocommerce-loop-product__title {
