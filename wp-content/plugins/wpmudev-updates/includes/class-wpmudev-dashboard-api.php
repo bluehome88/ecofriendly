@@ -23,7 +23,7 @@ class WPMUDEV_Dashboard_Api {
 	 *
 	 * @var string (URL)
 	 */
-	protected $server_root = 'https://premium.wpmudev.org/';
+	protected $server_root = 'https://wpmudev.com/';
 
 	/**
 	 * Path to the REST API on the server.

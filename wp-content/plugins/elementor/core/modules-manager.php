@@ -90,7 +90,6 @@ class Modules_Manager {
 			'dev-tools',
 			'landing-pages',
 			'compatibility-tag',
-			'shapes',
 		];
 	}
 

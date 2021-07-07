@@ -274,7 +274,7 @@ if ( isset( $_GET['success-action'] ) ) : // wpcs csrf ok.
 
 					<?php if ('free' === $membership_data['membership']): ?>
 						<p><?php echo __( 'Add basic analytics tracking that doesn\'t require any third party integration, and display the<br>data in the WordPress Admin Dashboard area. This feature requires an active WPMU DEV<br>membership.', 'wpmudev' ); ?></p>
-						<a href="https://premium.wpmudev.org/hub/account/?utm_source=wpmudev-dashboard&utm_medium=plugin&utm_campaign=dashboard_expired_modal_reactivate" class="sui-button sui-button-purple" style="margin-top: 10px;"><?php echo __('Reactivate Membership', 'wpmudev'); ?></a>
+						<a href="https://wpmudev.com/hub/account/?utm_source=wpmudev-dashboard&utm_medium=plugin&utm_campaign=dashboard_expired_modal_reactivate" class="sui-button sui-button-purple" style="margin-top: 10px;"><?php echo __('Reactivate Membership', 'wpmudev'); ?></a>
 					<?php else: ?>
 					<p><?php esc_html_e( "Add basic analytics tracking that doesn't require any third party integration, and display the data in the WordPress Admin Dashboard area.", 'wpmudev' ); ?></p>
 

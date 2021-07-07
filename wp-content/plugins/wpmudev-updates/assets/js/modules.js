@@ -144,7 +144,7 @@ jQuery(function initModules() {
 		var searchForm = jQuery("#support-search");
 		searchForm.submit(function() {
 			var query = jQuery('#support-search input[name="q"]').val();
-			window.open('https://premium.wpmudev.org/forums/search.php?q='+query+'&forum=support', '_blank');
+			window.open('wpmudev.com/forums/search.php?q='+query+'&forum=support', '_blank');
 			return false;
 		});
 		searchForm.on('click', '.search-icon', function() {

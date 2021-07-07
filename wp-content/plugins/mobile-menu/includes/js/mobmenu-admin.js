@@ -21,8 +21,6 @@
 
     $( '#mobmenu_hide_elements' ).after( '<a href="#" class="mobmenu-find-element">Find element</a>' );
     $('body').append('<iframe class="mobmenu-preview-iframe" scrolling="no" id="mobmenu-preview-iframe" width="380" height="650" >');
-    setTimeout(function(){ $( '#mobmenu-preview-iframe' ).attr( 'src', document.location.protocol + '//' + document.location.hostname + '/?mobmenu-action=find-element' ); }, 3000);
-    
 
     // Initilialize the CodeMirror on the custom CSS option.
     if ( $('#mobmenu_custom_css').length > 0 ) {
@@ -457,6 +455,10 @@
     $( document ).on( 'click', ' .mobmenu-find-element' , function( e ) {
 
         e.preventDefault();
+        var href    = window.location.href;
+        var index   = href.indexOf('/wp-admin');
+        var homeUrl = href.substring(0, index);
+        $( '#mobmenu-preview-iframe' ).attr( 'src', homeUrl + '/?mobmenu-action=find-element' );
         $( '#mobmenu-preview-iframe' ).show();
     });
 

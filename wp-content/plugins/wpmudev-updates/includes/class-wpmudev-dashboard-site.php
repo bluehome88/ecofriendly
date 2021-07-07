@@ -2186,7 +2186,7 @@ class WPMUDEV_Dashboard_Site {
 		if ( empty( $user_id ) ) {
 			/*
 			 * @todo calling this too soon bugs out in some wp installs
-			 * http://premium.wpmudev.org/forums/topic/urgenti-lost-permission-after-upgrading#post-227543
+			 * http://wpmudev.com/forums/topic/urgenti-lost-permission-after-upgrading#post-227543
 			 */
 			$user_id = get_current_user_id();
 		}

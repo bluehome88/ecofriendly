@@ -73,7 +73,7 @@ foreach ( $threads as $thread ) {
 		<?php
 				if ( ! $staff_login->enabled && empty( $all_threads ) && 'free' !== $membership_data['membership'] ) :
 					?>
-					<a href="<?php echo esc_url( 'https://premium.wpmudev.org/hub/support/#wpmud-chat-pre-survey-modal' ); ?>" target="_blank" class="sui-button sui-button-blue"><i class="sui-icon-plus" aria-hidden="true"></i><?php echo esc_html__( 'Get Support' ); ?></a>
+					<a href="<?php echo esc_url( 'https://wpmudev.com/hub/support/#wpmud-chat-pre-survey-modal' ); ?>" target="_blank" class="sui-button sui-button-blue"><i class="sui-icon-plus" aria-hidden="true"></i><?php echo esc_html__( 'Get Support' ); ?></a>
 					<?php
 			endif;
 				?>
@@ -155,7 +155,7 @@ foreach ( $threads as $thread ) {
 		</a>
 		<?php } ?>
 		<div class="sui-actions-right">
-			<a href="<?php echo esc_url( 'https://premium.wpmudev.org/hub/support/#wpmud-chat-pre-survey-modal' ); ?>" target="_blank" class="sui-button sui-button-blue"><i class="sui-icon-plus" aria-hidden="true"></i><?php echo esc_html__( 'Get Support' ); ?></a>
+			<a href="<?php echo esc_url( 'https://wpmudev.com/hub/support/#wpmud-chat-pre-survey-modal' ); ?>" target="_blank" class="sui-button sui-button-blue"><i class="sui-icon-plus" aria-hidden="true"></i><?php echo esc_html__( 'Get Support' ); ?></a>
 		</div>
 	</div>
 	<?php } ?>
@@ -165,7 +165,7 @@ foreach ( $threads as $thread ) {
 			?>
 		<div class="sui-box-footer wpmud-main-page-support-no-top">
 			<a
-				href="https://premium.wpmudev.org/contact/#i-have-a-presales-question"
+				href="https://wpmudev.com/contact/#i-have-a-presales-question"
 				target="_blank"
 				class="sui-button sui-button-blue"
 			>
@@ -185,7 +185,7 @@ foreach ( $threads as $thread ) {
 			</div>
 			<div class="sui-actions-right">
 				<a
-					href="https://premium.wpmudev.org/contact/#i-have-a-presales-question"
+					href="https://wpmudev.com/contact/#i-have-a-presales-question"
 					target="_blank"
 					class="sui-button sui-button-blue"
 				>

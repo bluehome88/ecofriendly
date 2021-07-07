@@ -316,23 +316,16 @@ class Widget_Button extends Widget_Base {
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Background::get_type(),
+		$this->add_control(
+			'background_color',
 			[
-				'name' => 'background',
-				'label' => __( 'Background', 'elementor' ),
-				'types' => [ 'classic', 'gradient' ],
-				'exclude' => [ 'image' ],
-				'selector' => '{{WRAPPER}} .elementor-button',
-				'fields_options' => [
-					'background' => [
-						'default' => 'classic',
-					],
-					'color' => [
-						'global' => [
-							'default' => Global_Colors::COLOR_ACCENT,
-						],
-					],
+				'label' => __( 'Background Color', 'elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'global' => [
+					'default' => Global_Colors::COLOR_ACCENT,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elementor-button' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -358,18 +351,13 @@ class Widget_Button extends Widget_Base {
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Background::get_type(),
+		$this->add_control(
+			'button_background_hover_color',
 			[
-				'name' => 'button_background_hover',
-				'label' => __( 'Background', 'elementor' ),
-				'types' => [ 'classic', 'gradient' ],
-				'exclude' => [ 'image' ],
-				'selector' => '{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus',
-				'fields_options' => [
-					'background' => [
-						'default' => 'classic',
-					],
+				'label' => __( 'Background Color', 'elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus' => 'background-color: {{VALUE}};',
 				],
 			]
 		);

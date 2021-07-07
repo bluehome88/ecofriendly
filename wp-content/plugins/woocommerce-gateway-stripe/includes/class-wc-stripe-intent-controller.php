@@ -23,8 +23,8 @@ class WC_Stripe_Intent_Controller {
 	 * @since 4.2.0
 	 */
 	public function __construct() {
-		add_action( 'wc_ajax_wc_stripe_verify_intent', array( $this, 'verify_intent' ) );
-		add_action( 'wc_ajax_wc_stripe_create_setup_intent', array( $this, 'create_setup_intent' ) );
+		add_action( 'wc_ajax_wc_stripe_verify_intent', [ $this, 'verify_intent' ] );
+		add_action( 'wc_ajax_wc_stripe_create_setup_intent', [ $this, 'create_setup_intent' ] );
 	}
 
 	/**
@@ -150,7 +150,7 @@ class WC_Stripe_Intent_Controller {
 		}
 
 		try {
-			$source_id = wc_clean( $_POST['stripe_source_id'] );
+			$source_id = wc_clean( wp_unslash( $_POST['stripe_source_id'] ) );
 
 			// 1. Verify.
 			if (
@@ -160,14 +160,27 @@ class WC_Stripe_Intent_Controller {
 				throw new Exception( __( 'Unable to verify your request. Please reload the page and try again.', 'woocommerce-gateway-stripe' ) );
 			}
 
-
 			// 2. Load the customer ID (and create a customer eventually).
 			$customer = new WC_Stripe_Customer( wp_get_current_user()->ID );
 
 			// 3. Attach the source to the customer (Setup Intents require that).
 			$source_object = $customer->attach_source( $source_id );
+
+			if ( ! empty( $source_object->error ) ) {
+				throw new Exception( $source_object->error->message );
+			}
 			if ( is_wp_error( $source_object ) ) {
 				throw new Exception( $source_object->get_error_message() );
+			}
+
+			// SEPA Direct Debit payments do not require any customer action after the source has been created.
+			// Once the customer has provided their IBAN details and accepted the mandate, no further action is needed and the resulting source is directly chargeable.
+			if ( 'sepa_debit' === $source_object->type ) {
+				$response = [
+					'status' => 'success',
+				];
+				echo wp_json_encode( $response );
+				return;
 			}
 
 			// 4. Generate the setup intent
@@ -180,10 +193,10 @@ class WC_Stripe_Intent_Controller {
 				'setup_intents'
 			);
 
-			if ( $setup_intent->error ) {
+			if ( ! empty( $setup_intent->error ) ) {
 				$error_response_message = print_r( $setup_intent, true );
-				WC_Stripe_Logger::log("Failed create Setup Intent while saving a card.");
-				WC_Stripe_Logger::log("Response: $error_response_message");
+				WC_Stripe_Logger::log( 'Failed create Setup Intent while saving a card.' );
+				WC_Stripe_Logger::log( "Response: $error_response_message" );
 				throw new Exception( __( 'Your card could not be set up for future usage.', 'woocommerce-gateway-stripe' ) );
 			}
 
@@ -214,10 +227,10 @@ class WC_Stripe_Intent_Controller {
 		} catch ( Exception $e ) {
 			$response = [
 				'status' => 'error',
-				'error'  => array(
+				'error'  => [
 					'type'    => 'setup_intent_error',
 					'message' => $e->getMessage(),
-				),
+				],
 			];
 		}
 

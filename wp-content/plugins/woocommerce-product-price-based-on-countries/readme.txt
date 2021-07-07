@@ -2,8 +2,8 @@
 Contributors: oscargare
 Tags: price based country, dynamic price based country, price by country, dynamic price, woocommerce, geoip, country-targeted pricing
 Requires at least: 3.8
-Tested up to: 5.6
-Stable tag: 2.0.13
+Tested up to: 5.7
+Stable tag: 2.0.18
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -111,6 +111,28 @@ You should do the test in a private browsing window to prevent data stored in th
 5. /assets/screenshot-6.png
 
 == Changelog ==
+
+= 2.0.18 (2021-04-02) =
+* Fixed: Compatibility issue with WooCommerce EU VAT Assistant.
+* Fixed: "Load product price in the background" compatible with WooCommerce Product Add-ons +3.6.
+
+= 2.0.17 (2021-03-22) =
+* Fixed: Error on FedEx integration.
+
+= 2.0.16 (2021-03-22) =
+* Added: Tested up WooCommerce 5.1.
+* Added: Improve compatibility with WooCommerce FedEx Shipping method.
+* Fixed: Do not include AJAX geolocate styles and scripts on Elementor preview mode.
+
+= 2.0.15 (2021-02-16) =
+* Added: Tested up WooCommerce 5.0.
+* Fixed: Do no apply exchange rate to recurring percent coupons.
+
+= 2.0.14 (2021-01-21) =
+* Added: Tested up WooCommerce 4.9.
+* Fixed: The sale price is not removed on the scheduled date end.
+* Fixed: All Products for WooCommerce Subscriptions compatibility - Duplicate subscription options for bundle products.
+* Tweak: Improvements in how the session is initialized when the customer change the country via the widget.
 
 = 2.0.13 (2020-12-29) =
 * Added: Tested up WooCommerce 4.8.

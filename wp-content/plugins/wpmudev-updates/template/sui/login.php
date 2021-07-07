@@ -12,16 +12,16 @@
 /** @var bool $connection_error */
 /** @var bool $key_valid */
 
-$register_url      = 'https://premium.wpmudev.org/#trial';
-$reset_url         = 'https://premium.wpmudev.org/wp-login.php?action=lostpassword';
-$account_url       = 'https://premium.wpmudev.org/hub/account/';
+$register_url      = 'https://wpmudev.com/#trial';
+$reset_url         = 'https://wpmudev.com/wp-login.php?action=lostpassword';
+$account_url       = 'https://wpmudev.com/hub/account/';
 $skip_trial_url    = $urls->skip_trial_url;
-$hosting_url       = 'https://premium.wpmudev.org/hub/hosting/';
-$trial_info_url    = 'https://premium.wpmudev.org/manuals/how-free-trials-work/';
-$websites_url      = 'https://premium.wpmudev.org/hub/my-websites/';
-$security_info_url = 'https://premium.wpmudev.org/manuals/hub-security/';
-$support_url       = 'https://premium.wpmudev.org/hub/support/';
-$support_modal_url = 'https://premium.wpmudev.org/hub/support/#get-support';
+$hosting_url       = 'https://wpmudev.com/hub2/hosting/';
+$trial_info_url    = 'https://wpmudev.com/manuals/how-free-trials-work/';
+$websites_url      = 'https://wpmudev.com/hub2/';
+$security_info_url = 'https://wpmudev.com/manuals/hub-security/';
+$support_url       = 'https://wpmudev.com/hub/support/';
+$support_modal_url = 'https://wpmudev.com/hub/support/#get-support';
 
 $login_url = $urls->dashboard_url;
 if ( ! empty( $_GET['pid'] ) ) { // wpcs csrf ok.

@@ -1,4 +1,4 @@
-/*! elementor - v3.2.2 - 26-04-2021 */
+/*! elementor - v3.1.4 - 10-03-2021 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -2951,7 +2951,7 @@ var AdminBar = /*#__PURE__*/function (_elementorModules$Vie) {
       }).append([$title, $subTitle]);
       return jQuery('<li>', {
         id: id,
-        class: children.length ? 'menupop' : '' + (item.parent_class || 'elementor-general-section')
+        class: children.length ? 'menupop' : ''
       }).append([$item, children.length ? this.createSubMenuItems(id, children) : null]);
     }
     /**

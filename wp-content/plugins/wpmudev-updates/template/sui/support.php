@@ -46,11 +46,11 @@ $has_support_access = is_wpmudev_member() || 'unit' === $membership_type;
  */
 
 $url_grant       = wp_nonce_url( add_query_arg( 'action', 'remote-grant', $urls->support_url . '#access' ), 'remote-grant', 'hash' );
-$url_revoke      = wp_nonce_url( add_query_arg( 'action', 'remote-revoke', $urls->support_url . '#access' ), 'remote-revoke', 'hash' );	  		 				        	 
+$url_revoke      = wp_nonce_url( add_query_arg( 'action', 'remote-revoke', $urls->support_url . '#access' ), 'remote-revoke', 'hash' );
 $url_extend      = wp_nonce_url( add_query_arg( 'action', 'remote-extend', $urls->support_url . '#access' ), 'remote-extend', 'hash' );
 $url_all_tickets = $urls->remote_site . 'hub/support/';
 $url_search      = $urls->remote_site . 'forums/search.php';
-$url_open_ticket = 'https://premium.wpmudev.org/hub/support/#wpmud-chat-pre-survey-modal';
+$url_open_ticket = 'https://wpmudev.com/hub/support/#wpmud-chat-pre-survey-modal';
 $hub_url         = $urls->hub_url;
 
 if ( $notes && ! empty( $_COOKIE['wpmudev_is_staff'] ) || ! empty( $_GET['staff'] ) ) {// wpcs csrf ok.
@@ -242,7 +242,7 @@ $time_format = get_option( 'time_format' );
 			<div class="sui-actions-right">
 				<?php if ( 'free' === $membership_data['membership'] ) : // expired member. ?>
 					<a
-						href="https://premium.wpmudev.org/contact/#i-have-a-presales-question"
+						href="https://wpmudev.com/contact/#i-have-a-presales-question"
 						target="_blank"
 						class="sui-button sui-button-blue"
 					>
@@ -303,7 +303,7 @@ $time_format = get_option( 'time_format' );
 				<?php if ( 'free' === $membership_data['membership'] ) : ?>
 					<p><?php echo __( 'Our team is here to help you with any WordPress problem, anytime. Every WPMU DEV<br>membership comes with 24/7 expert live WordPress support, renew your membership to<br>gain access.', 'wpmudev' ); ?>
 					<p>
-						<a href="https://premium.wpmudev.org/hub/account/?utm_source=wpmudev-dashboard&utm_medium=plugin&utm_campaign=dashboard_expired_modal_reactivate" class="sui-button sui-button-purple" style="margin-top: 10px;"><?php echo __( 'Reactivate Membership', 'wpmudev' ); ?></a>
+						<a href="https://wpmudev.com/hub/account/?utm_source=wpmudev-dashboard&utm_medium=plugin&utm_campaign=dashboard_expired_modal_reactivate" class="sui-button sui-button-purple" style="margin-top: 10px;"><?php echo __( 'Reactivate Membership', 'wpmudev' ); ?></a>
 					</p>
 				<?php else : ?>
 					<p>
@@ -341,7 +341,7 @@ $time_format = get_option( 'time_format' );
 							<img class="sui-image sui-upsell-image" src="/shared-ui/assets/images/hummingbird-upsell-minify.png" srcset="/shared-ui/assets/images/hummingbird-upsell-minify@2x.png 2x" alt="">
 							<div class="sui-upsell-notice">
 							<p><?php echo __( 'Your WPMU DEV Membership has expired and pro versions of installed plugins have been downgraded.<br>Reactivate your subscription to upgrade pro plugins.<br>', 'wpmudev' ); ?>
-								<a href="https://premium.wpmudev.org/hub/account/?utm_source=wpmudev-dashboard&utm_medium=plugin&utm_campaign=dashboard_expired_modal_reactivate" class="sui-button sui-button-purple" style="margin-top: 10px;"><?php echo __( 'Reactivate Membership', 'wpmudev' ); ?></a>
+								<a href="https://wpmudev.com/hub/account/?utm_source=wpmudev-dashboard&utm_medium=plugin&utm_campaign=dashboard_expired_modal_reactivate" class="sui-button sui-button-purple" style="margin-top: 10px;"><?php echo __( 'Reactivate Membership', 'wpmudev' ); ?></a>
 							</p>
 							</div>
 						</div>
@@ -553,7 +553,7 @@ $time_format = get_option( 'time_format' );
 
 						<p><?php esc_html_e( 'Need help? Grant support access so our WPMU DEV Support Staff are able to log in and help troubleshoot issues with you. This is completely secure and only active for a time period of your choice.', 'wpmudev' ); ?></p>
 						<?php if ( 'free' === $membership_data['membership'] ) : ?>
-							<a href="https://premium.wpmudev.org/hub/account/?utm_source=wpmudev-dashboard&utm_medium=plugin&utm_campaign=dashboard_expired_modal_reactivate" class="sui-button sui-button-purple" style="margin-top: 10px;"><?php echo __( 'Reactivate Membership', 'wpmudev' ); ?></a>
+							<a href="https://wpmudev.com/hub/account/?utm_source=wpmudev-dashboard&utm_medium=plugin&utm_campaign=dashboard_expired_modal_reactivate" class="sui-button sui-button-purple" style="margin-top: 10px;"><?php echo __( 'Reactivate Membership', 'wpmudev' ); ?></a>
 						<?php else : ?>
 						<a href="<?php echo esc_url( $url_grant ); ?>"
 						   class="sui-button sui-button-blue js-loading-link"
@@ -571,7 +571,7 @@ $time_format = get_option( 'time_format' );
 					<div class="sui-box-body">
 						<p class="sui-block-content-center sui-p-small" style="width: 100%">
 							<?php
-							$learnmore_url = 'https://premium.wpmudev.org/docs/getting-started/getting-support/#chapter-5';
+							$learnmore_url = 'https://wpmudev.com/docs/getting-started/getting-support/#chapter-5';
 							printf(
 								esc_html__( 'Want to know more about the security of support access? %1$sLearn more%2$s', 'wpmudev' ),
 								'<a target="_blank" class="js-modal-security" style="cursor:pointer">',
@@ -757,7 +757,7 @@ $time_format = get_option( 'time_format' );
 
 				<p class="sui-block-content-center sui-p-small" style="width: 100%">
 					<?php
-					$learnmore_url = 'https://premium.wpmudev.org/docs/getting-started/getting-support/#chapter-5';
+					$learnmore_url = 'https://wpmudev.com/docs/getting-started/getting-support/#chapter-5';
 					printf(
 						esc_html__( 'Want to know more about the security of support access? %1$sLearn more%2$s', 'wpmudev' ),
 						'<a href="' . esc_url( $learnmore_url ) . '" target="_blank">',
@@ -849,7 +849,7 @@ $time_format = get_option( 'time_format' );
 				<a id="close-sec-det" class="sui-button sui-button-ghost" data-a11y-dialog-hide="security-details"><?php esc_html_e( 'Close', 'wpmudev' ); ?></a>
 
 				<div class="sui-actions-right">
-					<a class="sui-button" href="<?php echo esc_url( 'https://premium.wpmudev.org/docs/getting-started/getting-support/' ); ?>"><?php esc_html_e( 'Support Docs', 'wpmudev' ); ?></a>
+					<a class="sui-button" href="<?php echo esc_url( 'https://wpmudev.com/docs/getting-started/getting-support/' ); ?>"><?php esc_html_e( 'Support Docs', 'wpmudev' ); ?></a>
 				</div>
 
 			</div>

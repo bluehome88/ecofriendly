@@ -77,9 +77,10 @@ class LLAR_App {
 
 	/**
 	 * @param $link
+	 * @param bool $is_update
 	 * @return false[]
 	 */
-	public static function setup( $link ) {
+	public static function setup( $link, $is_update = false ) {
 
 		$return = array(
 			'success' => false,
@@ -95,6 +96,10 @@ class LLAR_App {
 
 		$plugin_data = get_plugin_data( LLA_PLUGIN_DIR . '/limit-login-attempts-reloaded.php' );
 		$link = add_query_arg( 'version', $plugin_data['Version'], $link );
+
+		if( $is_update ) {
+			$link = add_query_arg( 'is_update', 1, $link );
+		}
 
 		$setup_response = wp_remote_get( $link );
 		$setup_response_body = json_decode( wp_remote_retrieve_body( $setup_response ), true );
@@ -126,6 +131,22 @@ class LLAR_App {
 	public function stats() {
 
 		return $this->request( 'stats', 'get' );
+	}
+
+	/**
+	 * @return bool|mixed
+	 */
+	public static function stats_global() {
+
+		$response = wp_remote_get('https://api.limitloginattempts.com/v1/global-stats');
+
+		if( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
+
+			return false;
+		} else {
+
+			return json_decode( sanitize_textarea_field( stripslashes( wp_remote_retrieve_body( $response ) ) ), true );
+		}
 	}
 
 	/**

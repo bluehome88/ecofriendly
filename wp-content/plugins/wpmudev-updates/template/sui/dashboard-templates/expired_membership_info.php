@@ -49,6 +49,6 @@
 					<span style="margin-right:10px;"><i class="sui-icon-check" aria-hidden="true"></i></span>
 					<?php echo __('The WPMU DEV Guarantee', 'wpmudev'); ?>
 				</h4>
-				<a href="https://premium.wpmudev.org/hub/account/?utm_source=wpmudev-dashboard&utm_medium=plugin&utm_campaign=dashboard_expired_modal_reactivate" class="sui-button sui-button-purple" style="margin-top: 10px;"><?php echo __('Reactivate Membership', 'wpmudev'); ?></a>
+				<a href="https://wpmudev.com/hub/account/?utm_source=wpmudev-dashboard&utm_medium=plugin&utm_campaign=dashboard_expired_modal_reactivate" class="sui-button sui-button-purple" style="margin-top: 10px;"><?php echo __('Reactivate Membership', 'wpmudev'); ?></a>
     </div>
 </div>

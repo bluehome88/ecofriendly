@@ -669,14 +669,6 @@ class Widget_Image_Carousel extends Widget_Base {
 			]
 		);
 
-		$this->add_group_control(
-			Group_Control_Text_Shadow::get_type(),
-			[
-				'name' => 'caption_shadow',
-				'selector' => '{{WRAPPER}} .elementor-image-carousel-caption',
-			]
-		);
-
 		$this->end_controls_section();
 
 	}

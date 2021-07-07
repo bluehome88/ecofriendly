@@ -14,6 +14,8 @@ use Elementor\Widget_Base;
 use Elementor\Group_Control_Text_Shadow;
 use Elementor\Scheme_Color;
 
+use HFE\WidgetsManager\Widgets_Loader;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;   // Exit if accessed directly.
 }
@@ -85,12 +87,23 @@ class Site_Title extends Widget_Base {
 	}
 
 	/**
-	 * Register site title controls controls.
+	 * Register site title controls.
 	 *
 	 * @since 1.3.0
 	 * @access protected
 	 */
-	protected function _register_controls() {
+	protected function _register_controls() { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
+
+		$this->register_controls();
+	}
+
+	/**
+	 * Register site title controls.
+	 *
+	 * @since 1.5.7
+	 * @access protected
+	 */
+	protected function register_controls() {
 
 		$this->register_general_content_controls();
 		$this->register_heading_typo_content_controls();
@@ -412,6 +425,8 @@ class Site_Title extends Widget_Base {
 			}
 			$link = $this->get_render_attribute_string( 'url' );
 		}
+
+		$heading_size_tag = Widgets_Loader::validate_html_tag( $settings['heading_tag'] );
 		?>
 
 		<div class="hfe-module-content hfe-heading-wrapper elementor-widget-heading">
@@ -420,7 +435,7 @@ class Site_Title extends Widget_Base {
 				<?php } else { ?>
 					<a href="<?php echo get_home_url(); ?>">
 				<?php } ?>
-			<<?php echo wp_kses_post( $settings['heading_tag'] ); ?> class="hfe-heading elementor-heading-title elementor-size-<?php echo $settings['size']; ?>">
+			<<?php echo $heading_size_tag; ?> class="hfe-heading elementor-heading-title elementor-size-<?php echo $settings['size']; ?>">
 				<?php if ( '' !== $settings['icon']['value'] ) { ?>
 					<span class="hfe-icon">
 						<?php \Elementor\Icons_Manager::render_icon( $settings['icon'], [ 'aria-hidden' => 'true' ] ); ?>					
@@ -439,7 +454,7 @@ class Site_Title extends Widget_Base {
 					}
 					?>
 					</span>			
-			</<?php echo wp_kses_post( $settings['heading_tag'] ); ?>>
+			</<?php echo $heading_size_tag; ?>>
 			</a>		
 		</div>
 		<?php
@@ -465,15 +480,24 @@ class Site_Title extends Widget_Base {
 			view.addRenderAttribute( 'url', 'href', settings.heading_link.url );
 		}
 		var iconHTML = elementor.helpers.renderIcon( view, settings.icon, { 'aria-hidden': true }, 'i' , 'object' );
+
+		var headingSizeTag = settings.heading_tag;
+
+		if ( typeof elementor.helpers.validateHTMLTag === "function" ) { 
+			headingSizeTag = elementor.helpers.validateHTMLTag( headingSizeTag );
+		} else if( HfeWidgetsData.allowed_tags ) {
+			headingSizeTag = HfeWidgetsData.allowed_tags.includes( headingSizeTag.toLowerCase() ) ? headingSizeTag : 'div';
+		}
+
 		#>
 		<div class="hfe-module-content hfe-heading-wrapper elementor-widget-heading">
 				<# if ( '' != settings.heading_link.url ) { #>
 					<a {{{ view.getRenderAttributeString( 'url' ) }}} >
 				<# } #>
-				<{{{ settings.heading_tag }}} class="hfe-heading elementor-heading-title elementor-size-{{{ settings.size }}}">
+				<{{{ headingSizeTag }}} class="hfe-heading elementor-heading-title elementor-size-{{{ settings.size }}}">
 				<# if( '' != settings.icon.value ){ #>
 				<span class="hfe-icon">
-					{{{iconHTML.value}}}					
+					{{{ iconHTML.value }}}					
 				</span>
 				<# } #>
 				<span class="hfe-heading-text  elementor-heading-title" data-elementor-setting-key="heading_title" data-elementor-inline-editing-toolbar="basic" >
@@ -485,7 +509,7 @@ class Site_Title extends Widget_Base {
 					{{{ settings.after }}}
 				<#}#>
 				</span>
-			</{{{ settings.heading_tag }}}>
+			</{{{ headingSizeTag }}}>
 			<# if ( '' != settings.heading_link.url ) { #>
 				</a>
 			<# } #>

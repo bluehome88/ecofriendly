@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Mobile Menu
  * Description: An easy to use WordPress responsive mobile menu. Keep your mobile visitors engaged.
- * Version: 2.8.1.7
+ * Version: 2.8.1.8.1
  * Plugin URI: https://www.wpmobilemenu.com/
  * Author: Rui Guerreiro
  * Author URI: https://www.jedipress.com/
@@ -16,7 +16,7 @@
 if ( !defined( 'ABSPATH' ) ) {
     die;
 }
-define( 'WP_MOBILE_MENU_VERSION', '2.8.1.7' );
+define( 'WP_MOBILE_MENU_VERSION', '2.8.1.8.1' );
 define( 'WP_MOBILE_MENU_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WP_MOBILE_MENU_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 if ( !class_exists( 'WP_Mobile_Menu' ) ) {
@@ -172,8 +172,13 @@ if ( !class_exists( 'WP_Mobile_Menu' ) ) {
             $mobmenu_options = TitanFramework::getInstance( 'mobmenu' );
             $is_mobile_only = $mobmenu_options->getOption( 'only_mobile_devices' );
             $is_testing_mode = $mobmenu_options->getOption( 'only_testing_mode' );
-            
-            if ( $is_testing_mode && current_user_can( 'administrator' ) || !$is_testing_mode && (!$is_mobile_only || $is_mobile_only && wp_is_mobile()) ) {
+            $mobmenu_action = '';
+
+			if ( isset($_GET['mobmenu-action']) ) {
+				$mobmenu_action =  $_GET['mobmenu-action'];
+			}
+
+            if ( $mobmenu_action == 'find-element' || $is_testing_mode && current_user_can( 'administrator' ) || !$is_testing_mode && (!$is_mobile_only || $is_mobile_only && wp_is_mobile()) ) {
                 // Enqueue Html to the Footer.
                 add_action( 'wp_footer', array( $this->mobmenu_core, 'load_menu_html_markup' ) );
                 // Frontend Scripts.
@@ -259,8 +264,13 @@ if ( isset( $admin_options['only_mobile_devices'] ) ) {
     $is_mobile_only = false;
 }
 
+$mobmenu_action = '';
 
-if ( is_admin() || (!$is_mobile_only || $is_mobile_only && wp_is_mobile()) ) {
+if ( isset($_GET['mobmenu-action']) ) {
+    $mobmenu_action =  $_GET['mobmenu-action'];
+}
+
+if ( $mobmenu_action == 'find-element' || is_admin() || (!$is_mobile_only || $is_mobile_only && wp_is_mobile()) ) {
     // Instanciate the WP_Mobile_Menu.
     $mobile_menu_instance = new WP_Mobile_Menu();
     $mobile_menu_instance->init_mobile_menu();

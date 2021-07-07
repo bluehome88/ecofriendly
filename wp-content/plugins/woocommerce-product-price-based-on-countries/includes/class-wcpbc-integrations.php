@@ -33,6 +33,8 @@ class WCPBC_Integrations {
 			'WC_Gateway_PPEC_Plugin'       => dirname( __FILE__ ) . '/integrations/class-wcpbc-gateway-paypal-express-checkout.php',
 			'RP_WCDPD'                     => dirname( __FILE__ ) . '/integrations/class-wcpbc-rightpress-product-price-shop.php',
 			'woocommerce_payu_add_gateway' => dirname( __FILE__ ) . '/integrations/class-wcpbc-payu-payment-gateway.php',
+			'\Elementor\Plugin'            => dirname( __FILE__ ) . '/integrations/class-wcpbc-elementor.php',
+			'Aelia\WC\EU_VAT_Assistant\WC_Aelia_EU_VAT_Assistant' => dirname( __FILE__ ) . '/integrations/class-wcpbc-eu-vat-assistant.php',
 		);
 
 		foreach ( $third_party_integrations as $class => $integration_file ) {
@@ -49,6 +51,15 @@ class WCPBC_Integrations {
 		 */
 		if ( class_exists( 'WC_Shipping_UPS_Init' ) ) {
 			add_filter( 'woocommerce_shipping_ups_check_store_currency', array( __CLASS__, 'shipping_ups_check_store_currency' ), 100, 2 );
+		}
+
+		/**
+		 * WooCommerce FedEx Shipping integration.
+		 *
+		 * @see https://woocommerce.com/products/fedex-shipping-module/
+		 */
+		if ( class_exists( 'WC_Shipping_Fedex_Init' ) ) {
+			add_filter( 'woocommerce_shipping_fedex_check_store_currency', array( __CLASS__, 'shipping_ups_check_store_currency' ), 100, 2 );
 		}
 
 		/**
@@ -72,8 +83,11 @@ class WCPBC_Integrations {
 	 * @param bool   $check Currency check.
 	 * @param string $ups_currency Currenty returned by UPS.
 	 */
-	public static function shipping_ups_check_store_currency( $check, $ups_currency ) {
-		return ! ( wcpbc_get_base_currency() === $ups_currency );
+	public static function shipping_ups_check_store_currency( $check, $ups_currency = false ) {
+		if ( $ups_currency ) {
+			return ! ( wcpbc_get_base_currency() === $ups_currency );
+		}
+		return $check;
 	}
 
 }

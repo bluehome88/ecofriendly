@@ -28,19 +28,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function starshipit_is_woocommerce_active() {
-  
-  $wc_active = (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins'))));
-  
-  if ($wc_active) {
-    return $wc_active;
-  } else {
+	
+	$wc_active = (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins'))));
+	
+	if ($wc_active) {
+		return $wc_active;
+	} else {
         if (is_multisite()) {
-      // WordPress multisite detected
-      $wc_active = (array_key_exists('woocommerce/woocommerce.php', apply_filters('active_plugins', get_site_option('active_sitewide_plugins'))));
+			// WordPress multisite detected
+			$wc_active = (array_key_exists('woocommerce/woocommerce.php', apply_filters('active_plugins', get_site_option('active_sitewide_plugins'))));
+		}
     }
-    }
-  
-  return $wc_active;
+	
+	return $wc_active;
 }
 
 // Ensure WooCommerce is active
@@ -146,7 +146,7 @@ if (starshipit_is_woocommerce_active()) {
 
                 $counter++;
               }
-      }
+			}
             catch (Exception $e) {
               // backwards compatibility - get the rates using the old way
               $packageValue = $package['contents_cost'];

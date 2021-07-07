@@ -4,7 +4,7 @@ link: http://profiles.wordpress.org/takanakui
 Tags:   mobile, navigation, responsive, menu,  responsive menu, mobile menu,  tablet menu, hamburger menu, hamburger, wordpress responsive menu, wordpress mobile menu, canvas menu
 Requires at least: 4.4
 Tested up to: 5.6
-Stable tag: 2.8.1.7
+Stable tag: 2.8.1.8.1
 Requires PHP: 5.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -131,6 +131,13 @@ The Premium versions have some more advanced features in general and for Ecommer
 Not available at the moment
  
 == Changelog ==
+
+= 2.8.1.8.1 =
+* Fix! - Remove piece of premium option
+
+= 2.8.1.8 =
+* Fix! - 403 error when quick editing
+* Fix! - Visual tool fix
 
 = 2.8.1.7 =
 * New! - Visual tool to identify menus and other elements to hide

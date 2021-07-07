@@ -1982,21 +1982,22 @@ class WPMUDEV_Dashboard_Sui_Page_Urls {
 	public $plugins_url          = '';
 	public $support_url          = '';
 	public $tools_url            = '';
-	public $remote_site          = 'https://premium.wpmudev.org/';
+	public $remote_site          = 'https://wpmudev.com/';
 	public $external_support_url = '';
-	public $hub_url              = 'https://premium.wpmudev.org/hub';
+	public $hub_url              = 'https://wpmudev.com/hub2';
+	public $hub_url_old          = 'https://wpmudev.com/hub';
 	public $documentation_url    = array(
-		'dashboard'  => 'https://premium.wpmudev.org/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/',
-		'plugins'    => 'https://premium.wpmudev.org/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-plugin-manager',
-		'support'    => 'https://premium.wpmudev.org/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-support',
-		'analytics'  => 'https://premium.wpmudev.org/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-analytics',
-		'whitelabel' => 'https://premium.wpmudev.org/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-whitelabel',
-		'settings'   => 'https://premium.wpmudev.org/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#the-wpmu-dev-dashboard-plugin-settings',
+		'dashboard'  => 'https://wpmudev.com/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/',
+		'plugins'    => 'https://wpmudev.com/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-plugin-manager',
+		'support'    => 'https://wpmudev.com/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-support',
+		'analytics'  => 'https://wpmudev.com/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-analytics',
+		'whitelabel' => 'https://wpmudev.com/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-whitelabel',
+		'settings'   => 'https://wpmudev.com/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#the-wpmu-dev-dashboard-plugin-settings',
 	);
-	public $community_url        = 'https://premium.wpmudev.org/hub/community';
-	public $academy_url          = 'https://premium.wpmudev.org/academy';
-	public $hub_account_url      = 'https://premium.wpmudev.org/hub/account';
-	public $trial_url            = 'https://premium.wpmudev.org/#trial';
+	public $community_url        = 'https://wpmudev.com/hub2/community';
+	public $academy_url          = 'https://wpmudev.com/academy';
+	public $hub_account_url      = 'https://wpmudev.com/hub/account';
+	public $trial_url            = 'https://wpmudev.com/#trial';
 
 	// backward compat
 	public $real_support_url = '';
@@ -2028,13 +2029,13 @@ class WPMUDEV_Dashboard_Sui_Page_Urls {
 			$this->remote_site = trailingslashit( WPMUDEV_CUSTOM_API_SERVER );
 		}
 
-		$this->hub_url              = $this->remote_site . 'hub';
+		$this->hub_url              = $this->remote_site . 'hub2';
 		$this->documentation_url    = array(
 			'dashboard'  => $this->remote_site . 'docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/',
 			'plugins'    => $this->remote_site . 'docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-plugin-manager',
 			'support'    => $this->remote_site . 'docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-support',
-			'analytics'  => 'https://premium.wpmudev.org/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-analytics',
-			'whitelabel' => 'https://premium.wpmudev.org/docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-whitelabel',
+			'analytics'  => $this->remote_site . 'docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-analytics',
+			'whitelabel' => $this->remote_site . 'docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#wpmu-dev-dashboard-whitelabel',
 			'settings'   => $this->remote_site . 'docs/wpmu-dev-plugins/wpmu-dev-dashboard-plugin-instructions/#the-wpmu-dev-dashboard-plugin-settings',
 		);
 		$this->external_support_url = $this->remote_site . 'hub/support/';

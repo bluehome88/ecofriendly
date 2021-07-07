@@ -637,4 +637,5 @@ td.second.tf-multicheck-pages fieldset {
     background: #fefdfd;
     border: 15px solid #222020;
     border-radius: 25px;
+    z-index:9999;
 }

@@ -275,7 +275,6 @@ function wcpbc_product_types_supported( $source = '', $context = '' ) {
 			'bundle'                => 'WooCommerce Product Bundles',
 			'booking'               => 'WooCommerce Bookings',
 			'accommodation-booking' => 'WooCommerce Accommodation Bookings',
-			'composite'             => 'WooCommerce Composite Products',
 			'nyp-wcpbc'             => 'WooCommerce Name Your Price',
 			'job_package'           => 'Listing Payments by Astoundify',
 		),
@@ -284,6 +283,10 @@ function wcpbc_product_types_supported( $source = '', $context = '' ) {
 	if ( 'product-data' !== $context || ! class_exists( 'WCPBC_Subscriptions' ) ) {
 		$types['pro']['subscription']          = 'WooCommerce Subscriptions';
 		$types['pro']['variable-subscription'] = 'WooCommerce Subscriptions';
+	}
+
+	if ( class_exists( 'WC_Composite_Products' ) ) {
+		$types['pro']['composite'] = 'WooCommerce Composite Products';
 	}
 
 	$types['third-party'] = apply_filters( 'wc_price_based_country_third_party_product_types', array() );

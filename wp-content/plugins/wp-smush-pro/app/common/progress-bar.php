@@ -7,7 +7,7 @@
  * @var integer $count Total number of images to smush.
  */
 
-use Smush\Core\Core;
+use Smush\Core\Core;	 				 	  		 	 	 				
 
 if ( ! defined( 'WPINC' ) ) {
 	die;

@@ -960,7 +960,7 @@ class WPMUDEV_Dashboard_Upgrader {
 						'You have disabled automatic core updates via define( \'WP_AUTO_UPDATE_CORE\', false ); in your wp-config.php or a filter. Remove that code to allow updating core by Automate or disable "WordPress Core" in your Automate settings. %1$sContact support%2$s if you need further assistance.',
 						'wpmudev'
 					),
-					'<a href="https://premium.wpmudev.org/hub/support/#get-support">',
+					'<a href="https://wpmudev.com/hub/support/#get-support">',
 					'</a>'
 				)
 			);
@@ -1049,7 +1049,7 @@ class WPMUDEV_Dashboard_Upgrader {
 						'You have disabled automatic core updates via define( \'WP_AUTO_UPDATE_CORE\', false ); in your wp-config.php or a filter. Remove that code to allow updating core by Automate or disable "WordPress Core" in your Automate settings. %1$sContact support%2$s if you need further assistance.',
 						'wpmudev'
 					),
-					'<a href="https://premium.wpmudev.org/hub/support/#get-support">',
+					'<a href="https://wpmudev.com/hub/support/#get-support">',
 					'</a>'
 				)
 			);

@@ -9,77 +9,64 @@
     */
 
     "use strict";
-    function getSelector(el){
-      var $el = jQuery(el);
-  
-      var id = $el.attr("id");
-      if (id) { //"should" only be one of these if theres an ID
-          return "#"+ id;
-      }
-  
-      var selector = $el.parents()
-                  .map(function() { return this.tagName; })
-                  .get().reverse().join(" ");
-  
-      if (selector) {
-          selector += " "+ $el[0].nodeName;
-      }
-  
-      var classNames = $el.attr("class");
-      if (classNames) {
-          selector += "." + jQuery.trim(classNames).replace(/\s/gi, ".");
-      }
-  
-      var name = $el.attr('name');
-      if (name) {
-          selector += "[name='" + name + "']";
-      }
-      if (!name){
-          var index = $el.index();
-          if (index) {
-              index = index + 1;
-              selector += ":nth-child(" + index + ")";
-          }
-      }
-      return selector;
-  }
-    
-function enableMobileMenuElementPicker(){
-  const p = new Picker({
-      elm: document.getElementById('elm1'),
-      mode: 'cover',
-      excludeElmName: ['body'],
-      events: [{
-          key: 'contextmenu',
-          fn(event) {
-              event.preventDefault();
-          },
-      }],
-      onInit() {
-  
-      },
-      onClick(event) {
-        var selector = getSelector(event.target).toLowerCase();
-        window.parent.receivePickedElement(selector);
-        jQuery(selector).hide();
-      },
-      onHover(event) {
-         
-      },
-  });
-  document.getElementById('m_on').addEventListener('click', () => {
-      p.on();
-  });
-  document.getElementById('m_off').addEventListener('click', () => {
-      p.off();
-  });
-  document.getElementById('m_cover').addEventListener('click', () => {
-      p.changeMode('cover');
-  });
-  document.getElementById('m_target').addEventListener('click', () => {
-      p.changeMode('target');
-  });
-}
+	function getSelector(el){
+	  var $el = jQuery(el);
+
+	  var id = $el.attr("id");
+	  if (id) { //"should" only be one of these if theres an ID
+	      return "#"+ id;
+	  }
+
+	  var selector = $el.parents()
+	              .map(function() { return this.tagName; })
+	              .get().reverse().join(" ");
+
+	  if (selector) {
+	      selector += " "+ $el[0].nodeName;
+	  }
+
+	  var classNames = $el.attr("class");
+	  if (classNames) {
+	      selector += "." + jQuery.trim(classNames).replace(/\s/gi, ".");
+	  }
+
+	  var name = $el.attr('name');
+	  if (name) {
+	      selector += "[name='" + name + "']";
+	  }
+	  if (!name){
+	      var index = $el.index();
+	      if (index) {
+	          index = index + 1;
+	          selector += ":nth-child(" + index + ")";
+	      }
+	  }
+	  return selector;
+	}
+	function enableMobileMenuElementPicker(){
+		const p = new Picker({
+		    elm: document.getElementById('elm1'),
+		    mode: 'cover',
+		    excludeElmName: ['body'],
+		    events: [{
+		        key: 'contextmenu',
+		        fn(event) {
+		            event.preventDefault();
+		        },
+		    }],
+		    onInit() {
+		    },
+		    onClick(event) {
+		      var selector = getSelector(event.target).toLowerCase();
+		      window.parent.receivePickedElement(selector);
+		      jQuery(selector).hide();
+		    },
+		    onHover(event) {
+		    },
+		});
+
+	}
+
     jQuery( document ).ready( function($) {
 
       const urlParams = new URLSearchParams( window.location.search );

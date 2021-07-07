@@ -516,7 +516,7 @@ class WCPBC_Frontend_Pricing {
 
 		$zone_pricing_type = get_post_meta( $coupon->get_id(), 'zone_pricing_type', true );
 
-		if ( wcpbc_is_exchange_rate( $zone_pricing_type ) && 'percent' !== $coupon->get_discount_type() ) {
+		if ( wcpbc_is_exchange_rate( $zone_pricing_type ) && false === strpos( $coupon->get_discount_type(), 'percent' ) ) {
 			$amount = wcpbc_the_zone()->get_exchange_rate_price( $coupon->get_amount(), true, 'coupon', $coupon->get_id() );
 			$coupon->set_amount( $amount );
 		}

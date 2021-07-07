@@ -5,6 +5,11 @@ Change Log:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 
+4.10.7 - 12/03/2021 - Aaron, Ivan
+- Enhance: Change all URLs to wpmudev.com
+
+----------------------------------------------------------------------
+
 4.10.6 - 12/02/2020 - Aaron, Ivan
 - Fix: Upgrade Forminator Free to Pro on Dashboard Sign In
 
@@ -681,4 +686,4 @@ Added option to disable admin notices.
 Initial Release.
 
 
-637835-1606933898-au
+637835-1616468233-au

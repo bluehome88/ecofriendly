@@ -44,13 +44,6 @@ class Kit extends PageBase {
 		return __( 'Kit', 'elementor' );
 	}
 
-	/**
-	 * @return Tabs\Tab_Base[]
-	 */
-	public function get_tabs() {
-		return $this->tabs;
-	}
-
 	protected function get_have_a_look_url() {
 		return '';
 	}
@@ -69,10 +62,6 @@ class Kit extends PageBase {
 	}
 
 	public function save( $data ) {
-		foreach ( $this->tabs as $tab ) {
-			$data = $tab->before_save( $data );
-		}
-
 		$saved = parent::save( $data );
 
 		if ( ! $saved ) {

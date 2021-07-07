@@ -1181,65 +1181,6 @@ class WP_Mobile_Menu_Options
                 'font-family' => 'Dosis',
             ),
             ) );
-            $right_menu_tab->createOption( array(
-                'name' => __( 'Tabs options', 'mobile-menu' ),
-                'type' => 'heading',
-            ) );
-            // Right Panel tabbed menus.
-            $right_menu_tab->createOption( array(
-                'name'     => __( 'Tabbed menus on the Panel', 'mobile-menu' ),
-                'id'       => 'right_menu_tabbed_menus',
-                'type'     => 'enable',
-                'default'  => false,
-                'desc'     => __( 'Choose if you want to open the submenu by click in the Parent Menu item.', 'mobile-menu' ),
-                'enabled'  => __( 'Yes', 'mobile-menu' ),
-                'disabled' => __( 'No', 'mobile-menu' ),
-            ) );
-            // Right Tab Title 1.
-            $right_menu_tab->createOption( array(
-                'name'    => __( 'Tab Title 1', 'mobile-menu' ),
-                'id'      => 'right_tab_title_1',
-                'type'    => 'text',
-                'desc'    => __( 'Enter the title of the Tab 1.', 'mobile-menu' ),
-                'default' => '',
-            ) );
-            // Right Menu Tab 1.
-            $right_menu_tab->createOption( array(
-                'name'    => __( 'Menu Tab 1', 'mobile-menu' ),
-                'id'      => 'right_menu_tab_1',
-                'type'    => 'select',
-                'desc'    => __( 'Select the menu that will open in the left side.', 'mobile-menu' ),
-                'options' => $menus_options,
-                'default' => $titan->getOption( 'left_menu' ),
-            ) );
-            // Right Tab Title 2.
-            $right_menu_tab->createOption( array(
-                'name'    => __( 'Tab Title 2', 'mobile-menu' ),
-                'id'      => 'right_tab_title_2',
-                'type'    => 'text',
-                'desc'    => __( 'Enter the title of the Tab 2.', 'mobile-menu' ),
-                'default' => '',
-            ) );
-            // Right Menu Tab 2.
-            $right_menu_tab->createOption( array(
-                'name'    => __( 'Menu Tab 2', 'mobile-menu' ),
-                'id'      => 'right_menu_tab_2',
-                'type'    => 'select',
-                'desc'    => __( 'Select the menu that will open in the left side.', 'mobile-menu' ),
-                'options' => $menus_options,
-                'default' => $titan->getOption( 'left_menu' ),
-            ) );
-            // Right Menu Tab Margin top.
-            $right_menu_tab->createOption( array(
-                'name'    => __( 'Tab Margin top', 'mobile-menu' ),
-                'id'      => 'right_menu_tab_margin_top',
-                'type'    => 'number',
-                'desc'    => __( 'Enter the Tab Margin top. This is will position the sliding menus when used.', 'mobile-menu' ),
-                'default' => '0',
-                'max'     => '500',
-                'min'     => '0',
-                'unit'    => 'px',
-            ) );
             // Header Left Menu Section.
             $colors_tab->createOption( array(
                 'name' => __( 'General', 'mobile-menu' ),

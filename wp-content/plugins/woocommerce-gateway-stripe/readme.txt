@@ -2,9 +2,9 @@
 Contributors: woocommerce, automattic, royho, akeda, mattyza, bor0, woothemes
 Tags: credit card, stripe, apple pay, payment request, google pay, sepa, sofort, bancontact, alipay, giropay, ideal, p24, woocommerce, automattic
 Requires at least: 4.4
-Tested up to: 5.5
+Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 4.7.0
+Stable tag: 5.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Attributions: thorsten-stripe
@@ -126,13 +126,12 @@ If you get stuck, you can ask for help in the Plugin Forum.
 
 == Changelog ==
 
-= 4.7.0 - 2020-12-22 =
-* Fix - Updating subscription payment methods from the "My Account" page now adds a note to the subscription.
-* Fix - Link is now correctly formatted in readme.txt.
-* Fix - Using SCA cards for subscriptions renewal payments now works as intended.
-* Fix - Cards added under "My Account -> Payment Methods -> Add Payment Method" will now handle SCA properly.
-* Fix - Changing a payment method for a subscription in "My Account -> Subscriptions" will now handle SCA properly.
-* Fix - Missing space causing fatal errors for certain WooCommerce Inbox Note features.
+= 5.0.0 - 2021-03-17 =
 
-[See changelog for all versions](https://raw.githubusercontent.com/woocommerce/woocommerce-gateway-stripe/master/changelog.txt).
+* Add - Display time of last Stripe webhook in settings.
+* Add - wc_stripe_webhook_validate_user_agent filter to customize webhook user-agent validation.
+* Fix - Payment Request Buttons for Chinese provinces in Chrome.
+* Fix - Enable wc_stripe_send_stripe_receipt filter to send Stripe emails.
+* Fix - Check for more errors when attaching sources to customers.
 
+[See changelog for all versions](https://raw.githubusercontent.com/woocommerce/woocommerce-gateway-stripe/trunk/changelog.txt).

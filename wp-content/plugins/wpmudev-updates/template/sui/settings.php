@@ -209,7 +209,7 @@ if ( WPMUDEV_LIMIT_TO_USER ) {
 
 										<span class="sui-notice-icon sui-icon-info sui-md" aria-hidden="true"></span>
 
-										<p><?php printf( esc_html__( 'Note: You need to stay logged into %1$1s The Hub%2$2s to use this feature.', 'wpmudev' ), '<a href="https://premium.wpmudev.org/hub/my-websites/">', '</a>' ); ?></p>
+										<p><?php printf( esc_html__( 'Note: You need to stay logged into %1$1s The Hub%2$2s to use this feature.', 'wpmudev' ), '<a href="https://wpmudev.com/hub2/">', '</a>' ); ?></p>
 									</div>
 								</div>
 							</div>
@@ -569,7 +569,7 @@ if ( WPMUDEV_LIMIT_TO_USER ) {
 			<div class="sui-actions-right">
 
 				<a
-					href="<?php echo esc_url( $urls->hub_url . '/account' ); ?>"
+					href="<?php echo esc_url( $urls->hub_url_old . '/account' ); ?>"
 					target="_blank"
 					class="sui-button sui-button-ghost"
 				>

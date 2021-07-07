@@ -86,7 +86,7 @@ $resources = array(
             '<p class="sui-block-content-center sui-p-small" style="%s"> %s <a href="%s" target="_blank"> %s </a> %s</p>',
             esc_attr("width: 100%"),
             esc_html__( 'Still stuck?', 'wpmudev' ),
-            esc_url( 'https://premium.wpmudev.org/hub/support/#wpmud-chat-pre-survey-modal' ),
+            esc_url( 'https://wpmudev.com/hub/support/#wpmud-chat-pre-survey-modal' ),
             esc_html__( 'Open a support ticket' ),
             esc_html__( "and we'll be happy to help you.", 'wpmudev' )
         );

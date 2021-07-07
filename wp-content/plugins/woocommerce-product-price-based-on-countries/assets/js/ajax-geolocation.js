@@ -142,7 +142,7 @@
 		refresh_areas: function( areas ) {
 			$.each(areas, function(i, data){
 				var selector 	 = '.wc-price-based-country-refresh-area[data-id="' + data.id + '"][data-area="' + data.area + '"]';
-				var content_html = $(data.content).filter('.wc-price-based-country-refresh-area[data-area="' + data.area + '"]').html();
+				var content_html = $('<div>' + data.content + '</div>').find('.wc-price-based-country-refresh-area[data-area="' + data.area + '"]').html();
 
 				$(selector).html(content_html).addClass('refreshed');
 			});
@@ -198,7 +198,24 @@
 
 				// All Products for WooCommerce Subscriptions.
 				if ( $('.wc-price-based-country-refresh-area .wcsatt-options-wrapper').length > 0 ) {
+					// Adding a flag to control if .wcsatt-options-wrapper is moved.
+					$('.wc-price-based-country-refresh-area .wcsatt-options-wrapper').each( function(){
+						var id = $(this).closest('.wc-price-based-country-refresh-area').data('id');
+						$(this).addClass('wcpbc-refresh-flag wcpbc-refresh-flag-' + id);
+					});
+
 					$(document.body).on( 'wc_price_based_country_refresh_areas', function(){
+						// Check the flag and wcsatt-initialize after refresh areas.
+						if ( $('.wcsatt-options-wrapper.wcpbc-refresh-flag').length ) {
+							// Replace the content.
+							$('.wc-price-based-country-refresh-area .wcsatt-options-wrapper').each( function(){
+								var id      = $(this).closest('.wc-price-based-country-refresh-area').data('id');
+								var content = $(this).closest('.wc-price-based-country-refresh-area').html();
+								$('.wcsatt-options-wrapper.wcpbc-refresh-flag-' + id).replaceWith( content );
+								$(this).remove();
+							});
+						}
+						//wcsatt-initialize.
 						$( '.product form.cart' ).each( function() {
 							$( this ).data('satt_script', null);
 						});
@@ -206,6 +223,7 @@
 					});
 				}
 
+				// Trigger the variation selection after set the product price.
 				if ( $('.variations_form.cart').length > 0 && $('[class^="wcsatt"]').length > 0 ) {
 					$(document.body).on( 'wc_price_based_country_set_product_price', function(){
 						if ( $('.variations_form.cart .wcsatt-options-wrapper').length > 0 ) {

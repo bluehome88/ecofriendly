@@ -2,8 +2,8 @@
 Contributors: LiteSpeedTech
 Tags: caching, optimize, performance, pagespeed, seo, speed, image optimize, compress, object cache, redis, memcached, database cleaner
 Requires at least: 4.0
-Tested up to: 5.6
-Stable tag: 3.6.1
+Tested up to: 5.7
+Stable tag: 3.6.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -246,6 +246,26 @@ The vast majority of plugins and themes are compatible with LiteSpeed Cache. The
 
 
 == Changelog ==
+
+= 3.6.4 - Mar 15 2021 =
+* **Toolbox** Fixed Beta Test upgrade error when upgrading to v3.7+.
+
+= 3.6.3 - Mar 10 2021 =
+* **Core** Fixed potential upgrade failure when new versions have changes in activation related functions.
+* **Core** Upgrade process won't get deactivated anymore on Network setup.
+
+= 3.6.2 - Feb 1 2021 =
+* **Page Optimize** Fixed an issue where network purge CSS/JS caused 404 errors for subsites.
+* **Page Optimize** Fixed an issue where purge CSS/JS only caused 404 errors.
+* **Page Optimize** Added a notice for CSS/JS data detection and potential random string issue.
+* **Page Optimize** Limited localization resources to specified .js only. (@closte #292 @ormonk)
+* **JS** Data src may now be bypassed from JS Combine. (@ankit)
+* **CLI** Fixed a message typo in Purge. (@flixwatchsupport)
+* **Browser** Added font/otf to Browser Cache expire list. (@ruikai)
+* **Data** Updated data files to accept PR from dev branch only.
+* **3rd** Add data-view-breakpoint-pointer to js_excludes.txt for the Events Calendar plugin. (@therealgilles)
+* **Cloud** Bypassed invalid requests.
+* **Doc** CDN Mapping description improvement. (@mihai A.)
 
 = 3.6.1 - Dec 21 2020 =
 * **WP** Tested up to WP v5.6.

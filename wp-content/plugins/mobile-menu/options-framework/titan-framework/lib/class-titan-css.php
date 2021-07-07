@@ -95,7 +95,14 @@ class TitanFrameworkCSS
         $mobmenu_options = TitanFramework::getInstance( 'mobmenu' );
         $is_mobile_only = $mobmenu_options->getOption( 'only_mobile_devices' );
         $is_testing_mode = $mobmenu_options->getOption( 'only_testing_mode' );
-        if ( $is_testing_mode && current_user_can( 'administrator' ) || !$is_testing_mode && (!$is_mobile_only || $is_mobile_only && wp_is_mobile()) ) {
+        
+        $mobmenu_action = '';
+
+        if ( isset($_GET['mobmenu-action']) ) {
+            $mobmenu_action =  $_GET['mobmenu-action'];
+        }
+
+        if ( $mobmenu_action == 'find-element' || $is_testing_mode && current_user_can( 'administrator' ) || !$is_testing_mode && (!$is_mobile_only || $is_mobile_only && wp_is_mobile()) ) {
             // Only enqueue the generated css if we have the settings for it.
             
             if ( $this->frameworkInstance->settings['css'] == 'generate' ) {

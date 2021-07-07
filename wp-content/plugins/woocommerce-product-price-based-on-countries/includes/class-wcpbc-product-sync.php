@@ -262,9 +262,14 @@ class WCPBC_Product_Sync {
 		$rows    = self::get_starting_ending_sales( $zone, $sales, 'default', $product_ids );
 
 		foreach ( $rows as $row ) {
-			$price = 'start' === $sales ? $row->sale_price : $row->regular_price;
-			if ( $price || 'start' !== $sales ) { // If sale price is not empty, set sale price.
-				$zone->set_postmeta( $row->ID, '_price', $price );
+			if ( 'start' === $sales && $row->sale_price ) {
+				// Start sales.
+				$zone->set_postmeta( $row->ID, '_price', $row->sale_price );
+				$updated++;
+			} elseif ( 'start' !== $sales ) {
+				// End sales.
+				$zone->set_postmeta( $row->ID, '_price', $row->regular_price );
+				$zone->set_postmeta( $row->ID, '_sale_price', '' );
 				$updated++;
 			}
 		}

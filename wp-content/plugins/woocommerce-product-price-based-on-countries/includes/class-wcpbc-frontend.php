@@ -149,7 +149,7 @@ class WCPBC_Frontend {
 		wp_register_style( 'wc-price-based-country-frontend', WCPBC()->plugin_url() . 'assets/css/frontend' . $suffix . '.css', array(), WCPBC()->version );
 
 		// Enqueue.
-		if ( WCPBC_Ajax_Geolocation::is_enabled() && ! ( is_cart() || is_account_page() || is_checkout() || is_customize_preview() ) ) {
+		if ( WCPBC_Ajax_Geolocation::is_enabled() && ! ( is_cart() || is_account_page() || is_checkout() || is_customize_preview() || apply_filters( 'wc_price_based_country_dequeue_script', false ) ) ) {
 			wp_enqueue_script( 'wc-price-based-country-ajax-geo' );
 			wp_enqueue_style( 'wc-price-based-country-frontend' );
 		}
@@ -169,7 +169,7 @@ class WCPBC_Frontend {
 		} elseif ( ! empty( $_REQUEST['wcpbc-manual-country'] ) ) {
 			// Request param.
 			wcpbc_set_woocommerce_country( wc_clean( wp_unslash( $_REQUEST['wcpbc-manual-country'] ) ) );
-			add_action( 'send_headers', array( __CLASS__, 'init_session' ) );
+			add_action( 'wp_loaded', array( __CLASS__, 'init_session' ), 20 );
 
 		} elseif ( defined( 'WC_DOING_AJAX' ) && WC_DOING_AJAX && isset( $_GET['wc-ajax'] ) && 'update_order_review' === $_GET['wc-ajax'] ) {
 			// Checkout page.
@@ -201,7 +201,7 @@ class WCPBC_Frontend {
 				WC()->customer->set_shipping_country( $shipping_country );
 			}
 
-			add_action( 'send_headers', array( __CLASS__, 'init_session' ), 10 );
+			add_action( 'wp_loaded', array( __CLASS__, 'init_session' ), 20 );
 		}
 	}
 
@@ -263,13 +263,11 @@ class WCPBC_Frontend {
 	 * @access public
 	 */
 	public static function init_session() {
-		if ( ! is_null( WC()->session ) && ! WC()->session->has_session() ) {
-			WC()->session->set_customer_session_cookie( true );
+		if ( ! headers_sent() && ! is_null( WC()->session ) && ! WC()->session->has_session() ) {
+			do_action( 'woocommerce_set_cart_cookies', true );
 		}
 
-		if ( is_user_logged_in() ) {
-			WC()->customer->save();
-		}
+		WC()->customer->save();
 
 		// Refresh cart total.
 		$cart_content_total = version_compare( WC_VERSION, '3.2', '<' ) ? WC()->cart->cart_contents_total : WC()->cart->get_cart_contents_total();

@@ -182,7 +182,7 @@ if ( ( ! isset( $queue[ $this->_membership_notice ] ) || ! isset( $queue[ $this-
 				<div class="sui-box-settings-row sui-upsell-row" style="padding-left: 0px; padding-right: 0px;">
 					<div class="sui-upsell-notice" style="width:100%;">
 						<p><?php printf( __( 'Your WPMU DEV Membership has expired and pro versions of installed plugins have been downgraded. Reactivate your subscription to upgrade pro plugins.%s', 'wpmudev' ), '<br>' ); //phpcs:ignore ?>
-							<a href="https://premium.wpmudev.org/hub/account/?utm_source=wpmudev-dashboard&utm_medium=plugin&utm_campaign=dashboard_expired_modal_reactivate" class="sui-button sui-button-purple" style="margin-top: 10px;"><?php esc_html_e( 'Reactivate Membership', 'wpmudev' ); ?></a>
+							<a href="https://wpmudev.com/hub/account/?utm_source=wpmudev-dashboard&utm_medium=plugin&utm_campaign=dashboard_expired_modal_reactivate" class="sui-button sui-button-purple" style="margin-top: 10px;"><?php esc_html_e( 'Reactivate Membership', 'wpmudev' ); ?></a>
 						</p>
 					</div>
 				</div>

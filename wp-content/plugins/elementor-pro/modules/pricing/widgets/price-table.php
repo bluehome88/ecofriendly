@@ -10,6 +10,7 @@ use Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
 use ElementorPro\Base\Base_Widget;
+use ElementorPro\Core\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -33,7 +34,7 @@ class Price_Table extends Base_Widget {
 		return [ 'pricing', 'table', 'product', 'image', 'plan', 'button' ];
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->start_controls_section(
 			'section_header',
 			[
@@ -47,6 +48,9 @@ class Price_Table extends Base_Widget {
 				'label' => __( 'Title', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => __( 'Enter your title', 'elementor-pro' ),
+				'dynamic' => [
+					'active' => true,
+				],
 			]
 		);
 
@@ -56,6 +60,9 @@ class Price_Table extends Base_Widget {
 				'label' => __( 'Description', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => __( 'Enter your description', 'elementor-pro' ),
+				'dynamic' => [
+					'active' => true,
+				],
 			]
 		);
 
@@ -269,6 +276,9 @@ class Price_Table extends Base_Widget {
 				'label' => __( 'Button Text', 'elementor-pro' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => __( 'Click Here', 'elementor-pro' ),
+				'dynamic' => [
+					'active' => true,
+				],
 			]
 		);
 
@@ -294,6 +304,9 @@ class Price_Table extends Base_Widget {
 				'type' => Controls_Manager::TEXTAREA,
 				'default' => __( 'This is text element', 'elementor-pro' ),
 				'rows' => 3,
+				'dynamic' => [
+					'active' => true,
+				],
 			]
 		);
 
@@ -324,6 +337,9 @@ class Price_Table extends Base_Widget {
 				'default' => __( 'Popular', 'elementor-pro' ),
 				'condition' => [
 					'show_ribbon' => 'yes',
+				],
+				'dynamic' => [
+					'active' => true,
 				],
 			]
 		);
@@ -1432,7 +1448,7 @@ class Price_Table extends Base_Widget {
 
 		$period_position = $settings['period_position'];
 		$period_element = '<span ' . $this->get_render_attribute_string( 'period' ) . '>' . $settings['period'] . '</span>';
-		$heading_tag = $settings['heading_tag'];
+		$heading_tag = Utils::validate_html_tag( $settings['heading_tag'] );
 
 		$migration_allowed = Icons_Manager::is_migration_allowed();
 		?>
@@ -1618,7 +1634,8 @@ class Price_Table extends Base_Widget {
 			<# if ( settings.heading || settings.sub_heading ) { #>
 				<div class="elementor-price-table__header">
 					<# if ( settings.heading ) { #>
-						<{{ settings.heading_tag }} {{{ view.getRenderAttributeString( 'heading' ) }}}>{{{ settings.heading }}}</{{ settings.heading_tag }}>
+						<# var headingTag = elementorPro.validateHTMLTag( settings.heading_tag ) #>
+						<{{ headingTag }} {{{ view.getRenderAttributeString( 'heading' ) }}}>{{{ settings.heading }}}</{{ headingTag }}>
 					<# } #>
 					<# if ( settings.sub_heading ) { #>
 						<span {{{ view.getRenderAttributeString( 'sub_heading' ) }}}>{{{ settings.sub_heading }}}</span>

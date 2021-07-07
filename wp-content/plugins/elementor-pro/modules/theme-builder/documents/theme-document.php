@@ -8,6 +8,7 @@ use Elementor\Utils;
 use ElementorPro\Modules\QueryControl\Module as QueryModule;
 use ElementorPro\Modules\ThemeBuilder\Module;
 use ElementorPro\Plugin;
+use ElementorPro\Core\Utils as Pro_Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
@@ -23,6 +24,7 @@ abstract class Theme_Document extends Library_Document {
 		$properties['admin_tab_group'] = Module::ADMIN_LIBRARY_TAB_GROUP;
 		$properties['support_kit'] = true;
 		$properties['support_site_editor'] = true;
+		$properties['support_conditions'] = true;
 
 		return $properties;
 	}
@@ -236,8 +238,8 @@ abstract class Theme_Document extends Library_Document {
 
 	}
 
-	protected function _register_controls() {
-		parent::_register_controls();
+	protected function register_controls() {
+		parent::register_controls();
 
 		$this->start_controls_section(
 			'preview_settings',
@@ -361,7 +363,7 @@ abstract class Theme_Document extends Library_Document {
 
 		// Only proceed if the inheriting document has optional wrapper HTML tags to replace 'div'
 		if ( $has_wrapper_tags ) {
-			$wrapper_tag = $settings['content_wrapper_html_tag'];
+			$wrapper_tag = Pro_Utils::validate_html_tag( $settings['content_wrapper_html_tag'] );
 		}
 
 		if ( ! $elements_data ) {
