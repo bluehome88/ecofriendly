@@ -217,3 +217,21 @@ h2.woo-product-category {
 	    display: none;
     }
 }
+
+.woocommerce a.button {
+  border-radius: 60px;
+  padding-top: 15px;
+  padding-right: 35px;
+  padding-bottom: 15px;
+  padding-left: 35px;
+  color: #ffffff;
+  border-color: #4EAF50;
+  background-color: #4EAF50;
+  line-height: 1 !important;
+  transition: all .3s;
+}
+.woocommerce a.button:hover{
+  border-color: #8bc34a;
+  background-color: #8bc34a;
+  color: #ffffff;
+}
