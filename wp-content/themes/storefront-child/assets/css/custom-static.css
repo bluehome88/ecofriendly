@@ -82,6 +82,7 @@ footer .elementor-widget-heading h4 {
 .contact-form-formclass input[type=submit]{
     border-radius: 100px;
     padding: 10px 45px;
+    color: white;
 }
 
 a:focus, button:focus, .button.alt:focus, input[type="submit"]:focus, .yith-wacp-content input:focus {
@@ -217,7 +218,6 @@ h2.woo-product-category {
 	    display: none;
     }
 }
-
 .woocommerce a.button {
   border-radius: 60px;
   padding-top: 15px;
@@ -228,7 +228,6 @@ h2.woo-product-category {
   border-color: #4EAF50;
   background-color: #4EAF50;
   line-height: 1 !important;
-  transition: all .3s;
 }
 .woocommerce a.button:hover{
   border-color: #8bc34a;
