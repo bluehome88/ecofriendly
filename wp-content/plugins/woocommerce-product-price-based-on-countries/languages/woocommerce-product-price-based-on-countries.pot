@@ -2,15 +2,15 @@
 # This file is distributed under the same license as the WooCommerce Price Based on Country (Basic) plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Price Based on Country (Basic) 2.0.18\n"
+"Project-Id-Version: WooCommerce Price Based on Country (Basic) 2.0.22\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woocommerce-product-price-based-on-countries\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-04-02T06:08:43+00:00\n"
-"PO-Revision-Date: 2021-04-02T06:08:43+00:00\n"
+"POT-Creation-Date: 2021-07-12T15:36:32+00:00\n"
+"PO-Revision-Date: 2021-07-12T15:36:32+00:00\n"
 "X-Generator: WP-CLI 2.0.1\n"
 "X-Domain: woocommerce-product-price-based-on-countries\n"
 
@@ -641,7 +641,7 @@ msgstr ""
 
 #. translators: 1, 2 HTML tags. 3 plugin version.
 #: includes/admin/settings/class-wc-settings-price-based-country.php:242
-#: includes/class-wc-product-price-based-country.php:268
+#: includes/class-wc-product-price-based-country.php:265
 #: includes/integrations/class-wcpbc-rightpress-product-price-shop.php:113
 msgid "Heads up!"
 msgstr ""
@@ -796,7 +796,7 @@ msgid "Title"
 msgstr ""
 
 #: includes/class-wcpbc-widget-country-selector.php:43
-#: includes/class-wcpbc-widget-country-selector.php:113
+#: includes/class-wcpbc-widget-country-selector.php:115
 #: includes/class-wcpbc-frontend.php:328
 msgid "Other countries"
 msgstr ""
@@ -810,7 +810,7 @@ msgid "Remove \"Other countries\" from switcher."
 msgstr ""
 
 #. Translators: HTML tags.
-#: includes/class-wcpbc-widget-country-selector.php:75
+#: includes/class-wcpbc-widget-country-selector.php:77
 msgid "%1$sUpgrade to Pro to remove Other countries%2$s"
 msgstr ""
 

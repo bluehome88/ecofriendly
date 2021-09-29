@@ -15,9 +15,7 @@ use WC_Shipping_Method;
 use WPDesk\FS\TableRate\Rule\Condition\ConditionsFactory;
 use WPDesk\FS\TableRate\Rule\Cost\RuleAdditionalCostFactory;
 use WPDesk\FS\TableRate\Rule\Cost\RuleCostFieldsFactory;
-use WPDesk\FS\TableRate\ShippingMethod\MethodSettings;
 use WPDesk\FS\TableRate\ShippingMethod\RateCalculatorFactory;
-use WPDesk\FS\TableRate\ShippingMethod\SettingsDisplayPreparer;
 use WPDesk\FS\TableRate\ShippingMethod\SingleMethodSettings;
 use WPDesk_Flexible_Shipping;
 
@@ -49,17 +47,16 @@ class ShippingMethodSingle extends WC_Shipping_Method {
 		parent::__construct( $instance_id );
 		$this->id = self::SHIPPING_METHOD_ID;
 		$this->init();
-		add_action( 'woocommerce_update_options_shipping_' . $this->id, array( $this, 'process_admin_options' ) );
 	}
 
 	/**
 	 * Init.
 	 */
 	private function init() {
-		$this->supports = array(
+		$this->supports = [
 			'shipping-zones',
 			'instance-settings',
-		);
+		];
 		$this->init_instance_form_fields( false );
 		$this->method_title       = __( 'Flexible Shipping', 'flexible-shipping' );
 		$this->method_description = __( 'A single Flexible Shipping method.', 'flexible-shipping' );
@@ -71,7 +68,6 @@ class ShippingMethodSingle extends WC_Shipping_Method {
 		}
 		$this->title      = $this->get_instance_option( 'method_title', $this->method_title );
 		$this->tax_status = $this->get_instance_option( 'tax_status' );
-
 	}
 
 	/**
@@ -87,7 +83,7 @@ class ShippingMethodSingle extends WC_Shipping_Method {
 	 *
 	 * @return string
 	 */
-	public function generate_settings_html( $form_fields = array(), $echo = true ) {
+	public function generate_settings_html( $form_fields = [], $echo = true ) {
 		$this->init_instance_form_fields( true );
 		$form_fields = $this->get_instance_form_fields();
 		if ( $echo ) {
@@ -109,12 +105,23 @@ class ShippingMethodSingle extends WC_Shipping_Method {
 	 */
 	public function generate_title_html( $key, $data ) {
 		$field_key = $this->get_field_key( $key );
-		$defaults  = array(
+		$defaults  = [
 			'title' => '',
 			'class' => '',
-		);
+		];
 
 		$data = wp_parse_args( $data, $defaults );
+
+		$ads = '';
+
+		if ( ! $this->is_html_ads_loaded ) {
+			ob_start();
+			$shipping_method_id = self::SHIPPING_METHOD_ID;
+			include __DIR__ . '/../../../../classes/table-rate/views/html-ads.php';
+			$ads                      = ob_get_clean();
+			$ads                      = apply_filters( 'flexible-shipping/sell-box', is_string( $ads ) ? $ads : '' );
+			$this->is_html_ads_loaded = true;
+		}
 
 		ob_start();
 		?>
@@ -125,13 +132,7 @@ class ShippingMethodSingle extends WC_Shipping_Method {
 			<p><?php echo wp_kses_post( $data['description'] ); ?></p>
 		<?php endif; ?>
 
-		<?php
-		if ( ! $this->is_html_ads_loaded ) {
-			$shipping_method_id = self::SHIPPING_METHOD_ID;
-			include __DIR__ . '/../../../../classes/table-rate/views/html-ads.php';
-			$this->is_html_ads_loaded = true;
-		}
-		?>
+		<?php echo wp_kses_post( $ads ); ?>
 
 		<table class="form-table">
 		<?php
@@ -157,7 +158,7 @@ class ShippingMethodSingle extends WC_Shipping_Method {
 	public function process_admin_options() {
 		$this->init_instance_form_fields( true );
 		$filter_name     = 'woocommerce_shipping_' . $this->id . '_instance_settings_values';
-		$filter_callback = array( $this, 'process_integrations_settings' );
+		$filter_callback = [ $this, 'process_integrations_settings' ];
 		add_filter( $filter_name, $filter_callback );
 		$processed = parent::process_admin_options();
 		remove_filter( $filter_name, $filter_callback );
@@ -208,7 +209,7 @@ class ShippingMethodSingle extends WC_Shipping_Method {
 	 */
 	public function validate_shipping_rules_field( $key, $value ) {
 		$rules_settings_processor = new Rule\Settings\SettingsProcessor(
-			( null === $value || ! is_array( $value ) ) ? array() : $value,
+			( null === $value || ! is_array( $value ) ) ? [] : $value,
 			( new ConditionsFactory() )->get_conditions(),
 			( new RuleCostFieldsFactory() )->get_fields(),
 			( new Rule\Cost\RuleAdditionalCostFieldsFactory( ( new RuleAdditionalCostFactory() )->get_additional_costs() ) )->get_fields(),
@@ -236,7 +237,7 @@ class ShippingMethodSingle extends WC_Shipping_Method {
 	 * @return array
 	 */
 	public function get_method_rules() {
-		return $this->get_instance_option( 'method_rules', array() );
+		return $this->get_instance_option( 'method_rules', [] );
 	}
 
 	/**
@@ -258,7 +259,7 @@ class ShippingMethodSingle extends WC_Shipping_Method {
 	/**
 	 * @param array $package .
 	 */
-	public function calculate_shipping( $package = array() ) {
+	public function calculate_shipping( $package = [] ) {
 		$rate_calculator = RateCalculatorFactory::create_for_shipping_method( $this, $package );
 
 		$method_settings = MethodSettingsFactory::create_from_array( $this->instance_settings );
@@ -274,7 +275,6 @@ class ShippingMethodSingle extends WC_Shipping_Method {
 		}
 
 		$logger->show_notice_if_enabled();
-
 	}
 
 	/**

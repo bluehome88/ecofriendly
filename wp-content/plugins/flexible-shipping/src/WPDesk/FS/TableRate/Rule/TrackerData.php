@@ -115,6 +115,18 @@ class TrackerData implements Hookable {
 
 		$tracker_data['additional_cost_count'] += $additional_costs_count;
 
+		if ( ! isset( $tracker_data['additional_costs'] ) ) {
+			$tracker_data['additional_costs'] = array();
+		}
+
+		foreach ( wp_list_pluck( $additional_costs, 'based_on' ) as $based_on ) {
+			if ( ! isset( $tracker_data['additional_costs'][ $based_on ] ) ) {
+				$tracker_data['additional_costs'][ $based_on ] = 0;
+			}
+
+			$tracker_data['additional_costs'][ $based_on ] ++;
+		}
+
 		return $tracker_data;
 	}
 

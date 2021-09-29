@@ -22,6 +22,7 @@ class FreeShippingNoticeGenerator implements Hookable {
 	const SETTING_METHOD_FREE_SHIPPING = 'method_free_shipping';
 	const SESSION_VARIABLE = 'flexible_shipping_free_shipping_amount';
 	const META_DATA_FS_METHOD = '_fs_method';
+	const PRIORITY = 10;
 
 	/**
 	 * @var WC_Cart
@@ -48,7 +49,7 @@ class FreeShippingNoticeGenerator implements Hookable {
 	 * Hooks.
 	 */
 	public function hooks() {
-		add_filter( 'woocommerce_package_rates', array( $this, 'add_free_shipping_notice_if_should' ), 10, 2 );
+		add_filter( 'woocommerce_package_rates', array( $this, 'add_free_shipping_notice_if_should' ), self::PRIORITY, 2 );
 	}
 
 	/**

@@ -5,54 +5,58 @@
  * @package templates
  */
 
+$data     = array();
 $days_ago = 7; // Show a week of stats here.
-if ( is_network_admin() || ! is_multisite() ) {
-	$data = WPMUDEV_Dashboard::$api->analytics_stats_overall( $days_ago );
-} else {
-	$data = WPMUDEV_Dashboard::$api->analytics_stats_overall( $days_ago, get_current_blog_id() );
+if ( WPMUDEV_Dashboard::$api->is_analytics_allowed() ) {
+	if ( is_network_admin() || ! is_multisite() ) {
+		$data = WPMUDEV_Dashboard::$api->analytics_stats_overall( $days_ago );
+	} else {
+		$data = WPMUDEV_Dashboard::$api->analytics_stats_overall( $days_ago, get_current_blog_id() );
+	}
 }
+
 $stats_defaults = array(
-	'pageviews' => array(
-		'value' => 0,
+	'pageviews'   => array(
+		'value'     => 0,
 		'direction' => '',
-		'change' => '0',
+		'change'    => '0',
 	),
-	'visits' => array(
-		'value' => 0,
+	'visits'      => array(
+		'value'     => 0,
 		'direction' => '',
-		'change' => '0',
+		'change'    => '0',
 	),
-	'visit_time' => array(
-		'value' => 0,
+	'visit_time'  => array(
+		'value'     => 0,
 		'direction' => '',
-		'change' => '0',
+		'change'    => '0',
 	),
 	'bounce_rate' => array(
-		'value' => 0,
+		'value'     => 0,
 		'direction' => '',
-		'change' => '0',
+		'change'    => '0',
 	),
-	'gen_time' => array(
-		'value' => 0,
+	'gen_time'    => array(
+		'value'     => 0,
 		'direction' => '',
-		'change' => '0',
+		'change'    => '0',
 	),
 );
-$data_defaults = array(
+$data_defaults  = array(
 	'overall' => array(
-		'totals' => array()
-	)
+		'totals' => array(),
+	),
 );
 if ( is_bool( $data ) ) {
 	$data = array();
 }
 
-$data = wp_parse_args( $data, $data_defaults );
+$data       = wp_parse_args( $data, $data_defaults );
 $stats      = $data['overall']['totals'];
 $stats      = wp_parse_args( $stats, $stats_defaults );
 $have_stats = intval( $stats['pageviews']['value'] ) || intval( $stats['visits']['value'] ) ||
-	intval( $stats['visit_time']['value'] ) || intval( $stats['bounce_rate']['value'] ) ||
-	intval( $stats['gen_time']['value'] );
+              intval( $stats['visit_time']['value'] ) || intval( $stats['bounce_rate']['value'] ) ||
+              intval( $stats['gen_time']['value'] );
 ?>
 
 <div class="sui-box">

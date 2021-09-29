@@ -44,10 +44,16 @@ class WPDesk_Flexible_Shipping_Bulk_Actions implements Hookable {
 	public function hooks() {
 
 		add_filter( 'manage_edit-shop_order_columns', array( $this, 'manage_edit_shop_order_columns' ), 11 );
-		add_action( 'manage_shop_order_posts_custom_column', array( $this, 'manage_shop_order_posts_custom_column' ), 11 );
+		add_action( 'manage_shop_order_posts_custom_column', array(
+			$this,
+			'manage_shop_order_posts_custom_column'
+		), 11 );
 
 		add_filter( 'bulk_actions-edit-shop_order', array( $this, 'bulk_actions_edit_shop_order' ) );
-		add_filter( 'handle_bulk_actions-edit-shop_order', array( $this, 'handle_bulk_actions_edit_shop_order' ), 10, 3 );
+		add_filter( 'handle_bulk_actions-edit-shop_order', array(
+			$this,
+			'handle_bulk_actions_edit_shop_order'
+		), 10, 3 );
 
 		add_action( 'restrict_manage_posts', array( $this, 'restrict_manage_posts' ), 9999 );
 
@@ -89,8 +95,8 @@ class WPDesk_Flexible_Shipping_Bulk_Actions implements Hookable {
 		global $wpdb;
 		$query = $wp_query;
 		if ( 'edit.php' === $pagenow && is_admin()
-			&& isset( $query->query_vars['post_type'] )
-			&& 'shop_order' === $query->query_vars['post_type']
+		     && isset( $query->query_vars['post_type'] )
+		     && 'shop_order' === $query->query_vars['post_type']
 		) {
 			$integration = '';
 			if ( isset( $_GET['flexible_shipping_integration_filter'] ) ) {
@@ -277,8 +283,8 @@ class WPDesk_Flexible_Shipping_Bulk_Actions implements Hookable {
 
 	/**
 	 * @param string $redirect_to .
-	 * @param string $do_action .
-	 * @param array  $post_ids .
+	 * @param string $do_action   .
+	 * @param array  $post_ids    .
 	 *
 	 * @return bool|string
 	 */
@@ -322,19 +328,19 @@ class WPDesk_Flexible_Shipping_Bulk_Actions implements Hookable {
 			return $redirect_to;
 		}
 		if ( 'flexible_shipping_labels' === $do_action ) {
-			$labels_bulk_actions_handler = WPDesk_Flexible_Shipping_Labels_Bulk_Action_Handler::get_labels_bulk_actions_handler();
+			$labels_bulk_actions_handler = \FSVendor\WPDesk\FS\Shipment\Label\LabelsBulkActionHandler::get_labels_bulk_actions_handler();
 			$labels_bulk_actions_handler->bulk_process_orders( $post_ids );
 
-			$labels = $labels_bulk_actions_handler->get_labels_for_shipments();
-			if ( 0 === count( $labels ) ) {
-				$redirect_to = add_query_arg( 'bulk_flexible_shipping_labels', count( $post_ids ), $redirect_to );
-				$redirect_to = add_query_arg( 'bulk_flexible_shipping_no_labels_created', 1, $redirect_to );
-
-				return $redirect_to;
-			}
-
 			try {
-				$labels_file_creator = new WPDesk_Flexible_Shipping_Labels_File_Creator( $labels );
+				$labels = $labels_bulk_actions_handler->get_labels_for_shipments();
+				if ( 0 === count( $labels ) ) {
+					$redirect_to = add_query_arg( 'bulk_flexible_shipping_labels', count( $post_ids ), $redirect_to );
+					$redirect_to = add_query_arg( 'bulk_flexible_shipping_no_labels_created', 1, $redirect_to );
+
+					return $redirect_to;
+				}
+
+				$labels_file_creator = new \FSVendor\WPDesk\FS\Shipment\Label\LabelsFileCreator( $labels );
 				$labels_file_creator->create_labels_file();
 				$labels['tmp_file']    = $labels_file_creator->get_tmp_file_name();
 				$labels['client_file'] = $labels_file_creator->get_file_name();
@@ -347,6 +353,8 @@ class WPDesk_Flexible_Shipping_Bulk_Actions implements Hookable {
 				$labels['error'] = __( 'Unable to create temporary zip archive for labels. Check temporary folder configuration on server.', 'flexible-shipping' );
 			} catch ( WPDesk_Flexible_Shipping_Unable_To_Create_Tmp_File_Exception $tmp_file_exception ) {
 				$labels['error'] = __( 'Unable to create temporary file for labels. Check temporary folder configuration on server.', 'flexible-shipping' );
+			} catch ( Exception $e ) {
+				$labels['error'] = $e->getMessage();
 			}
 
 			$this->get_session()->set( 'flexible_shipping_bulk_labels', $labels );
@@ -400,7 +408,7 @@ class WPDesk_Flexible_Shipping_Bulk_Actions implements Hookable {
 					$messages[]            = array(
 						'type'    => 'updated',
 						'message' => sprintf(
-							// Translators: manifests count and integration.
+						// Translators: manifests count and integration.
 							__( 'Created manifest: %s (%s). If download not start automatically click %shere%s.', 'flexible-shipping' ), // phpcs:ignore
 							$manifest->get_number(),
 							$integrations[ $manifest->get_integration() ],
@@ -502,7 +510,7 @@ class WPDesk_Flexible_Shipping_Bulk_Actions implements Hookable {
 					die( 'This file was already downloaded! Please retry bulk action!' );
 				}
 
-				$labels_file_dispatcher = new WPDesk_Flexible_Shipping_Labels_File_Dispatcher();
+				$labels_file_dispatcher = new \FSVendor\WPDesk\FS\Shipment\Label\LabelsFileDispatcher();
 				$labels_file_dispatcher->dispatch_and_delete_labels_file( $file, $tmp_file );
 				die();
 			}

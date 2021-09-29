@@ -6,7 +6,8 @@
  *   $connection_error
  *   $urls (urls of all dashboard menu items)
  *
- **/
+ * @package wpmduev
+ */
 
 /** @var WPMUDEV_Dashboard_Sui_Page_Urls $urls */
 /** @var bool $connection_error */
@@ -17,7 +18,7 @@ $reset_url         = 'https://wpmudev.com/wp-login.php?action=lostpassword';
 $account_url       = 'https://wpmudev.com/hub/account/';
 $skip_trial_url    = $urls->skip_trial_url;
 $hosting_url       = 'https://wpmudev.com/hub2/hosting/';
-$trial_info_url    = 'https://wpmudev.com/manuals/how-free-trials-work/';
+$trial_info_url    = 'https://wpmudev.com/docs/getting-started/how-free-trials-work/';
 $websites_url      = 'https://wpmudev.com/hub2/';
 $security_info_url = 'https://wpmudev.com/manuals/hub-security/';
 $support_url       = 'https://wpmudev.com/hub/support/';
@@ -33,7 +34,7 @@ $last_user = WPMUDEV_Dashboard::$site->get_option( 'auth_user' );
 $login_errors = array();
 if ( isset( $_GET['api_error'] ) ) { // wpcs csrf ok.
 
-	if ( 1 === (int) $_GET['api_error'] || 'auth' === $_GET['api_error'] ) { //invalid creds // wpcs csrf ok.
+	if ( 1 === (int) $_GET['api_error'] || 'auth' === $_GET['api_error'] ) { // invalid creds // wpcs csrf ok.
 
 		$login_errors[] = sprintf(
 			'%s<br><a href="%s" target="_blank">%s</a>',
@@ -42,7 +43,7 @@ if ( isset( $_GET['api_error'] ) ) { // wpcs csrf ok.
 			esc_html__( 'Forgot your password?', 'wpmudev' )
 		);
 
-	} elseif ( 'in_trial' === $_GET['api_error'] ) { //trial members can only login to first time domains // wpcs csrf ok.
+	} elseif ( 'in_trial' === $_GET['api_error'] ) { // trial members can only login to first time domains // wpcs csrf ok.
 
 		if ( WPMUDEV_Dashboard::$site->is_localhost() ) {
 			$login_errors[] = sprintf(
@@ -77,8 +78,7 @@ if ( isset( $_GET['api_error'] ) ) { // wpcs csrf ok.
 				__( 'Contact support if you need further assistance &raquo;', 'wpmudev' )
 			);
 		}
-
-	} elseif ( 'already_registered' === $_GET['api_error'] ) { //IMPORTANT for security we make sure this site has been logged out of before another user can take it over // wpcs csrf ok.
+	} elseif ( 'already_registered' === $_GET['api_error'] ) { // IMPORTANT for security we make sure this site has been logged out of before another user can take it over // wpcs csrf ok.
 
 		if ( WPMUDEV_Dashboard::$site->is_localhost() ) {
 			$login_errors[] = sprintf(
@@ -107,8 +107,16 @@ if ( isset( $_GET['api_error'] ) ) { // wpcs csrf ok.
 				$support_url
 			);
 		}
+	} elseif ( 'banned_account' === $_GET['api_error'] ) { // wpcs csrf ok.
 
-	} else { //this in case we add new error types in the future
+			$login_errors[] = sprintf(
+				__(
+					'This domain cannot be registered to your WPMU DEV account.<br><a href="%s">Contact Accounts & Billing if you need further assistance »</a>',
+					'wpmudev'
+				),
+				$urls->external_support_url
+			);
+	} else { // this in case we add new error types in the future
 		$login_errors[] = __( 'Unknown error. Please update the WPMU DEV Dashboard plugin and try again.', 'wpmudev' );
 
 	}
@@ -133,7 +141,7 @@ if ( isset( $_GET['api_error'] ) ) { // wpcs csrf ok.
 	// Variable `$site_limit_exceeded` is set by the UI function `render_dashboard`.
 	$error_msg = sprintf( __( 'You have already reached your plans limit of %1$d site, not hosted with us, connected to The Hub. <a target="_blank" href="%2$s">Upgrade your membership</a> or <a target="_blank" href="%3$s">remove a site</a> before adding another. <a target="_blank" href="%4$s">Contact support</a> for assistance.', 'wpmudev' ), $site_limit_num, $account_url, $websites_url, $support_modal_url );
 
-	if( $available_hosting_sites ){
+	if ( $available_hosting_sites ) {
 		$error_msg .= sprintf( __( '</br><strong>Note:</strong> You still have %1$d site <a target="_blank" href="%2$s">hosted with us</a> available.', 'wpmudev' ), $available_hosting_sites, $hosting_url );
 	}
 
@@ -144,15 +152,15 @@ if ( isset( $_GET['api_error'] ) ) { // wpcs csrf ok.
 $form_action = WPMUDEV_Dashboard::$api->rest_url( 'authenticate' );
 
 // Nonce to store sso setting.
-$sso_nonce 		= wp_create_nonce( 'sso-status' );
-//check if SSO and status was set previously and show the checkbox accordingly.
-$enable_sso     = WPMUDEV_Dashboard::$site->get_option( 'enable_sso', true, 1 );
+$sso_nonce = wp_create_nonce( 'sso-status' );
+// check if SSO and status was set previously and show the checkbox accordingly.
+$enable_sso = WPMUDEV_Dashboard::$site->get_option( 'enable_sso', true, 1 );
 
 // Detect Free Plugins
-$installed_free_projects        = WPMUDEV_Dashboard::$site->get_installed_free_projects();
+$installed_free_projects = WPMUDEV_Dashboard::$site->get_installed_free_projects();
 
 // build plugin names
-$installed_free_projects_names = wp_list_pluck( $installed_free_projects, 'name' );
+$installed_free_projects_names        = wp_list_pluck( $installed_free_projects, 'name' );
 $installed_free_projects_names_concat = '';
 $installed_free_projects_names_concat = array_pop( $installed_free_projects_names );
 if ( $installed_free_projects_names ) {
@@ -168,9 +176,9 @@ if ( $installed_free_projects_names ) {
 		<div class="dashui-login-form">
 
 			<?php if ( ! empty( $installed_free_projects_names_concat ) ) : ?>
-				<h2><?php esc_html_e( "Let’s unlock pro features", 'wpmudev' ); ?></h2>
+				<h2><?php esc_html_e( 'Let’s unlock pro features', 'wpmudev' ); ?></h2>
 			<?php else : ?>
-				<h2><?php esc_html_e( "Let’s connect your site", 'wpmudev' ); ?></h2>
+				<h2><?php esc_html_e( 'Let’s connect your site', 'wpmudev' ); ?></h2>
 			<?php endif; ?>
 
 			<?php if ( ! empty( $installed_free_projects_names_concat ) ) : ?>
@@ -191,12 +199,12 @@ if ( $installed_free_projects_names ) {
 					<label for="dashboard-email" class="sui-screen-reader-text"><?php esc_html_e( 'Email', 'wpmudev' ); ?></label>
 
 					<input type="email"
-					       placeholder="<?php esc_html_e( 'Email', 'wpmudev' ); ?>"
-					       id="dashboard-email"
-					       name="username"
-					       value="<?php echo esc_attr( $last_user ); ?>"
-					       required="required"
-					       class="sui-form-control"/>
+						   placeholder="<?php esc_html_e( 'Email', 'wpmudev' ); ?>"
+						   id="dashboard-email"
+						   name="username"
+						   value="<?php echo esc_attr( $last_user ); ?>"
+						   required="required"
+						   class="sui-form-control"/>
 					<span class="sui-error-message sui-hidden js-required-message"><?php esc_html_e( 'Email is required.' ); ?></span>
 					<span class="sui-error-message sui-hidden js-valid-email-message"><?php esc_html_e( 'Email is not valid.' ); ?></span>
 				</div>
@@ -208,12 +216,12 @@ if ( $installed_free_projects_names ) {
 					<div class="sui-with-button sui-with-button-icon">
 
 						<input type="password"
-						       placeholder="<?php esc_html_e( 'Password', 'wpmudev' ); ?>"
-						       id="dashboard-password"
-						       autocomplete="off"
-						       name="password"
-						       required="required"
-						       class="sui-form-control"/>
+							   placeholder="<?php esc_html_e( 'Password', 'wpmudev' ); ?>"
+							   id="dashboard-password"
+							   autocomplete="off"
+							   name="password"
+							   required="required"
+							   class="sui-form-control"/>
 
 						<button class="sui-button-icon" type="button">
 							<i class="sui-icon-eye" aria-hidden="true"></i>
@@ -271,18 +279,22 @@ if ( $installed_free_projects_names ) {
 	</div>
 	<div class="dashui-onboarding-footer">
 		<span class="sui-description">
-			<?php printf(
+			<?php
+			printf(
 				esc_html__( "Don't have an account? %1\$sSign up%2\$s today!", 'wpmudev' ),
 				'<a href="' . $register_url . '" target="_blank">',
 				'</a>'
-			); // wpcs xss ok.?>
+			); // wpcs xss ok.
+			?>
 		</span>
 		<span class="sui-description">
-			<?php printf(
-				esc_html__( "%1\$sSystem Information%2\$s", 'wpmudev' ),
+			<?php
+			printf(
+				esc_html__( '%1$sSystem Information%2$s', 'wpmudev' ),
 				'<a href="' . esc_url( add_query_arg( 'view', 'system', $urls->dashboard_url ) ) . '">',
 				'</a>'
-			); // wpcs xss ok.?>
+			); // wpcs xss ok.
+			?>
 		</span>
 
 	</div>

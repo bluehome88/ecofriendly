@@ -7,12 +7,11 @@
 
 namespace WPDesk\FS\TableRate\Rule\Cost;
 
-use FSVendor\WPDesk\Forms\Field;
-use FSVendor\WPDesk\Forms\Field\InputTextField;
 use FSVendor\WPDesk\Forms\Renderer\JsonNormalizedRenderer;
 use FSVendor\WPDesk\FS\TableRate\Settings\MethodSettings;
 use JsonSerializable;
 use Psr\Log\LoggerInterface;
+use Throwable;
 use WPDesk\FS\TableRate\Rule\ShippingContents\ShippingContents;
 
 /**
@@ -95,7 +94,7 @@ abstract class AbstractAdditionalCost implements AdditionalCost, JsonSerializabl
 			if ( isset( $per_value, $additional_cost ) && 0.0 !== (float) $per_value ) {
 				$calculated_additional_cost = ceil( (float) $shipment_contents_value / (float) $per_value ) * (float) $additional_cost;
 			}
-		} catch ( \Throwable $e ) {
+		} catch ( Throwable $e ) {
 			$logger->debug( $e->getMessage() );
 			$calculated_additional_cost = 0;
 		}

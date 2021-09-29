@@ -60,7 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<select name="currency" id="currency" class="chosen_select">
 					<?php
 					foreach ( get_woocommerce_currencies() as $code => $name ) {
-						echo '<option value="' . esc_attr( $code ) . '" ' . selected( $zone->get_currency(), $code ) . '>' . esc_html( $name . ' (' . get_woocommerce_currency_symbol( $code ) . ')' ) . '</option>';
+						echo '<option value="' . esc_attr( $code ) . '" ' . selected( $zone->get_currency(), $code, false ) . '>' . esc_html( $name . ' (' . get_woocommerce_currency_symbol( $code ) . ')' ) . '</option>';
 					}
 					?>
 				</select>
@@ -77,7 +77,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<label for="exchange_rate"><?php esc_html_e( 'Exchange Rate', 'woocommerce-product-price-based-on-countries' ); ?></label>
 			</th>
 			<td class="forminp forminp-text">
-				<span style="line-height:30px;">1 <?php echo esc_html( get_option( 'woocommerce_currency' ) ); ?> = </span><input name="exchange_rate" id="exchange_rate" type="text" class="short wc_input_decimal" value="<?php echo esc_attr( wc_format_localized_decimal( $zone->get_exchange_rate() ) ); ?>" style="width: 348px;" />
+				<span style="line-height:30px;">1 <?php echo esc_html( get_option( 'woocommerce_currency' ) ); ?> = </span><input name="exchange_rate" id="exchange_rate" type="text" class="short wc_input_decimal" value="<?php echo esc_attr( wcpbc_float_to_string( $zone->get_exchange_rate() ) ); ?>" style="width: 348px;" />
 			</td>
 		</tr>
 
@@ -93,7 +93,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<fieldset>
 					<legend class="screen-reader-text"><span><?php esc_html_e( 'Do not adjust taxes based on location.', 'woocommerce-product-price-based-on-countries' ); ?></span></legend>
 					<label for="disable_tax_adjustment">
-						<input name="disable_tax_adjustment" id="disable_tax_adjustment" type="checkbox" <?php echo $zone->get_disable_tax_adjustment() ? 'checked="checked"' : ''; ?> value="1"> 
+						<input name="disable_tax_adjustment" id="disable_tax_adjustment" type="checkbox" <?php echo $zone->get_disable_tax_adjustment() ? 'checked="checked"' : ''; ?> value="1">
 						<?php
 						// Translators: 1,2 Link to doc.
 						printf( esc_html( __( 'Do not adjust taxes based on location (%1$sread more%2$s)', 'woocommerce-product-price-based-on-countries' ) ), '<a target="_blank" rel="noopener noreferrer" href="https://www.pricebasedcountry.com/docs/getting-started/prices-entered-with-tax-show-a-wrong-value/?utm_source=settings&utm_medium=banner&utm_campaign=Docs">', '</a>' );

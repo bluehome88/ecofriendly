@@ -125,7 +125,7 @@ $time_format = get_option( 'time_format' );
 				break;
 
 			case 'staff-note':
-				$notice_msg = '<p>' . sprintf( esc_html__( 'Your note has been saved. Please let support staff know you have granted access via your %1$s support ticket %2$s.', 'wpmudev' ), "<a href='" . esc_url( '$urls->support_url' ) . "'>", '</a>' ) . '</p>'; //phpcs:ignore
+				$notice_msg = '<p>' . sprintf( esc_html__( 'Your note has been saved. Please let support staff know you have granted access via your %1$s support ticket %2$s.', 'wpmudev' ), "<a href='" . esc_url( $urls->support_url ) . "'>", '</a>' ) . '</p>'; //phpcs:ignore
 				$notice_id  = 'notice-success-staff-note';
 				break;
 			case 'check-updates':
@@ -188,7 +188,7 @@ $time_format = get_option( 'time_format' );
 
 <div class="sui-row-with-sidenav">
 
-	<div class="sui-sidenav">
+	<div role="navigation" class="sui-sidenav">
 
 		<ul class="sui-vertical-tabs sui-sidenav-hide-md">
 
@@ -218,17 +218,21 @@ $time_format = get_option( 'time_format' );
 
 		</ul>
 
-		<div class="sui-sidenav-hide-lg">
+		<div class="sui-sidenav-settings">
 
-			<select class="sui-mobile-nav" style="display: none;">
+			<div class="sui-sidenav-hide-lg">
 
-				<option value="#ticket" selected="selected"><?php esc_html_e( 'My Tickets', 'wpmudev' ); ?></option>
+				<select class="sui-select sui-mobile-nav" style="display: none;">
 
-				<option value="#access"><?php esc_html_e( 'Support Access', 'wpmudev' ); ?></option>
+					<option value="#ticket" selected="selected"><?php esc_html_e( 'My Tickets', 'wpmudev' ); ?></option>
 
-				<option value="#system"><?php esc_html_e( 'System Information', 'wpmudev' ); ?></option>
+					<option value="#access"><?php esc_html_e( 'Support Access', 'wpmudev' ); ?></option>
 
-			</select>
+					<option value="#system"><?php esc_html_e( 'System Information', 'wpmudev' ); ?></option>
+
+				</select>
+			</div>
+
 		</div>
 
 	</div>
@@ -613,7 +617,7 @@ $time_format = get_option( 'time_format' );
 								<a href="<?php echo esc_url( $url_extend ); ?>"
 								class="sui-button sui-button-ghost sui-tooltip js-loading-link"
 								data-tooltip="<?php esc_attr_e( 'Add another 3 days of support access', 'wpmudev' ); ?>"
-									<?php echo( ! is_wpmudev_member() ? 'disabled="disabled"' : '' ); ?>>
+									<?php echo( ! is_wpmudev_active_member() ? 'disabled="disabled"' : '' ); ?>>
 									<span class="sui-loading-text">
 										<?php esc_html_e( 'EXTEND', 'wpmudev' ); ?>
 									</span>

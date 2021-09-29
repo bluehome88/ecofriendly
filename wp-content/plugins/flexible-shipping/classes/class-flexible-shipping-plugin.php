@@ -10,6 +10,12 @@ use FSVendor\WPDesk\FS\TableRate\Logger\Assets;
 use FSVendor\WPDesk\Logger\WPDeskLoggerFactory;
 use FSVendor\WPDesk\Mutex\WordpressPostMutex;
 use FSVendor\WPDesk\Notice\AjaxHandler;
+use FSVendor\WPDesk\Nps\DisplayDecisions\AdminPageDisplayNpsDecision;
+use FSVendor\WPDesk\Nps\DisplayDecisions\DisplayNpsLocationsAndUserDecisions;
+use FSVendor\WPDesk\Nps\DisplayDecisions\ShippingMethodDisplayNpsDecision;
+use FSVendor\WPDesk\Nps\DisplayDecisions\UserDisplayNpsDecision;
+use FSVendor\WPDesk\Nps\Nps;
+use FSVendor\WPDesk\Nps\UuidUserId;
 use FSVendor\WPDesk\PluginBuilder\Plugin\AbstractPlugin;
 use FSVendor\WPDesk\PluginBuilder\Plugin\Activateable;
 use FSVendor\WPDesk\PluginBuilder\Plugin\HookableCollection;
@@ -26,6 +32,8 @@ use FSVendor\WPDesk\WooCommerce\CurrencySwitchers\ShippingIntegrations;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use WPDesk\FS\Integration\ExternalPluginAccess;
+use WPDesk\FS\Nps\NpsDisplayDecision;
+use WPDesk\FS\Nps\ShippingMethodFirstSettingsTime;
 use WPDesk\FS\Onboarding\TableRate\Onboarding;
 use WPDesk\FS\Onboarding\TableRate\FinishOption;
 use WPDesk\FS\Onboarding\TableRate\OptionAjaxUpdater;
@@ -80,7 +88,7 @@ class Flexible_Shipping_Plugin extends AbstractPlugin implements HookableCollect
 	 *
 	 * @var string
 	 */
-	private $scripts_version = '247';
+	private $scripts_version = '253';
 
 	/**
 	 * Admin notices.
@@ -134,7 +142,7 @@ class Flexible_Shipping_Plugin extends AbstractPlugin implements HookableCollect
 	 * Init logger on WPDesk_Flexible_Shipping_Shipment class.
 	 */
 	private function init_logger_on_shipment() {
-		WPDesk_Flexible_Shipping_Shipment::set_fs_logger( $this->logger );
+//		WPDesk_Flexible_Shipping_Shipment::set_fs_logger( $this->logger );
 	}
 
 	/**
@@ -167,19 +175,10 @@ class Flexible_Shipping_Plugin extends AbstractPlugin implements HookableCollect
 	 */
 	private function load_dependencies() {
 		require_once __DIR__ . '/../inc/functions.php';
-		require_once __DIR__ . '/wp-wpdesk-fs-shipment/shipment/functions.php';
-		require_once __DIR__ . '/manifest/functions.php';
 
 		$session_factory = new SessionFactory();
 
-		$shipment_cpt = new WPDesk_Flexible_Shipping_Shipment_CPT( $this );
-		$this->add_hookable( $shipment_cpt );
-
-		$this->add_hookable( new SubscriptionsIntegration( $shipment_cpt ) );
-
-		new WPDesk_Flexible_Shipping_Shipping_Manifest_CPT( $this );
-
-		new WPDesk_Flexible_Shipping_Shipment_Ajax( $this );
+		$this->add_hookable( new \FSVendor\WPDesk\FS\Shipment\ShipmentFunctionality( $this->logger, trailingslashit( $this->get_plugin_assets_url() ) . '../vendor_prefixed/wpdesk/wp-wpdesk-fs-shipment/assets/', $this->scripts_version ) );
 
 		$this->add_hookable( new WPDesk_Flexible_Shipping_Bulk_Actions( $session_factory ) );
 
@@ -187,15 +186,11 @@ class Flexible_Shipping_Plugin extends AbstractPlugin implements HookableCollect
 
 		$this->admin_notices = new WPDesk_Flexible_Shipping_Admin_Notices( $this );
 
-		$this->add_hookable( new WPDesk_Flexible_Shipping_Single_Label_File_Dispatcher() );
-
 		$this->add_hookable( new WPDesk_Flexible_Shipping_Tracker() );
 
 		$this->add_hookable( new TrackerData() );
 
 		$this->add_hookable( new WPDesk\FS\Rate\WPDesk_Flexible_Shipping_Rate_Notice() );
-
-		$this->add_hookable( new WPDesk_Flexible_Shipping_Add_Shipping() );
 
 		$this->add_hookable( new WPDesk_Flexible_Shipping_Shorcode_Unit_Weight() );
 		$this->add_hookable( new WPDesk_Flexible_Shipping_Shorcode_Unit_Dimension() );
@@ -205,8 +200,6 @@ class Flexible_Shipping_Plugin extends AbstractPlugin implements HookableCollect
 		$this->add_hookable( new WPDesk_Flexible_Shipping_Method_Created_Tracker_Deactivation_Data() );
 
 		$this->add_hookable( new WPDesk_Flexible_Shipping_Logger_Downloader( new WPDeskLoggerFactory() ) );
-
-		$this->add_hookable( new WPDesk_Flexible_Shipping_Rest_Api_Order_Response_Data_Appender() );
 
 		$this->add_hookable( new ShippingIntegrations( 'flexible_shipping' ) );
 
@@ -255,6 +248,50 @@ class Flexible_Shipping_Plugin extends AbstractPlugin implements HookableCollect
 		$this->add_hookable( new PluginActivation() );
 
 		$this->add_hookable( new MultipleShippingZonesMatchedSameTerritoryTracker() );
+
+		$this->init_nps();
+	}
+
+	private function init_nps() {
+		$user_meta_name = 'fs_nps';
+		$nps            = new Nps(
+			'fs_nps',
+			'vi75TA6E40L0BlKQ',
+			'60b0d308a43c20215b585189',
+			'5116ff93-1e16-411a-8c88-32ad2256df28',
+			new UuidUserId(),
+			$this->get_plugin_assets_url() . '../vendor_prefixed/wpdesk/wp-nps/assets/',
+			$this->scripts_version,
+			new DisplayNpsLocationsAndUserDecisions(
+				array(
+					new ShippingMethodDisplayNpsDecision( 'flexible_shipping_single' ),
+					new AdminPageDisplayNpsDecision( array(
+						'page'    => 'wc-settings',
+						'tab'     => 'shipping',
+						'section' => 'flexible_shipping_info'
+					) )
+				),
+				array(
+					new NpsDisplayDecision( new UserDisplayNpsDecision( $user_meta_name ) )
+				)
+			),
+			$user_meta_name,
+			admin_url( 'admin-ajax.php' )
+		);
+		$nps->set_question( __( 'Hey, we are curious how would you grade your first impression on Flexible Shipping so far?', 'flexible-shipping' ) );
+		$nps->set_best_label( __( 'Wow, it\'s awesome!', 'flexible-shipping' ) );
+		$nps->set_worst_label( __( 'Really poor', 'flexible-shipping' ) );
+		$nps->set_disclaimer(
+			sprintf(
+				__( 'By using the \'Send feedback\' button I hereby agree and consent to the terms of %1$sPrivacy Policy%2$s.', 'flexible-shipping' ),
+				'<a target="_blank" href="https://flexibleshipping.com/terms/privacy/">',
+				'</a>'
+			)
+		);
+
+		$this->add_hookable( $nps );
+
+		$this->add_hookable( new ShippingMethodFirstSettingsTime() );
 	}
 
 	/**
@@ -349,7 +386,10 @@ class Flexible_Shipping_Plugin extends AbstractPlugin implements HookableCollect
 	public function hooks() {
 		parent::hooks();
 
-		add_filter( 'woocommerce_shipping_methods', array( $this, 'woocommerce_shipping_methods_filter' ), self::PRIORITY_AFTER_DEFAULT );
+		add_filter( 'woocommerce_shipping_methods', array(
+			$this,
+			'woocommerce_shipping_methods_filter'
+		), self::PRIORITY_AFTER_DEFAULT );
 
 		add_action(
 			'flexible_shipping_method_rate_id',
@@ -446,13 +486,11 @@ class Flexible_Shipping_Plugin extends AbstractPlugin implements HookableCollect
 	 * @internal
 	 */
 	public function init_free_shipping_notice() {
-		global $wp;
-
 		$cart    = WC()->cart;
 		$session = WC()->session;
-		if ( null !== $cart && null !== $session ) {
+		if ( $cart instanceof WC_Cart && $session instanceof WC_Session ) {
 			( new FreeShippingNoticeGenerator( $cart, $session ) )->hooks();
-			( new FreeShippingNotice( $cart, $session, $wp ) )->hooks();
+			( new FreeShippingNotice( $cart, $session ) )->hooks();
 		}
 	}
 
@@ -482,6 +520,7 @@ class Flexible_Shipping_Plugin extends AbstractPlugin implements HookableCollect
 	public function create_tracker() {
 		$tracker_factory = new WPDesk_Tracker_Factory();
 		$tracker_factory->create_tracker( basename( dirname( __FILE__ ) ) );
+		( new \WPDesk\FS\Tracker\TrackerNotices() )->hooks();
 	}
 
 	/**
@@ -731,6 +770,7 @@ class Flexible_Shipping_Plugin extends AbstractPlugin implements HookableCollect
 			$this->enqueue_rules_scripts( $suffix );
 
 			do_action( 'flexible-shipping/admin/enqueue_scripts', $this, $suffix );
+
 		}
 	}
 
@@ -740,7 +780,10 @@ class Flexible_Shipping_Plugin extends AbstractPlugin implements HookableCollect
 	private function should_enqueue_admin_scripts() {
 		$current_screen = get_current_screen();
 		$wc_screen_id   = sanitize_title( __( 'WooCommerce', 'woocommerce' ) );
-		if ( in_array( $current_screen->post_type, array( 'shop_order', 'shop_subscription' ), true ) || $wc_screen_id . '_page_wc-settings' === $current_screen->id ) {
+		if ( in_array( $current_screen->post_type, array(
+				'shop_order',
+				'shop_subscription'
+			), true ) || $wc_screen_id . '_page_wc-settings' === $current_screen->id ) {
 			return true;
 		}
 

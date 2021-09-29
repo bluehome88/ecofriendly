@@ -45,43 +45,43 @@ class CommonMethodSettings implements MethodSettings {
 			$method_free_shipping = floatval( $method_settings['method_free_shipping'] );
 		}
 
-		$settings = array(
-			'method_enabled'                                              => array(
+		$settings = [
+			'method_enabled' => [
 				'title'   => __( 'Enable/Disable', 'flexible-shipping' ),
 				'type'    => 'checkbox',
 				'default' => $this->get_value_from_settings( $method_settings, 'method_enabled', 'yes' ),
 				'label'   => __( 'Enable this shipment method', 'flexible-shipping' ),
-			),
-			self::METHOD_TITLE                                            => array(
+			],
+			self::METHOD_TITLE => [
 				'title'             => __( 'Method Title', 'flexible-shipping' ),
 				'type'              => 'text',
 				'description'       => __( 'This controls the title which the user sees during checkout.', 'flexible-shipping' ),
 				'desc_tip'          => true,
 				'default'           => $this->get_value_from_settings( $method_settings, self::METHOD_TITLE, 'Flexible Shipping' ),
-				'custom_attributes' => array( 'required' => true ),
-			),
-			self::METHOD_DESCRIPTION                                      => array(
+				'custom_attributes' => [ 'required' => true ],
+			],
+			self::METHOD_DESCRIPTION => [
 				'title'       => __( 'Method Description', 'flexible-shipping' ),
 				'type'        => 'text',
 				'description' => __( 'This controls method description which the user sees during checkout.', 'flexible-shipping' ),
 				'desc_tip'    => true,
 				'default'     => $this->get_value_from_settings( $method_settings, self::METHOD_DESCRIPTION, '' ),
-			),
-			'method_free_shipping'                                        => array(
+			],
+			'method_free_shipping' => [
 				'title'       => __( 'Free Shipping', 'flexible-shipping' ),
 				'type'        => 'price',
 				'default'     => $method_free_shipping,
 				'description' => __( 'Enter a minimum order amount for free shipment. This will override the costs configured below.', 'flexible-shipping' ),
 				'desc_tip'    => true,
-			),
-			'method_free_shipping_label'                                  => array(
+			],
+			'method_free_shipping_label' => [
 				'title'       => __( 'Free Shipping Label', 'flexible-shipping' ),
 				'type'        => 'text',
 				'default'     => $this->get_value_from_settings( $method_settings, 'method_free_shipping_label', '' ),
-				'description' => __( 'Enter additional label for shipment when free shipment available.', 'flexible-shipping' ),
+				'description' => __( 'Enter the text for the additional shipping method\'s label which will be displayed once the free shipping is triggered or calculated.', 'flexible-shipping' ),
 				'desc_tip'    => true,
-			),
-			WPDesk_Flexible_Shipping::SETTING_METHOD_FREE_SHIPPING_NOTICE => array(
+			],
+			WPDesk_Flexible_Shipping::SETTING_METHOD_FREE_SHIPPING_NOTICE => [
 				'title'       => __( '\'Left to free shipping\' notice', 'flexible-shipping' ),
 				'type'        => 'checkbox',
 				'default'     => $this->get_value_from_settings( $method_settings, WPDesk_Flexible_Shipping::SETTING_METHOD_FREE_SHIPPING_NOTICE, 'no' ),
@@ -93,36 +93,36 @@ class CommonMethodSettings implements MethodSettings {
 					sprintf( '<a href="%s" target="_blank">', esc_url( get_locale() === 'pl_PL' ? 'https://wpde.sk/fs-fsn-pl' : 'https://wpde.sk/fs-fsn' ) ),
 					'</a>'
 				) . '<br /><br />' . __( 'Please mind that if you use any additional plugins to split the shipment into packages, the \'Left to free shipping notice\' will not be displayed.', 'flexible-shipping' ),
-			),
-			'method_calculation_method'                                   => array(
+			],
+			'method_calculation_method' => [
 				'title'       => __( 'Rules Calculation', 'flexible-shipping' ),
 				'type'        => 'select',
 				'description' => __( 'Select how rules will be calculated. If you choose "sum" the rules order is important.', 'flexible-shipping' ),
 				'default'     => $this->get_value_from_settings( $method_settings, 'method_calculation_method', '' ),
 				'desc_tip'    => true,
 				'options'     => ( new CalculationMethodOptions() )->get_options(),
-			),
-			self::CART_CALCULATION                                        => array(
+			],
+			self::CART_CALCULATION => [
 				'title'       => __( 'Cart Calculation', 'flexible-shipping' ),
 				'type'        => 'select',
 				'default'     => $this->get_value_from_settings( $method_settings, self::CART_CALCULATION, isset( $method_settings[ self::METHOD_DESCRIPTION ] ) ? CartCalculationOptions::CART : CartCalculationOptions::PACKAGE ),
 				'options'     => ( new CartCalculationOptions() )->get_options(),
 				'description' => __( 'Choose Package value to exclude virtual products from rules calculation.', 'flexible-shipping' ),
 				'desc_tip'    => true,
-			),
-			'method_visibility'                                           => array(
+			],
+			'method_visibility' => [
 				'title'   => __( 'Visibility', 'flexible-shipping' ),
 				'type'    => 'checkbox',
 				'default' => $this->get_value_from_settings( $method_settings, 'method_visibility', 'no' ),
 				'label'   => __( 'Show only for logged in users', 'flexible-shipping' ),
-			),
-			'method_default'                                              => array(
+			],
+			'method_default' => [
 				'title'   => __( 'Default', 'flexible-shipping' ),
 				'type'    => 'checkbox',
 				'default' => $this->get_value_from_settings( $method_settings, 'method_default', 'no' ),
 				'label'   => __( 'Check the box to set this option as the default selected choice on the cart page.', 'flexible-shipping' ),
-			),
-			'method_debug_mode'                                           => array(
+			],
+			'method_debug_mode' => [
 				'title'       => __( 'FS Debug Mode', 'flexible-shipping' ),
 				'type'        => 'checkbox',
 				'default'     => $this->get_value_from_settings( $method_settings, 'method_debug_mode', 'no' ),
@@ -133,8 +133,8 @@ class CommonMethodSettings implements MethodSettings {
 					'<a href="' . ( 'pl_PL' !== get_locale() ? 'https://docs.flexibleshipping.com/article/421-fs-table-rate-debug-mode?utm_source=flexible-shipping-method&utm_medium=link&utm_campaign=flexible-shipping-debug-mode' : 'https://www.wpdesk.pl/docs/tryb-debugowania-flexible-shipping/?utm_source=flexible-shipping-method&utm_medium=link&utm_campaign=flexible-shipping-debug-mode' ) . '" target="_blank">',
 					'</a>'
 				),
-			),
-		);
+			],
+		];
 
 		if ( $with_integration_settings ) {
 			$settings = $this->append_integration_settings_if_present( $settings, $method_settings );
@@ -144,12 +144,12 @@ class CommonMethodSettings implements MethodSettings {
 			$this->settings['method_max_cost'] = $settings['method_max_cost']['default'];
 		}
 
-		$settings[ self::METHOD_RULES ] = array(
+		$settings[ self::METHOD_RULES ] = [
 			'title'            => __( 'Shipping Cost Calculation Rules', 'flexible-shipping' ),
 			'type'             => RulesSettingsField::FIELD_TYPE,
 			'default'          => $this->get_value_from_settings( $method_settings, self::METHOD_RULES, ( new DefaultRulesSettings() )->get_normalized_settings() ),
 			self::METHOD_TITLE => $this->get_value_from_settings( $method_settings, self::METHOD_TITLE, __( 'Flexible Shipping', 'flexible-shipping' ) ),
-		);
+		];
 
 		return $settings;
 	}
@@ -161,53 +161,53 @@ class CommonMethodSettings implements MethodSettings {
 	 * @return array
 	 */
 	private function append_integration_settings_if_present( array $settings, $method_settings ) {
-		$integrations_options = apply_filters( 'flexible_shipping_integration_options', array( '' => __( 'None', 'flexible-shipping' ) ) );
+		$integrations_options = apply_filters( 'flexible_shipping_integration_options', [ '' => __( 'None', 'flexible-shipping' ) ] );
 
 		if ( 1 < count( $integrations_options ) ) {
-			$settings['title_shipping_integration'] = array(
+			$settings['title_shipping_integration'] = [
 				'title' => __( 'Shipping Integration', 'flexible-shipping' ),
 				'type'  => 'title',
-			);
-			$settings['method_integration']         = array(
+			];
+			$settings['method_integration']         = [
 				'title'    => __( 'Integration', 'flexible-shipping' ),
 				'type'     => 'select',
 				'desc_tip' => false,
 				'options'  => $integrations_options,
 				'default'  => $this->get_value_from_settings( $method_settings, 'method_integration' ),
-			);
+			];
 		}
 
 		$filtered_settings = apply_filters( 'flexible_shipping_method_settings', $settings, $method_settings );
 
-		$settings = array();
+		$settings = [];
 
 		foreach ( $filtered_settings as $settings_key => $settings_value ) {
 			if ( 'method_enabled' === $settings_key ) {
-				$settings['title_general_settings'] = array(
+				$settings['title_general_settings'] = [
 					'title' => __( 'General Settings', 'flexible-shipping' ),
 					'type'  => 'title',
-				);
+				];
 			}
 
 			if ( 'method_free_shipping_requires' === $settings_key || ( 'method_free_shipping' === $settings_key && ! isset( $settings['method_free_shipping_requires'] ) ) ) {
-				$settings['title_free_shipping'] = array(
+				$settings['title_free_shipping'] = [
 					'title' => __( 'Free Shipping', 'flexible-shipping' ),
 					'type'  => 'title',
-				);
+				];
 			}
 
 			if ( 'method_max_cost' === $settings_key || ( 'method_calculation_method' === $settings_key && ! isset( $settings['method_max_cost'] ) ) ) {
-				$settings['title_cost_calculation'] = array(
+				$settings['title_cost_calculation'] = [
 					'title' => __( 'Cost Calculation', 'flexible-shipping' ),
 					'type'  => 'title',
-				);
+				];
 			}
 
 			if ( 'method_visibility' === $settings_key ) {
-				$settings['title_advanced_options'] = array(
+				$settings['title_advanced_options'] = [
 					'title' => __( 'Advanced Options', 'flexible-shipping' ),
 					'type'  => 'title',
-				);
+				];
 			}
 
 			$settings[ $settings_key ] = $settings_value;

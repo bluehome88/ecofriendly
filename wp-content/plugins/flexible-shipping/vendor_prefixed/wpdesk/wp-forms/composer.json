@@ -1,5 +1,6 @@
 {
     "name": "wpdesk\/wp-forms",
+    "description": "WP Forms",
     "authors": [
         {
             "name": "Marcin",
@@ -8,6 +9,10 @@
         {
             "name": "Krzysiek",
             "email": "krzysiek@wpdesk.pl"
+        },
+        {
+            "name": "Piotr Potrebka",
+            "email": "piotr.potrebka@wpdesk.pl"
         }
     ],
     "require": {
@@ -30,6 +35,13 @@
         }
     },
     "autoload-dev": {},
+    "extra": {
+        "text-domain": "wp-forms",
+        "translations-folder": "lang",
+        "po-files": {
+            "pl_PL": "pl_PL.po"
+        }
+    },
     "scripts": {
         "phpunit-unit": "phpunit --configuration phpunit-unit.xml --coverage-text --colors=never",
         "phpunit-unit-fast": "phpunit --configuration phpunit-unit.xml --no-coverage",

@@ -275,7 +275,7 @@ class WCPBC_Frontend_Pricing {
 		}
 
 		$args['join']  = self::append_wcpbc_price_table_join( $args['join'] );
-		$args['where'] = str_replace( array( ' wc_product_meta_lookup.min_price >= ', ' wc_product_meta_lookup.max_price <= ' ), array( ' wcpbc_price.min_price >= ', ' wcpbc_price.max_price <= ' ), $args['where'] );
+		$args['where'] = str_replace( array( 'wc_product_meta_lookup.min_price', 'wc_product_meta_lookup.max_price' ), array( 'wcpbc_price.min_price', 'wcpbc_price.max_price' ), $args['where'] );
 
 		return $args;
 	}

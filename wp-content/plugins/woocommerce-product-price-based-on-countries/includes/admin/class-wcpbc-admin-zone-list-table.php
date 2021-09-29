@@ -159,7 +159,7 @@ class WCPBC_Admin_Zone_List_Table extends WP_List_Table {
 		$output = $currencies[ $zone->get_currency() ] . ' (' . get_woocommerce_currency_symbol( $zone->get_currency() ) . ') <br />';
 
 		if ( $zone->get_zone_id() ) {
-			$output .= '<span class="description">1 ' . $this->base_currency . ' = ' . wc_format_localized_decimal( $zone->get_exchange_rate() ) . ' ' . $zone->get_currency() . '</span>';
+			$output .= '<span class="description">1 ' . $this->base_currency . ' = ' . wcpbc_float_to_string( $zone->get_exchange_rate() ) . ' ' . $zone->get_currency() . '</span>';
 			$output  = apply_filters( 'wc_price_based_country_settings_zone_after_column_currency', $output, $zone );
 		}
 		return $output;

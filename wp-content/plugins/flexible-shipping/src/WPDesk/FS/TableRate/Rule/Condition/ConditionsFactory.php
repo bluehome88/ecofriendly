@@ -52,9 +52,12 @@ class ConditionsFactory {
 	 * @return Condition[]
 	 */
 	private function sort_conditions( $conditions ) {
-		uasort( $conditions, function ( Condition $condition1, Condition $condition2 ) {
-			return $condition1->get_priority() <=> $condition2->get_priority();
-		} );
+		uasort(
+			$conditions,
+			function ( Condition $condition1, Condition $condition2 ) {
+				return $condition1->get_priority() <=> $condition2->get_priority(); // phpcs:ignore.
+			}
+		);
 
 		return $conditions;
 	}

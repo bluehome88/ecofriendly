@@ -66,13 +66,17 @@ abstract class WC_REST_Connect_Base_Controller extends WP_REST_Controller {
 			);
 		}
 		if ( method_exists( $this, 'put' ) ) {
-			register_rest_route( $this->namespace, '/' . $this->rest_base, array(
+			register_rest_route(
+				$this->namespace,
+				'/' . $this->rest_base,
 				array(
-					'methods'             => 'PUT',
-					'callback'            => array( $this, 'put_internal' ),
-					'permission_callback' => array( $this, 'check_permission' ),
-				),
-			) );
+					array(
+						'methods'             => 'PUT',
+						'callback'            => array( $this, 'put_internal' ),
+						'permission_callback' => array( $this, 'check_permission' ),
+					),
+				)
+			);
 		}
 		if ( method_exists( $this, 'delete' ) ) {
 			register_rest_route(
@@ -145,7 +149,7 @@ abstract class WC_REST_Connect_Base_Controller extends WP_REST_Controller {
 	 * Validate the requester's permissions
 	 */
 	public function check_permission( $request ) {
-		return current_user_can( 'manage_woocommerce' );
+		return WC_Connect_Functions::user_can_manage_labels();
 	}
 
 }

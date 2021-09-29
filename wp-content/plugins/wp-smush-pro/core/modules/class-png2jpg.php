@@ -459,22 +459,13 @@ class Png2jpg extends Abstract_Module {
 		if ( $result['converted'] ) {
 			if ( ! empty( $meta['sizes'] ) ) {
 				foreach ( $meta['sizes'] as $size_k => $data ) {
-
 					$s_file = path_join( dirname( $file ), $data['file'] );
 
-					// Whether to convert to jpg or not.
-					$should_convert = $this->can_be_converted( $id, $size_k, 'image/png', $s_file );
-
-					// Perform the conversion.
-					if ( ! $should_convert ) {
-						continue;
-					}
-
-					// Perform the conversion, and update path.
-					if ( ! $this->is_transparent ) {
-						// Perform the conversion, and update path.
-						$result = $this->convert_to_jpg( $id, $s_file, $result['meta'], $size_k );
-					}
+					/**
+					 * Since these sizes are derived from the main png file,
+					 * We can safely perform the conversion.
+					 */
+					$result = $this->convert_to_jpg( $id, $s_file, $result['meta'], $size_k );
 
 					if ( ! empty( $result['savings'] ) ) {
 						$savings[ $size_k ] = $result['savings'];
@@ -485,7 +476,7 @@ class Png2jpg extends Abstract_Module {
 			// Save the original File URL.
 			$o_file = ! empty( $file ) ? $file : get_post_meta( $id, '_wp_attached_file', true );
 
-			WP_Smush::get_instance()->core()->mod->backup->add_to_image_backup_sizes( $id, $o_file, 'smush_png_path' );
+			WP_Smush::get_instance()->core()->mod->backup->add_to_image_backup_sizes( $id, $o_file, 'smush_png_path' );	 				 	  		 	 	 				
 
 			// Remove webp images created from the png version, if any.
 			WP_Smush::get_instance()->core()->mod->webp->delete_images( $id, true, $o_file );

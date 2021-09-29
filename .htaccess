@@ -4,6 +4,7 @@
 RewriteEngine on
 CacheLookup on
 RewriteRule .* - [E=Cache-Control:no-autoflush]
+RewriteRule \.object-cache\.ini - [F,L]
 
 ### marker CACHE RESOURCE start ###
 RewriteRule wp-content/.*/[^/]*(responsive|css|js|dynamic|loader|fonts)\.php - [E=cache-control:max-age=3600]
@@ -42,7 +43,23 @@ RewriteRule . /index.php [L]
 </IfModule>
 
 # END WordPress
-RewriteCond %{HTTP_HOST} ^ecohygieneaustralia\.com\.au$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.ecohygieneaustralia\.com\.au$
-RewriteRule ^/?$ "Http\:\/\/Ecofriendlyhygienesolutions\.com\.au\/" [R=301,L]
+# BEGIN SMUSH-WEBP
+# The directives (lines) between "BEGIN SMUSH-WEBP" and "END SMUSH-WEBP" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+ RewriteEngine On
+ RewriteCond %{DOCUMENT_ROOT}/wp-content/smush-webp/disable_smush_webp !-f
+ RewriteCond %{HTTP_ACCEPT} image/webp
+ RewriteCond %{DOCUMENT_ROOT}/wp-content/smush-webp/$1.webp -f
+ RewriteRule wp-content/uploads/(.*.(?:png|jpe?g))$ wp-content/smush-webp/$1.webp [NC,T=image/webp]
+</IfModule>
 
+<IfModule mod_headers.c>
+ Header append Vary Accept env=WEBP_image
+</IfModule>
+
+<IfModule mod_mime.c>
+ AddType image/webp .webp
+</IfModule>
+# END SMUSH-WEBP

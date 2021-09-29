@@ -7,6 +7,7 @@
 
 namespace WPDesk\FS\Shipment;
 
+use FSVendor\WPDesk\FS\Shipment\CustomPostType;
 use FSVendor\WPDesk\PluginBuilder\Plugin\Hookable;
 
 /**
@@ -15,16 +16,16 @@ use FSVendor\WPDesk\PluginBuilder\Plugin\Hookable;
 class SubscriptionsIntegration implements Hookable {
 
 	/**
-	 * @var \WPDesk_Flexible_Shipping_Shipment_CPT
+	 * @var CustomPostType
 	 */
 	private $shipment_cpt;
 
 	/**
 	 * SubscriptionsIntegration constructor.
 	 *
-	 * @param \WPDesk_Flexible_Shipping_Shipment_CPT $shipment_cpt .
+	 * @param CustomPostType $shipment_cpt .
 	 */
-	public function __construct( \WPDesk_Flexible_Shipping_Shipment_CPT $shipment_cpt ) {
+	public function __construct( CustomPostType $shipment_cpt ) {
 		$this->shipment_cpt = $shipment_cpt;
 	}
 
@@ -33,8 +34,8 @@ class SubscriptionsIntegration implements Hookable {
 	 */
 	public function hooks() {
 		$last_priority = PHP_INT_MAX;
-		add_action( 'woocommerce_checkout_subscription_created', array( $this, 'create_shipping_for_subscription' ), $last_priority, 3 );
-		add_filter( 'wcs_renewal_order_created', array( $this, 'create_shipping_for_order_from_subscription' ), 10, 2 );
+		add_action( 'woocommerce_checkout_subscription_created', [ $this, 'create_shipping_for_subscription' ], $last_priority, 3 );
+		add_filter( 'wcs_renewal_order_created', [ $this, 'create_shipping_for_order_from_subscription' ], 10, 2 );
 	}
 
 	/**
@@ -65,7 +66,7 @@ class SubscriptionsIntegration implements Hookable {
 	 */
 	private function create_single_shipment( \WPDesk_Flexible_Shipping_Shipment $shipment, \WC_Order $order ) {
 		$meta_data      = $shipment->get_meta_data();
-		$fs_method      = $shipment->get_meta( '_fs_method', array( 'method_integration' => $shipment->get_integration() ) );
+		$fs_method      = $shipment->get_meta( '_fs_method', [ 'method_integration' => $shipment->get_integration() ] );
 		$order_shipment = fs_create_shipment( $order, $fs_method );
 		$integration    = $order_shipment->get_integration();
 		$this->setup_shipment_meta_data( $meta_data, $integration, $shipment, $order_shipment );
@@ -74,7 +75,7 @@ class SubscriptionsIntegration implements Hookable {
 		/**
 		 * New shipment created from subscription.
 		 *
-		 * @param WPDesk_Flexible_Shipping_Shipment $order_shipment Created shipment.
+		 * @param \WPDesk_Flexible_Shipping_Shipment $order_shipment Created shipment.
 		 */
 		do_action( 'flexible-shipping/shipment-from-subscription/created/' . $integration, $order_shipment );
 	}

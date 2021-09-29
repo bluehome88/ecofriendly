@@ -55,9 +55,9 @@ class HelperRemover implements \FSVendor\WPDesk\PluginBuilder\Plugin\Hookable
     private function remove_object_action_by_name($action_name, $priority, $function_name)
     {
         global $wp_filter;
-        /** @var WP_Hook $admin_notices_tag */
-        $admin_notices_tag = $wp_filter[$action_name];
-        if (isset($admin_notices_tag->callbacks[$priority])) {
+        if (isset($wp_filter[$action_name]) && isset($wp_filter[$action_name]->callbacks[$priority])) {
+            /** @var WP_Hook $admin_notices_tag */
+            $admin_notices_tag = $wp_filter[$action_name];
             $default_priority_callbacks = $admin_notices_tag->callbacks[$priority];
             foreach ($default_priority_callbacks as $callback) {
                 if (\is_array($callback) && \is_array($callback[self::CALLBACK_KEY]) && isset($callback[self::CALLBACK_KEY][self::CALLBACK_KEY_WITH_FUNCTION_NAME])) {

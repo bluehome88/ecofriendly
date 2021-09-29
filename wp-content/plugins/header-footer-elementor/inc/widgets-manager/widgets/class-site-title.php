@@ -9,10 +9,10 @@ namespace HFE\WidgetsManager\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
-use Elementor\Scheme_Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Widget_Base;
 use Elementor\Group_Control_Text_Shadow;
-use Elementor\Scheme_Color;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 
 use HFE\WidgetsManager\Widgets_Loader;
 
@@ -290,7 +290,9 @@ class Site_Title extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'heading_typography',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
+				'global'   => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .elementor-heading-title, {{WRAPPER}} .hfe-heading a',
 			]
 		);
@@ -299,9 +301,8 @@ class Site_Title extends Widget_Base {
 			[
 				'label'     => __( 'Color', 'header-footer-elementor' ),
 				'type'      => Controls_Manager::COLOR,
-				'scheme'    => [
-					'type'  => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
+				'global'    => [
+					'default' => Global_Colors::COLOR_PRIMARY,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .hfe-heading-text' => 'color: {{VALUE}};',
@@ -362,9 +363,8 @@ class Site_Title extends Widget_Base {
 			[
 				'label'     => __( 'Icon Color', 'header-footer-elementor' ),
 				'type'      => Controls_Manager::COLOR,
-				'scheme'    => [
-					'type'  => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
+				'global'    => [
+					'default' => Global_Colors::COLOR_PRIMARY,
 				],
 				'condition' => [
 					'icon[value]!' => '',
@@ -414,16 +414,7 @@ class Site_Title extends Widget_Base {
 		}
 
 		if ( ! empty( $settings['heading_link']['url'] ) ) {
-			$this->add_render_attribute( 'url', 'href', $settings['heading_link']['url'] );
-
-			if ( $settings['heading_link']['is_external'] ) {
-				$this->add_render_attribute( 'url', 'target', '_blank' );
-			}
-
-			if ( ! empty( $settings['heading_link']['nofollow'] ) ) {
-				$this->add_render_attribute( 'url', 'rel', 'nofollow' );
-			}
-			$link = $this->get_render_attribute_string( 'url' );
+			$this->add_link_attributes( 'url', $settings['heading_link'] );
 		}
 
 		$heading_size_tag = Widgets_Loader::validate_html_tag( $settings['heading_tag'] );
@@ -431,7 +422,7 @@ class Site_Title extends Widget_Base {
 
 		<div class="hfe-module-content hfe-heading-wrapper elementor-widget-heading">
 		<?php if ( ! empty( $settings['heading_link']['url'] ) && 'custom' === $settings['custom_link'] ) { ?>
-					<a <?php echo $link; ?> >
+					<a <?php echo wp_kses_post( $this->get_render_attribute_string( 'url' ) ); ?>>
 				<?php } else { ?>
 					<a href="<?php echo get_home_url(); ?>">
 				<?php } ?>

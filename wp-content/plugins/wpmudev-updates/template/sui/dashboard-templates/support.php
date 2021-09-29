@@ -101,7 +101,7 @@ foreach ( $threads as $thread ) {
 								<a href="<?php echo esc_url( $url_extend ); ?>"
 								class="sui-button sui-button-ghost sui-tooltip js-loading-link"
 								data-tooltip="<?php esc_attr_e( 'Add another 3 days of support access', 'wpmudev' ); ?>"
-									<?php echo( ! is_wpmudev_member() ? 'disabled="disabled"' : '' ); ?>>
+									<?php echo( ! is_wpmudev_active_member() ? 'disabled="disabled"' : '' ); ?>>
 									<span class="sui-loading-text">
 									<?php esc_html_e( 'EXTEND', 'wpmudev' ); ?>
 									</span>

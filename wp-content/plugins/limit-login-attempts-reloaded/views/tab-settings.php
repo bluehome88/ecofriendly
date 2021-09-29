@@ -7,6 +7,7 @@ if( !defined( 'ABSPATH' ) ) exit();
  */
 
 $gdpr = $this->get_option( 'gdpr' );
+$gdpr_message = $this->get_option( 'gdpr_message' );
 
 $v = explode( ',', $this->get_option( 'lockout_notify' ) );
 $email_checked = in_array( 'email', $v ) ? ' checked ' : '';
@@ -60,16 +61,22 @@ $active_app_config = $this->get_custom_app_config();
     <?php endif ?>
 
     <table class="form-table">
-		<?php if( $active_app === 'local' ) : ?>
         <tr>
             <th scope="row"
                 valign="top"><?php echo __( 'GDPR compliance', 'limit-login-attempts-reloaded' ); ?></th>
             <td>
                 <input type="checkbox" name="gdpr" value="1" <?php if($gdpr): ?> checked <?php endif; ?>/>
-				<?php echo __( 'this makes the plugin <a href="https://gdpr-info.eu/" target="_blank" >GDPR</a> compliant', 'limit-login-attempts-reloaded' ); ?> <br/>
+				<?php echo __( 'this makes the plugin <a href="https://gdpr-info.eu/" target="_blank">GDPR</a> compliant by showing a message on the login page. <a href="https://www.limitloginattempts.com/gdpr-qa/?from=plugin-settings-gdpr" target="_blank">Read more</a>', 'limit-login-attempts-reloaded' ); ?> <br/>
             </td>
         </tr>
-        <?php endif; ?>
+        <tr>
+            <th scope="row"
+                valign="top"><?php echo __( 'GDPR message', 'limit-login-attempts-reloaded' ); ?></th>
+            <td>
+                <textarea name="gdpr_message" cols="60"><?php echo esc_textarea( stripslashes( $gdpr_message ) ); ?></textarea>
+                <p class="description"><?php echo __( 'You can use a shortcode here to insert links, for example, a link to your Privacy Policy page. <br>The shortcode is: [llar-link url="https://example.com" text="Privacy Policy"]', 'limit-login-attempts-reloaded' ); ?></p>
+            </td>
+        </tr>
 
         <tr>
             <th scope="row"
@@ -111,7 +118,7 @@ $active_app_config = $this->get_custom_app_config();
     </table>
 
     <h3><?php echo __( 'App Settings', 'limit-login-attempts-reloaded' ); ?></h3>
-    <p><?php echo __( 'The apps absorb the main load caused by brute-force attacks, analyse login attempts and block unwanted visitors. They might provide other service functions as well.', 'limit-login-attempts-reloaded' ); ?></p>
+    <p><?php echo __( 'The app absorbs the main load caused by brute-force attacks, analyzes login attempts, and blocks unwanted visitors. It provides other service functions as well.', 'limit-login-attempts-reloaded' ); ?></p>
 
     <div id="llar-apps-accordion" class="llar-accordion">
         <h3><?php echo __( 'Local App', 'limit-login-attempts-reloaded' ); ?></h3>

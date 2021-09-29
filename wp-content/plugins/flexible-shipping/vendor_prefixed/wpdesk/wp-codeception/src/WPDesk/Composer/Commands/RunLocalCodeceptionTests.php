@@ -5,6 +5,8 @@ namespace FSVendor\WPDesk\Composer\Codeception\Commands;
 use FSVendor\Symfony\Component\Console\Input\InputArgument;
 use FSVendor\Symfony\Component\Console\Input\InputInterface;
 use FSVendor\Symfony\Component\Console\Output\OutputInterface;
+use FSVendor\Symfony\Component\Yaml\Exception\ParseException;
+use FSVendor\Symfony\Component\Yaml\Yaml;
 /**
  * Codeception tests run command.
  *
@@ -12,13 +14,14 @@ use FSVendor\Symfony\Component\Console\Output\OutputInterface;
  */
 class RunLocalCodeceptionTests extends \FSVendor\WPDesk\Composer\Codeception\Commands\RunCodeceptionTests
 {
+    use LocalCodeceptionTrait;
     /**
      * Configure command.
      */
     protected function configure()
     {
         parent::configure();
-        $this->setName('run-local-codeception-tests')->setDescription('Run local codeception tests.')->setDefinition(array(new \FSVendor\Symfony\Component\Console\Input\InputArgument(self::SINGLE, \FSVendor\Symfony\Component\Console\Input\InputArgument::OPTIONAL, 'Name of Single test to run.', ' '), new \FSVendor\Symfony\Component\Console\Input\InputArgument(self::WOOCOMMERCE_VERSION, \FSVendor\Symfony\Component\Console\Input\InputArgument::OPTIONAL, 'WooCommerce version to install.', '')));
+        $this->setName('run-local-codeception-tests')->setDescription('Run local codeception tests.')->setDefinition(array(new \FSVendor\Symfony\Component\Console\Input\InputArgument(self::SINGLE, \FSVendor\Symfony\Component\Console\Input\InputArgument::OPTIONAL, 'Name of Single test to run.', ' ')));
     }
     /**
      * Execute command.
@@ -29,9 +32,14 @@ class RunLocalCodeceptionTests extends \FSVendor\WPDesk\Composer\Codeception\Com
      */
     protected function execute(\FSVendor\Symfony\Component\Console\Input\InputInterface $input, \FSVendor\Symfony\Component\Console\Output\OutputInterface $output)
     {
+        $configuration = $this->getWpDeskConfiguration();
+        $this->prepareWpConfig($output, $configuration);
         $singleTest = $input->getArgument(self::SINGLE);
-        $wooVersion = $input->getArgument(self::WOOCOMMERCE_VERSION);
-        $runLocalTests = 'sh ./vendor/wpdesk/wp-codeception/scripts/run_local_tests.sh ' . $singleTest . ' ' . $wooVersion;
+        $sep = \DIRECTORY_SEPARATOR;
+        $codecept = "vendor{$sep}bin{$sep}codecept";
+        $cleanOutput = $codecept . ' clean';
+        $this->execAndOutput($cleanOutput, $output);
+        $runLocalTests = $codecept . ' run -f --steps --html --verbose acceptance ' . $singleTest;
         $this->execAndOutput($runLocalTests, $output);
     }
 }

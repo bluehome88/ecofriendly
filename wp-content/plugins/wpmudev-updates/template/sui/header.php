@@ -1,4 +1,4 @@
-<div class="sui-header">
+<div class="sui-header" id="wpmudev-dashboard-header">
 
 	<h1 class="sui-header-title"><?php echo esc_html( $page_title ); ?></h1>
 

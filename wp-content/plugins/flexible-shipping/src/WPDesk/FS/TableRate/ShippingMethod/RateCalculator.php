@@ -218,7 +218,7 @@ class RateCalculator {
 
 			$rate = $this->calculate_rate_for_rates( $method_settings, $shipping_contents, $rate_id, $logger );
 		} else {
-			$rate = array();
+			$rate = [];
 		}
 
 		return $rate;
@@ -259,7 +259,8 @@ class RateCalculator {
 		}
 
 		if ( $add_method ) {
-			$cost = $cost_calculator->get_calculated_cost();
+			$cost = $this->set_zero_cost_if_negative( $cost_calculator->get_calculated_cost() );
+
 			// Translators: cost, currency.
 			$logger->debug( sprintf( __( 'Calculated shipping cost: %1$s %2$s', 'flexible-shipping' ), $cost, $this->shop_currency ), $logger->get_results_context() );
 
@@ -280,18 +281,33 @@ class RateCalculator {
 			// Translators: method title.
 			$logger->debug( sprintf( __( 'Shipping method title: %1$s', 'flexible-shipping' ), $method_title ), $logger->get_results_context() );
 
-			$rate = array(
+			$rate = [
 				'id'        => $rate_id,
 				'label'     => $method_title,
 				'cost'      => $cost,
 				'package'   => $this->package,
 				'meta_data' => $this->prepare_meta_data( $method_settings ),
-			);
+			];
 		} else {
-			$rate = array();
+			$rate = [];
 		}
 
 		return $rate;
+	}
+
+	/**
+	 * @param float $cost .
+	 *
+	 * @return float
+	 */
+	private function set_zero_cost_if_negative( $cost ) {
+		$allow_negative_costs = (bool) apply_filters( 'flexible-shipping/shipping-method/allow-negative-costs', false );
+
+		if ( ! $allow_negative_costs && 0.0 > (float) $cost ) {
+			$cost = 0.0;
+		}
+
+		return (float) $cost;
 	}
 
 	/**
@@ -302,12 +318,12 @@ class RateCalculator {
 	private function prepare_meta_data( MethodSettingsImplementation $method_settings ) {
 		$description = wpdesk__( $method_settings->get_description(), 'flexible-shipping' );
 
-		$meta_data = array(
+		$meta_data = [
 			WPDesk_Flexible_Shipping::META_DEFAULT => $method_settings->get_default(),
 			self::FS_METHOD                        => $method_settings->get_raw_settings(),
 			self::FS_INTEGRATION                   => $method_settings->get_integration(),
 			self::DESCRIPTION                      => $description,
-		);
+		];
 
 		if ( esc_html( $description ) !== $description ) {
 			$meta_data[ self::DESCRIPTION_BASE64ENCODED ] = base64_encode( $description );
@@ -333,7 +349,7 @@ class RateCalculator {
 	private function get_single_method_title( $shipping_method, $cost ) {
 		$method_title = wpdesk__( $shipping_method['method_title'], 'flexible-shipping' );
 
-		if ( 0.0 === (float) $cost ) {
+		if ( 0.0 >= (float) $cost ) {
 			if ( ! isset( $shipping_method['method_free_shipping_label'] ) ) {
 				$shipping_method['method_free_shipping_label'] = __( 'Free', 'flexible-shipping' );
 			}

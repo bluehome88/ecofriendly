@@ -49,6 +49,14 @@ class Gallery extends Base_Widget {
 		return 'eicon-gallery-justified';
 	}
 
+	public function get_inline_css_depends() {
+		if ( 'multiple' === $this->get_settings_for_display( 'gallery_type' ) ) {
+			return [ 'nav-menu' ];
+		}
+
+		return [];
+	}
+
 	protected function register_controls() {
 		$this->start_controls_section( 'settings', [ 'label' => __( 'Settings', 'elementor-pro' ) ] );
 

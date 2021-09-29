@@ -3,20 +3,32 @@
  * Dashboard home template
  *
  * @package WPMUDEV DASHBOARD 4.9.0
+ * @var array       $member
+ * @var array       $urls
+ * @var int|string  $update_plugins
+ * @var string      $type
+ * @var array       $licensed_projects
+ * @var array       $membership_data
+ * @var object|bool $staff_login
+ * @var bool        $analytics_enabled
+ * @var array       $whitelabel_settings
+ * @var int         $total_visits
  */
 
-$page_title = __( 'Dashboard', 'wpmudev' );
-$page_slug  = 'dashboard';
-$this->render_sui_header( $page_title, $page_slug );
+$this->render_sui_header(
+	__( 'Dashboard', 'wpmudev' ),
+	'dashboard'
+);
+
 $queue = WPMUDEV_Dashboard::$site->get_option( 'notifications' );
 
-// if already dismissed don't show.
+// If already dismissed don't show.
 if ( ( ! isset( $queue[ $this->_membership_notice ] ) || ! isset( $queue[ $this->_membership_notice ]['dismissed'] ) ) && ( 'free' === $type || 'single' === $type ) ) {
 	$this->render_upgrade_header( $type, $licensed_projects );
 }
 
 // @var WPMUDEV_Dashboard_Sui_Page_Urls $urls.
-// Support & update stats
+// Support & update stats.
 $support_thread_url = $urls->support_url;
 
 $support_threads = count( $member['forum']['support_threads'] );
@@ -92,75 +104,49 @@ foreach ( $projects as $key => $item ) {
 }
 
 ?>
-<div class="sui-box sui-summary sui-summary-sm">
-
-	<div class="sui-summary-image-space" aria-hidden="true"></div>
-
+	<div class="sui-box sui-summary sui-summary-sm">
+		<div class="sui-summary-image-space" aria-hidden="true"></div>
 		<div class="sui-summary-segment">
-
 			<div class="sui-summary-details">
-
 				<span class="sui-summary-large"><?php echo absint( $total_active_plugins ); ?></span>
-				<span class="sui-summary-sub"><?php echo esc_html( _n( 'Active Pro plugin', 'Active Pro plugins', $total_active_plugins, 'wpmudev' ) ); ?></span>
-
+				<span class="sui-summary-sub">
+					<?php echo esc_html( _n( 'Active Pro plugin', 'Active Pro plugins', $total_active_plugins, 'wpmudev' ) ); ?>
+				</span>
 			</div>
-
 		</div>
-
-	<div class="sui-summary-segment">
-
-		<ul class="sui-list">
-
-			<li>
-				<span class="sui-list-label"><?php esc_html_e( 'Plugin Updates Available', 'wpmudev' ); ?> </span>
-				<span class="sui-list-detail"><?php echo $update_plugins_html; //phpcs:ignore ?></span>
-			</li>
-
-			<li>
-				<span class="sui-list-label"><?php esc_html_e( 'Active Support Tickets', 'wpmudev' ); ?></span>
-				<span class="sui-list-detail">
+		<div class="sui-summary-segment">
+			<ul class="sui-list">
+				<li>
+					<span class="sui-list-label"><?php esc_html_e( 'Plugin Updates Available', 'wpmudev' ); ?> </span>
+					<span class="sui-list-detail"><?php echo $update_plugins_html; //phpcs:ignore ?></span>
+				</li>
+				<li>
+					<span class="sui-list-label"><?php esc_html_e( 'Active Support Tickets', 'wpmudev' ); ?></span>
+					<span class="sui-list-detail">
 					<?php echo $support_threads; //phpcs:ignore  ?>
 				</span>
-			</li>
-		</ul>
+				</li>
+			</ul>
+		</div>
+	</div><!-- End Overview -->
 
+	<div class="sui-row dashui-table-widgets">
+		<div class="sui-col-md-6">
+			<?php $this->render( 'sui/dashboard-templates/installed-plugins', compact( 'data', 'urls', 'selected_plugins', 'membership_data' ) ); // BOX: Installed Plugins. ?>
+			<?php $this->render( 'sui/dashboard-templates/services', compact( 'urls', 'membership_data' ) ); // BOX: Services. ?>
+			<?php $this->render( 'sui/dashboard-templates/support', compact( 'urls', 'member', 'staff_login', 'membership_data' ) ); // BOX: Support. ?>
+		</div>
+
+		<div class="sui-col-md-6">
+			<?php if ( 'free' === $membership_data['membership'] ) : ?>
+				<?php $this->render( 'sui/dashboard-templates/expired_membership_info', compact( 'urls', 'whitelabel_settings', 'analytics_enabled', 'total_visits', 'membership_data' ) ); // BOX: Expired Membership Info. ?>
+			<?php endif; ?>
+			<?php $this->render( 'sui/dashboard-templates/analytics', compact( 'urls', 'analytics_enabled', 'membership_data' ) ); // BOX: Analytics. ?>
+			<?php $this->render( 'sui/dashboard-templates/whitelabel', compact( 'urls', 'whitelabel_settings', 'membership_data' ) ); // BOX: Whitelabel. ?>
+			<?php $this->render( 'sui/dashboard-templates/resources', compact( 'urls', 'membership_data' ) ); // BOX: Resources. ?>
+		</div>
 	</div>
-
-</div><!-- End Overview -->
-
-<div class="sui-row dashui-table-widgets">
-	<div class="sui-col-md-6">
-		<?php // BOX: Installed Plugins. ?>
-		<?php $this->render( 'sui/dashboard-templates/installed-plugins', compact( 'data', 'urls', 'selected_plugins', 'membership_data' ) ); ?>
-
-		<?php // BOX: Services. ?>
-		<?php $this->render( 'sui/dashboard-templates/services', compact( 'urls', 'membership_data' ) ); ?>
-
-		<?php // BOX: Support. ?>
-		<?php $this->render( 'sui/dashboard-templates/support', compact( 'urls', 'member', 'staff_login', 'membership_data' ) ); ?>
-	</div>
-
-	<div class="sui-col-md-6">
-
-<?php if ( 'free' === $membership_data['membership'] ) : ?>
-		<?php // BOX: Expired Membership Info. ?>
-		<?php $this->render( 'sui/dashboard-templates/expired_membership_info', compact( 'urls', 'whitelabel_settings', 'analytics_enabled', 'total_visits', 'membership_data' ) ); ?>
-<?php endif; ?>
-
-		<?php // BOX: Analytics. ?>
-		<?php $this->render( 'sui/dashboard-templates/analytics', compact( 'urls', 'analytics_enabled', 'membership_data' ) ); ?>
-
-		<?php // BOX: Whitelabel. ?>
-		<?php $this->render( 'sui/dashboard-templates/whitelabel', compact( 'urls', 'whitelabel_settings', 'membership_data' ) ); ?>
-
-		<?php // BOX: Resources. ?>
-		<?php $this->render( 'sui/dashboard-templates/resources', compact( 'urls', 'membership_data' ) ); ?>
-
-	</div>
-</div>
 <?php
 $this->render( 'sui/element-last-refresh', array(), true );
-
 $this->render( 'sui/footer', array(), true );
-
 $this->render( 'sui/popup-logged-welcome', compact( 'urls', 'type', 'licensed_projects' ), true );

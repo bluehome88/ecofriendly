@@ -45,7 +45,7 @@ class MethodSettingsFactory
      */
     private static function clean_settings(array $shipping_method_array)
     {
-        if ('0' === \trim($shipping_method_array[self::FIELD_METHOD_FREE_SHIPPING])) {
+        if (!isset($shipping_method_array[self::FIELD_METHOD_FREE_SHIPPING]) || '0' === \trim($shipping_method_array[self::FIELD_METHOD_FREE_SHIPPING])) {
             $shipping_method_array[self::FIELD_METHOD_FREE_SHIPPING] = '';
         }
         return $shipping_method_array;

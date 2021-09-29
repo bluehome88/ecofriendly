@@ -3,7 +3,7 @@
  * WooCommerce Price Based on Country main class
  *
  * @package WCPBC
- * @version 2.0.10
+ * @version 2.0.22
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -18,7 +18,7 @@ class WC_Product_Price_Based_Country {
 	 *
 	 * @var string
 	 */
-	public $version = '2.0.18';
+	public $version = '2.0.22';
 
 	/**
 	 * The front-end pricing zone
@@ -53,7 +53,7 @@ class WC_Product_Price_Based_Country {
 	 *
 	 * @var WC_Product_Price_Based_Country
 	 */
-	protected static $_instance = null;
+	protected static $_instance = null; // phpcs:ignore
 
 	/**
 	 * Main WC_Product_Price_Based_Country Instance
@@ -246,10 +246,7 @@ class WC_Product_Price_Based_Country {
 		WCPBC_Frontend::init();
 		WCPBC_Ajax_Geolocation::init();
 		WCPBC_Product_Sync::init();
-
-		if ( $this->is_rest_api( 'wc-analytics' ) ) {
-			WCPBC_Admin_Analytics::init();
-		}
+		WCPBC_Admin_Analytics::init();
 
 		if ( version_compare( WC_VERSION, '3.4', '>=' ) && version_compare( WC_VERSION, '3.9', '<' ) ) {
 			WCPBC_Update_GeoIP_DB::init();
@@ -321,7 +318,7 @@ class WC_Product_Price_Based_Country {
 	 * @return bool
 	 */
 	private function is_frontend() {
-		return wcpbc_is_woocommerce_frontend() && ! defined( 'DOING_CRON' ) && ( ! is_admin() || $this->is_ajax_frontend() );
+		return wcpbc_is_woocommerce_frontend() && ! defined( 'DOING_CRON' ) && ! $this->is_rest_api_for_jetpack() && ( ! is_admin() || $this->is_ajax_frontend() );
 	}
 
 	/**
@@ -406,6 +403,17 @@ class WC_Product_Price_Based_Country {
 		}
 
 		return $is_rest_api_frontend;
+	}
+
+	/**
+	 * Is Rest API for Jetpack request?.
+	 * Prevent issues with the WooCommerce app (android ios)
+	 *
+	 * @since 2.0.22
+	 * @return bool
+	 */
+	private function is_rest_api_for_jetpack() {
+		return isset( $_GET['rest_route'], $_GET['_for'] ) && 'jetpack' === $_GET['_for'] && '/wc/' === substr( $_GET['rest_route'], 0, 4 ); // phpcs:ignore WordPress.Security.NonceVerification
 	}
 
 	/**

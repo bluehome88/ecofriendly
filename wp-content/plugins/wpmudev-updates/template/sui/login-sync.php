@@ -1,10 +1,16 @@
 <?php
-// The Hub – Images
+/**
+ * After login screen.
+ *
+ * @package wpmudev
+ */
+
+// The Hub – Images.
 $hub          = WPMUDEV_Dashboard::$site->plugin_url . '/assets/images/onboarding/hub.png';
 $hub_tilted   = WPMUDEV_Dashboard::$site->plugin_url . '/assets/images/onboarding/hub-tilted.png';
 $hub2x        = WPMUDEV_Dashboard::$site->plugin_url . '/assets/images/onboarding/hub@2x.png';
 $hub_tilted2x = WPMUDEV_Dashboard::$site->plugin_url . '/assets/images/onboarding/hub-tilted@2x.png';
-// WordPress - Images
+// WordPress - Images.
 $wordpress          = WPMUDEV_Dashboard::$site->plugin_url . '/assets/images/onboarding/wordpress.png';
 $wordpress_tilted   = WPMUDEV_Dashboard::$site->plugin_url . '/assets/images/onboarding/wordpress-tilted.png';
 $wordpress2x        = WPMUDEV_Dashboard::$site->plugin_url . '/assets/images/onboarding/wordpress@2x.png';
@@ -26,7 +32,7 @@ if ( empty( $key ) ) {
 
 		<div class="dashui-login-form animate-sync animate-1">
 
-			<h2><?php esc_html_e( "Connecting...", 'wpmudev' ); ?></h2>
+			<h2><?php esc_html_e( 'Connecting...', 'wpmudev' ); ?></h2>
 
 			<span class="sui-description"><?php esc_html_e( 'Please wait a few moments while we connect your website.', 'wpmudev' ); ?></span>
 
@@ -37,8 +43,8 @@ if ( empty( $key ) ) {
 					<div class="dashui-connect-image">
 
 						<img src="<?php echo esc_url( $hub ); ?>"
-						     srcset="<?php echo esc_url( $hub ); ?> 1x, <?php echo esc_url( $hub2x ); ?> 2x"
-						     class="sui-image"/>
+							 srcset="<?php echo esc_url( $hub ); ?> 1x, <?php echo esc_url( $hub2x ); ?> 2x"
+							 class="sui-image"/>
 
 					</div>
 
@@ -47,8 +53,8 @@ if ( empty( $key ) ) {
 					<div class="dashui-connect-image">
 
 						<img src="<?php echo esc_url( $wordpress ); ?>"
-						     srcset="<?php echo esc_url( $wordpress ); ?> 1x, <?php echo esc_url( $wordpress2x ); ?> 2x"
-						     class="sui-image"/>
+							 srcset="<?php echo esc_url( $wordpress ); ?> 1x, <?php echo esc_url( $wordpress2x ); ?> 2x"
+							 class="sui-image"/>
 
 					</div>
 
@@ -74,7 +80,7 @@ if ( empty( $key ) ) {
 
 		<div class="dashui-login-form animate-sync sui-hidden animate-2">
 
-			<h2><?php esc_html_e( "Connecting...", 'wpmudev' ); ?></h2>
+			<h2><?php esc_html_e( 'Connecting...', 'wpmudev' ); ?></h2>
 
 			<span class="sui-description"><?php esc_html_e( 'Please wait a few moments while we connect your website.', 'wpmudev' ); ?></span>
 
@@ -85,8 +91,8 @@ if ( empty( $key ) ) {
 					<div class="dashui-connect-image">
 
 						<img src="<?php echo esc_url( $hub_tilted ); ?>"
-						     srcset="<?php echo esc_url( $hub_tilted ); ?> 1x, <?php echo esc_url( $hub_tilted2x ); ?> 2x"
-						     class="sui-image"/>
+							 srcset="<?php echo esc_url( $hub_tilted ); ?> 1x, <?php echo esc_url( $hub_tilted2x ); ?> 2x"
+							 class="sui-image"/>
 
 					</div>
 
@@ -95,8 +101,8 @@ if ( empty( $key ) ) {
 					<div class="dashui-connect-image">
 
 						<img src="<?php echo esc_url( $wordpress_tilted ); ?>"
-						     srcset="<?php echo esc_url( $wordpress_tilted ); ?> 1x, <?php echo esc_url( $wordpress_tilted2x ); ?> 2x"
-						     class="sui-image"/>
+							 srcset="<?php echo esc_url( $wordpress_tilted ); ?> 1x, <?php echo esc_url( $wordpress_tilted2x ); ?> 2x"
+							 class="sui-image"/>
 
 					</div>
 

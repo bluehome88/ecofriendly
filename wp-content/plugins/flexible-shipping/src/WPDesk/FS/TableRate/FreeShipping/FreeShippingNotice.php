@@ -18,7 +18,8 @@ use WP;
 class FreeShippingNotice implements Hookable {
 
 	const FLEXIBLE_SHIPPING_FREE_SHIPPING_NOTICE = 'flexible_shipping_free_shipping_notice';
-	const NOTICE_TYPE_SUCCESS = 'success';
+	const NOTICE_TYPE = 'notice';
+	const NOTICE_CONTAINER_CLASS = 'flexible-shipping-notice-container';
 
 	/**
 	 * @var WC_Cart
@@ -31,19 +32,12 @@ class FreeShippingNotice implements Hookable {
 	private $session;
 
 	/**
-	 * @var WP
-	 */
-	private $wp;
-
-	/**
 	 * FreeShippingNotice constructor.
 	 *
 	 * @param WC_Cart    $cart    .
 	 * @param WC_Session $session .
-	 * @param WP         $wp      .
 	 */
-	public function __construct( WC_Cart $cart, WC_Session $session, WP $wp ) {
-		$this->wp      = $wp;
+	public function __construct( WC_Cart $cart, WC_Session $session ) {
 		$this->cart    = $cart;
 		$this->session = $session;
 	}
@@ -52,48 +46,103 @@ class FreeShippingNotice implements Hookable {
 	 * Hooks.
 	 */
 	public function hooks() {
-		add_action( 'woocommerce_after_calculate_totals', array( $this, 'add_notice_free_shipping' ) );
+		// Checkout.
+		add_action( 'woocommerce_before_checkout_form', [ $this, 'add_checkout_notice_container' ] );
+		add_filter( 'woocommerce_update_order_review_fragments', [ $this, 'add_checkout_notice_to_fragments' ] );
+
+		// Cart.
+		add_action( 'woocommerce_after_calculate_totals', [ $this, 'add_notice_on_cart' ] );
+	}
+
+	/**
+	 * @return void
+	 */
+	public function add_checkout_notice_container() {
+		echo wp_kses_post( $this->get_left_free_shipping_notice_container() );
+	}
+
+	/**
+	 * @param array $fragments .
+	 *
+	 * @return array
+	 */
+	public function add_checkout_notice_to_fragments( $fragments ) {
+		if ( ! $this->cart->needs_shipping() ) {
+			return $fragments;
+		}
+
+		$notice = '';
+
+		$notice_message = $this->get_notice_message();
+		if ( $notice_message ) {
+			ob_start();
+			wc_print_notice( $notice_message, self::NOTICE_TYPE, [ self::FLEXIBLE_SHIPPING_FREE_SHIPPING_NOTICE => 'yes' ] );
+			$notice = ob_get_clean();
+		}
+
+		if ( ! is_string( $notice ) ) {
+			$notice = '';
+		}
+
+		$fragments[ '.' . self::NOTICE_CONTAINER_CLASS ] = $this->get_left_free_shipping_notice_container( $notice );
+
+		return $fragments;
+	}
+
+	/**
+	 * @param string $content .
+	 *
+	 * @return string
+	 */
+	private function get_left_free_shipping_notice_container( $content = '' ) {
+		return sprintf( '<div class="%s">%s</div>', self::NOTICE_CONTAINER_CLASS, $content );
 	}
 
 	/**
 	 * Add notice to free shipping left.
 	 */
-	public function add_notice_free_shipping() {
+	public function add_notice_on_cart() {
 		if ( ! $this->cart->needs_shipping() ) {
 			return;
 		}
 
-		$amount = (float) $this->session->get( FreeShippingNoticeGenerator::SESSION_VARIABLE, 0.0 );
-
-		if ( $amount <= 0.0 ) {
+		if ( ! is_cart() ) {
 			return;
 		}
 
-		$message_text = $this->prepare_notice_text( $amount );
+		$notice_message = $this->get_notice_message();
 
-		if ( wc_has_notice( $message_text, self::NOTICE_TYPE_SUCCESS ) ) {
+		if ( ! $notice_message ) {
 			return;
 		}
 
-		if ( $this->should_add_to_card() || $this->should_add_to_checkout() ) {
-			wc_add_notice( $message_text, self::NOTICE_TYPE_SUCCESS, array( self::FLEXIBLE_SHIPPING_FREE_SHIPPING_NOTICE => 'yes' ) );
-
-			remove_action( 'woocommerce_after_calculate_totals', array( $this, 'add_notice_free_shipping' ) );
+		if ( wc_has_notice( $notice_message, self::NOTICE_TYPE ) ) {
+			return;
 		}
+
+		wc_add_notice( $notice_message, self::NOTICE_TYPE, [ self::FLEXIBLE_SHIPPING_FREE_SHIPPING_NOTICE => 'yes' ] );
+
+		remove_action( 'woocommerce_after_calculate_totals', [ $this, 'add_notice_on_cart' ] );
 	}
 
 	/**
-	 * @return bool
+	 * @return string
 	 */
-	private function should_add_to_card() {
-		return is_cart() && ! wp_doing_ajax();
+	private function get_notice_message() {
+		$amount = $this->get_notice_amount();
+
+		if ( $amount === 0.0 ) {
+			return '';
+		}
+
+		return $this->prepare_notice_text( $amount );
 	}
 
 	/**
-	 * @return bool
+	 * @return float
 	 */
-	private function should_add_to_checkout() {
-		return is_checkout() && ( ! empty( $this->wp->request ) || wp_doing_ajax() );
+	private function get_notice_amount() {
+		return (float) $this->session->get( FreeShippingNoticeGenerator::SESSION_VARIABLE, 0.0 );
 	}
 
 	/**

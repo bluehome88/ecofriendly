@@ -87,7 +87,7 @@ function mailchimp_environment_variables() {
     return (object) array(
         'repo' => 'master',
         'environment' => 'production', // staging or production
-        'version' => '2.5.1',
+        'version' => '2.5.2',
         'php_version' => phpversion(),
         'wp_version' => (empty($wp_version) ? 'Unknown' : $wp_version),
         'wc_version' => function_exists('WC') ? WC()->version : null,
@@ -1278,6 +1278,22 @@ function mailchimp_set_cookie($name, $value, $expire, $path, $domain = '', $secu
         'httponly' => $httponly,
     ]);
 }
+
+/**
+ * We will allow people to filter this value - turn it off if they would like.
+ * add_filter( 'mailchimp_allowed_to_use_cookie', 'custom_cookie_callback_function', 10, 1 );
+ * @return bool
+ */
+function mailchimp_allowed_to_use_cookie($cookie) {
+    $result = apply_filters('mailchimp_allowed_to_use_cookie', $cookie);
+    if (is_bool($result)) return $result;
+    return $result === $cookie;
+}
+
+// the cookie name will be whatever we're trying to set, but the most simple
+// return the $cookie_name if you will allow it -
+// otherwise it is going to turn this feature off.
+
 
 
 // Add WP CLI commands

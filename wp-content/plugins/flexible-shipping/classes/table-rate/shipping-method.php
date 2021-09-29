@@ -609,28 +609,6 @@ class WPDesk_Flexible_Shipping extends WC_Shipping_Method {
 	}
 
 	/**
-	 * Add a shipping rate.
-	 *
-	 * @param array $args .
-	 */
-	public function add_rate( $args = array() ) {
-	    parent::add_rate( $this->set_zero_cost_if_negative( $args ) );
-	}
-
-	/**
-	 * @param array $args.
-     *
-     * @return array
-	 */
-	private function set_zero_cost_if_negative( $args = array() ) {
-		if ( isset( $args['cost'] ) && 0.0 > (float) $args['cost'] ) {
-			$args['cost'] = 0.0;
-		}
-
-		return $args;
-	}
-
-	/**
 	 * @return bool
 	 */
 	private function prices_include_tax() {

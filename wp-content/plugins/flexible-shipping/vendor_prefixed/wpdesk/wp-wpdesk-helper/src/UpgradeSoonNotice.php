@@ -19,6 +19,10 @@ class UpgradeSoonNotice
      */
     private function is_old_wc()
     {
+        if (!\defined('WC_VERSION')) {
+            // when there is no WC, assume it is not old.
+            return \false;
+        }
         return !\FSVendor\WPDesk_Basic_Requirement_Checker::is_wc_at_least(self::SUPPORTED_WC);
     }
     /**

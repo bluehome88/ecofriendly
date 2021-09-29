@@ -4,8 +4,8 @@ Donate link: https://gtm4wp.com/
 Tags: google tag manager, tag manager, gtm, google, adwords, google adwords, google ads, adwords remarketing, google ads remarketing, remarketing, google analytics, analytics, facebook ads, facebook remarketing, facebook pixel, google optimize, personalisation
 Requires at least: 3.4.0
 Requires PHP: 5.6
-Tested up to: 5.5.3
-Stable tag: 1.11.6
+Tested up to: 5.7.2
+Stable tag: 1.13.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -27,25 +27,28 @@ You can also add your Google Optimize container with the [recommended code setup
 **Some parts of the plugin require PHP 5.6 newer.
 PHP 7.0 or newer is recommended.**
 
-Please note that PHP 5.6 is nearing its end of life cycle thus it is recommended to upgrade. If you are not sure which version you are using, please contact
-your hosting provider for support.
+Please note that PHP versions 7.2 or older already reached their end of life cycle thus it is recommended to upgrade. If you are not sure which version you are using, please contact your hosting provider for support.
 
 = GTM container code placement =
 
-The original GTM container code is divided into two parts: The first part is a javascript code snippet that is added to the `<head>`
-section of every page of the website. This part is critical to enable all features of GTM, and this plugin helps to place this part
-correctly on your site. The second part is an iframe snippet that acts as a failsafe/fallback should users' JavaScript be disabled.
+The original GTM container code is divided into two parts:
+
+The first part is a javascript code snippet that is added to the `<head>` section of every page of the website.
+This part is critical to enable all features of GTM, and this plugin helps to place this part
+correctly on your site.
+
+The second part is an iframe snippet that acts as a failsafe/fallback should users' JavaScript be disabled.
 Google recommends – for best performance – to place this code snippet directly after the opening `<body>` tag on each page.
+
 Albeit not ideal, it will work when placed lower in the code. This plugin provides a code placement option for the second code snippet.
-Inherently, Wordpress does not offer a straight-forward solution to achieve this, however Yaniv Friedensohn showed me a solution
-that works with most themes without modification:
 
-http://www.affectivia.com/blog/placing-the-google-tag-manager-in-wordpress-after-the-body-tag/
+If your WordPress theme is compatible with the additions of WordPress 5.2 then this plugin will place this second code to the right place.
+Users of the Genisis theme, GeneratePress theme, Elementor, Oxygen Builder and Beaver Builder Theme will also have this placed correctly.
+To utilize this, use the "Codeless" placement option.
 
-I added this solution to the plugin, currently as an experimental option.
+All other users can place this second code snippet using a custom PHP code ("Custom" placement option) or select the so called "Footer" option to
+add the code lower in the code (it is not the recommended way but will work)
 
-Sites using the Genesis Framework should choose the "Custom" placement option. No theme modification is needed for this theme
-however, the Google Tag Manager container code will be added automatically.
 
 = Basic data included =
 
@@ -53,20 +56,21 @@ however, the Google Tag Manager container code will be added automatically.
 * post/page dates
 * post/page category names
 * post/page tag names
-* post/page author ID and names
+* post/page author ID and name
 * post/page ID
 * post types
 * post count on the current page + in the current category/tag/taxonomy
+* custom terms associated with any post type
 * logged in status
 * logged in user role
 * logged in user ID (to track cross device behaviour in Google Analytics)
 * logged in user email address (to comply with [GTM terms of service](https://www.google.com/analytics/tag-manager/use-policy/) do not pass this on to Google tags)
+* logger in user creation date
 * site search data
 * site name and id (for WordPress multisite instances)
+* IP address of the visitor (please use the explicit consent of the visitor to utilize this)
 
 = Browser / OS / Device data =
-
-(beta)
 
 * browser data (name, version, engine)
 * OS data (name, version)
@@ -135,9 +139,9 @@ http://cutroni.com/blog/2012/02/21/advanced-content-tracking-with-google-analyti
 Google Tag Manager for WordPress can add each dataLayer variable as a Google Ads remarketing custom parameter list.
 This enables you to build sophisticated remarketing lists.
 
-= Blacklist & Whitelist Tag Manager tags and variables =
+= Blacklist & Whitelist Tag Manager tags, triggers and variables =
 
-To increase website security, you have the option to white- and blacklist tags/variables.
+To increase website security, you have the option to white- and blacklist tags/triggers/variables.
 You can prevent specific tags from firing or the use of certain variable types regardless of your GTM setup.
 
 If the Google account associated with your GTM account is being hacked, an attacker could easily
@@ -150,14 +154,20 @@ Google Tag Manager for WordPress integrates with several popular plugins. More i
 
 * Contact Form 7: fire an event upon successful form submission
 * WooCommerce:
-	* Classic e-commerce:
+	* Classic e-commerce (deprecated):
 		* fire an event when visitors add products to their cart
 		* capture transaction data to be passed to your ad platforms and/or Analytics
 		* capture necessary remarketing parameters for Google Ads Dynamic Remarketing
-	* Enhanced e-commerce (beta):
-		*	implementation of [Enhanced E-commerce](https://developers.google.com/tag-manager/enhanced-ecommerce)
+	* Enhanced e-commerce:
+		*	implementation of [Enhanced E-commerce GA3](https://developers.google.com/tag-manager/enhanced-ecommerce)
+		*	implementation of [Enhanced E-commerce GA4](https://developers.google.com/tag-manager/ecommerce-ga4)
 		* Does not support promotions since WooCommerce does not have such a feature (yet)
 		* Does not support refunds
+
+= Server side containers =
+
+If you are using a [server side container](https://developers.google.com/tag-manager/serverside/send-data#update_the_gtmjs_source_domain)
+you can enter your custom domain name to load gtm.js from your there.
 
 == Installation ==
 
@@ -212,41 +222,6 @@ use the corresponding dataLayer variable (visitorType) and an exclude filter in 
 
 https://gtm4wp.com/how-to-articles/how-to-exclude-admin-users-from-being-tracked/
 
-= How do I put the Google Tag Manager container code next to the opening body tag? =
-
-By default the plugin places the iframe tag in the footer of the page. To change it, go to the plugin's admin section
-and select "Custom" from the placement settings. Unless you use the Genesis Framework theme, you will also need to
-edit your template files.
-
-Go to `wp-content/plugins/themes/<your theme dir>` and edit `header.php`.
-In most cases you will find the opening `<body>` tag here. If you can not find it, contact the author of the theme and
-ask for instructions.
-
-Create a new line right below the `body` tag and insert this line of code:
-
-`<?php if ( function_exists( 'gtm4wp_the_gtm_tag' ) ) { gtm4wp_the_gtm_tag(); } ?>`
-
-Be careful not to place this line within any `<div>`, `<p>`, `<header>`, `<article>` tags.
-It may break your theme.
-
-There is also an option named "Codeless" which attempts to place the container code correctly
-without additional theme tweaks. It may or may not work, this is an experimental feature, use it accordingly.
-
-= Why can't this plugin insert the container snippet after the opening body tag automatically? =
-
-Currently WordPress has two 'commands' or 'hooks' that a programmer can use: one for the `<head>` section and
-one for the bottom of `<body>`. There is no way to inject any content after the opening `<body>` tag without manually
-editing your template files. Fortunately some theme authors already resolved this so in some cases you do not need
-to edit your template.
-
-I suggest that try the Custom placement (easiest) and use Google Tag Assistant Chrome browser extension to check
-whether the container code is placed as expected. If it shows an error, go ahead and edit your theme manually.
-
-= Facebook like/share/send button events do not fire for me, why? =
-
-It is a Facebook limitation. Click event tracking is only available for html5/xfbml buttons.
-If you or your social plugin inserts the Facebook buttons using IFRAMEs (like Sociable), it is not possible to track likes.
-
 == Screenshots ==
 
 1. Admin panel
@@ -257,6 +232,69 @@ If you or your social plugin inserts the Facebook buttons using IFRAMEs (like So
 6. Scroll tracking
 
 == Changelog ==
+
+= 1.13.1 =
+
+* Fix: better PHP8 compatibility
+* Fix: PHP notice on admin page
+
+= 1.13 =
+
+WARNING!
+If you are using the geo or weather options of this plugin, make sure your hosting is using PHP 7.0 or newer!
+
+If you are using the WooCommerce integration with enhanced ecommerce, once again you will need to update your GTM container.
+Please check the [setup article](https://gtm4wp.com/how-to-articles/how-to-setup-enhanced-ecommerce-tracking) to see what needs to be changed.
+The goal is to keep this setup in the upcoming versions.
+
+* Added: Google Business Vertical option to populate Google Ads dynamic remarketing
+* Added: Make automatic cookie blocking mode of Cookiebot to work with your Google Tag Manager container (new option in the Integration tab)
+* Added: support for [server side containers with custom domains](https://developers.google.com/tag-manager/serverside/send-data#update_the_gtmjs_source_domain)
+* Added: improved duplacate WooCommerce order tracking prevention by also checking the age of the order. You can adjust the value in minutes on the plugin options page - by [Code-Craze](https://github.com/Code-Craze)
+* Fixed: prices rounded to 2 decimals in the data layer (WooCommerce integration)
+* Fixed: select_item event fired multiple times (at least twice)
+* Fixed: frontend protection to preveent double tracking transactions had a bug
+* Fixed: missing product detail and first checkout step tracking in WooCommerce shops with Enhanced Ecommerce
+* Fixed: JavaScript type error if product category is a number
+* Updated: WhichBrowser v2.1.1 (requires PHP 7.0 or newer)
+* Updated: descriptions of WooCommerce tracking methods to emphasize the importance to migrate from standard to enhanced ecommerce
+* Updated: added links to enhanced ecommerce setup guides (GA3 and GA4)
+
+= 1.12.3 =
+
+No new or updated functionality, but updated WooCommerce compatibility.
+
+IMPORTANT!
+If you are using the WooCommerce integration and enhanced ecommerce, please update your ecommerce event trigger to include gtm4wp.orderCompletedEEC as well.
+https://gtm4wp.com/how-to-articles/how-to-setup-enhanced-ecommerce-tracking
+
+= 1.12.2 =
+
+If you are upgrading from 1.11.x, please read the previous changelog entry for v1.12
+
+* Fixed: error message in WooCommerce integration on PHP 8 hosts
+* Fixed: PHP notice about non existing blacklist-enable array key
+
+= 1.12.1 =
+
+If you are upgrading from 1.11.x, please read the previous changelog entry for v1.12
+
+* Fixed: PHP notice while saving admin options
+
+= 1.12 =
+
+WARNING!
+If you are using the blacklist/whitelist feature of the plugin, review these options after upgrade as they could break because of a fundamental rework of this feature.
+
+* Added: support for Google Analytics 4 version of ecommerce data layer
+* Fixed: safer IP address validation in geo and weather data features
+* Updated: removed deprecated events: download links, email links, social links -> such can be now tracked with native Google Tag Manager triggers
+* Updated: removed support for WooCommerce versions before v3.2
+* Updated: 'Blacklist tags' tab renamed to 'Security'
+* Updated: complete rework of blacklist/whitelist feature to use the latest tag/trigger/variable list of Google
+* Deprecated: classic ecommerce tracking will be removed later this year, please upgrade to enhanced ecommerce tracking
+* Deprecated: standard Google Ads remarketing variable will be removed soon as the Google Ads remarketing tag template can easily use any of your Google Tag Manager variables
+* Deprecated: the old fashioned way of using Google Ads remarketing with the ecomm_ prefixed data layer variables will be removed soon. Instructions for upgrade will be published on gtm4wp.com once this feature gets updated in an upcoming plugin version
 
 = 1.11.6 =
 
@@ -677,6 +715,30 @@ Please report all bugs found in my plugin using the [contact form on my website]
 * First beta release
 
 == Upgrade Notice ==
+
+= 1.13.1 =
+
+Bugfix release
+
+= 1.13 =
+
+Updated support for Google Ads dynamic remarketing with WooCommerce, added support for server side containers and Cookiebot + fixes
+
+= 1.12.3 =
+
+Updated compatible WooCommerce version and added an important message to the changelog for WooCommerce users
+
+= 1.12.2 =
+
+Bugfix release + read changelog for important v1.12.x changes
+
+= 1.12.1 =
+
+Bugfix release + read changelog for important v1.12.x changes
+
+= 1.12 =
+
+Removed several deprecated features, dropped support for WooCommerce versions before 3.2, introduced GA4 data layer variables, deprecated classic ecommerce and Google Ads remarketing varibale
 
 = 1.11.6 =
 

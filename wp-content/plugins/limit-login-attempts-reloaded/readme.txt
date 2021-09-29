@@ -3,8 +3,8 @@ Contributors: wpchefgadget
 Donate link: https://www.paypal.com/donate?hosted_button_id=FKD4MYFCMNVQQ
 Tags: brute force, login, security, firewall, protection
 Requires at least: 3.0
-Tested up to: 5.7
-Stable tag: 2.20.6
+Tested up to: 5.8
+Stable tag: 2.23.1
 
 Reloaded version of the original Limit Login Attempts plugin for Login Protection by a team of WordPress developers. GDPR compliant.
 
@@ -18,9 +18,9 @@ WordPress by default allows unlimited login attempts. This can lead to passwords
 
 Limit Login Attempts Reloaded 
 > <strong>Limit Login Attempts Reloaded Premium Cloud App</strong><br>
-> Enables cloud protection for Limit Login Attempts Reloaded plugin. It comes with all the great features you'll need to stop hackers and bots from brute-force attacks. The cloud app <a href="https://www.limitloginattempts.com/features/">offers several features</a> including advanced protection out of the box, and the ability for site admins and agencies to sync safelists/blocklists across multiple domains. <a href="https://app.limitloginattempts.com/network/create">Click here to activate the cloud app for the best WordPress security plugin now!</a>
+> Enables cloud protection for Limit Login Attempts Reloaded plugin. It comes with all the great features you'll need to stop hackers and bots from brute-force attacks. The cloud app <a href="https://www.limitloginattempts.com/features/?from=wp-details">offers several features</a> including advanced protection out of the box, and the ability for site admins and agencies to sync safelists/blocklists across multiple domains. <a href="https://www.limitloginattempts.com/features/?from=wp-details-cta">Click here to activate the cloud app for the best WordPress security plugin now!</a>
 
-https://www.youtube.com/watch?v=IsotthPWCPA
+https://www.youtube.com/watch?v=wzmPXu55zLU
 
 = Features: =
 * Limit the number of retry attempts when logging in (per each IP). 
@@ -97,6 +97,33 @@ By default, you will need to copy and paste the lists to each site manually. For
 Please follow this link: <a href="https://www.limitloginattempts.com/resources/">https://www.limitloginattempts.com/resources/</a>
 
 == Changelog ==
+
+= 2.23.1 =
+* Added infinite scroll for cloud logs.
+
+= 2.23.0 =
+* Reduced plugin size by removing obsolete translations.
+* Cleaned up the dashboard.
+* Cloud: added information about auto/manually-blocked IPs.
+* GDPR: added an option to insert a link to a Privacy Policy page via a shortcode, clarified GDPR compliance.
+
+= 2.22.1 =
+* IP added to the email subject.
+
+= 2.22.0 =
+* Added support of CIDR notation for specifying IP ranges.
+* Texts updated.
+* Refactoring.
+
+= 2.21.1 =
+* Fixed: Uncaught Error: Call to a member function stats()
+* Cloud API: added block by country.
+* Refactoring.
+
+= 2.21.0 =
+* GDPR compliance: IPs obfuscation replaced with a customizable consent message on the login page.
+* Cloud API: fixed removing of blocked IPs from the access lists under certain conditions.
+* Cloud API: domain for Setup Code is taken from the WordPress settings now.
 
 = 2.20.6 =
 * Multisite tab links fixed.

@@ -231,6 +231,15 @@
 						}
 					});
 				}
+
+				// FacetWP integration.
+				if ( $('.facetwp-template').length > 0 ) {
+					document.addEventListener('facetwp-loaded', function() {
+						if ( ! geolocation.xhr ) {
+							$(document.body).trigger('wc_price_based_country_ajax_geolocation');
+						}
+					});
+				}
 			}
 		},
 
@@ -261,11 +270,13 @@
 
 					$(document.body).trigger( 'wc_price_based_country_after_ajax_geolocation', [response.zone_id] );
 				},
-				error: function() {
-					// set visible all elements
-					$('.wcpbc-price').css('visibility', '');
-					$('.wcpbc-price').css('display', '');
-					$('.wcpbc-price').removeClass('loading'); //Fix issue with plugins that uses the class 'loading' to hide elements.
+				error: function( request, textStatus ) {
+					if ( 'abort' !== textStatus ) {
+						// set visible all elements
+						$('.wcpbc-price').css('visibility', '');
+						$('.wcpbc-price').css('display', '');
+						$('.wcpbc-price').removeClass('loading'); //Fix issue with plugins that uses the class 'loading' to hide elements.
+					}
 				},
 				complete: function() {
 					geolocation.xhr = false;

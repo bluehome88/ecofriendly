@@ -33,6 +33,10 @@
 	line-height: 1.5;
 }
 
+.woocommerce_variation .wcpbc_pricing fieldset {
+	clear:both;
+}
+
 .woocommerce_variation .wcpbc_pricing fieldset legend {
 	clear: both;
 	float: left;

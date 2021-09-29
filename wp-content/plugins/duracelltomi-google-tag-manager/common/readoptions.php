@@ -7,6 +7,7 @@ define( 'GTM4WP_OPTION_ENV_GTM_AUTH', 'gtm-env-gtm-auth' );
 define( 'GTM4WP_OPTION_ENV_GTM_PREVIEW', 'gtm-env-gtm-preview' );
 define( 'GTM4WP_OPTION_DONOTTRACK', 'gtm-browser-do-not-track' );
 define( 'GTM4WP_OPTION_LOADEARLY', 'gtm-load-gtm-early' );
+define( 'GTM4WP_OPTION_GTMDOMAIN', 'gtm-domain-name' );
 
 define( 'GTM4WP_OPTION_INCLUDE_REMARKETING', 'include-remarketing' );
 define( 'GTM4WP_OPTION_INCLUDE_LOGGEDIN', 'include-loggedin' );
@@ -40,12 +41,6 @@ define( 'GTM4WP_OPTION_INCLUDE_WEATHEROWMAPI', 'weather-openweathermap-apikey' )
 define( 'GTM4WP_OPTION_INCLUDE_SITEID', 'include-siteid' );
 define( 'GTM4WP_OPTION_INCLUDE_SITENAME', 'include-sitename' );
 
-define( 'GTM4WP_OPTION_EVENTS_OUTBOUND', 'event-outbound' );
-define( 'GTM4WP_OPTION_EVENTS_DOWNLOADS', 'event-downloads' );
-define( 'GTM4WP_OPTION_EVENTS_DWLEXT', 'event-download-extensions' );
-define( 'GTM4WP_OPTION_EVENTS_EMAILCLICKS', 'event-email-clicks' );
-define( 'GTM4WP_OPTION_EVENTS_SOCIAL', 'event-social' );
-
 define( 'GTM4WP_OPTION_EVENTS_FORMMOVE', 'event-form-move' );
 define( 'GTM4WP_OPTION_EVENTS_NEWUSERREG', 'event-new-user-registration' );
 define( 'GTM4WP_OPTION_EVENTS_USERLOGIN', 'event-user-logged-in' );
@@ -62,6 +57,10 @@ define( 'GTM4WP_OPTION_SCROLLER_CONTENTID', 'scroller-contentid' );
 define( 'GTM4WP_OPTION_SCROLLER_READERTIME', 'scroller-readertime' );
 
 define( 'GTM4WP_OPTION_BLACKLIST_ENABLE', 'blacklist-enable' );
+define( 'GTM4WP_OPTION_BLACKLIST_SANDBOXED', 'blacklist-sandboxed' );
+define( 'GTM4WP_OPTION_BLACKLIST_STATUS', 'blacklist-status' );
+
+// deprecated options BEGIN
 define( 'GTM4WP_OPTION_BLACKLIST_ADADVISOR', 'blacklist-adadvisor' );
 define( 'GTM4WP_OPTION_BLACKLIST_ADROLL', 'blacklist-adroll' );
 define( 'GTM4WP_OPTION_BLACKLIST_AWCONV', 'blacklist-adwords-conversion' );
@@ -93,10 +92,10 @@ define( 'GTM4WP_OPTION_BLACKLIST_MACRO_RANDOMNUM', 'blacklist-macro-random-numbe
 define( 'GTM4WP_OPTION_BLACKLIST_MACRO_REFERRER', 'blacklist-macro-referrer' );
 define( 'GTM4WP_OPTION_BLACKLIST_MACRO_URL', 'blacklist-macro-url' );
 define( 'GTM4WP_OPTION_BLACKLIST_MACRO_AUTOEVENT', 'blacklist-macro-autoevent-variable' );
+// deprecated options END
 
 define( 'GTM4WP_OPTION_INTEGRATE_WPCF7', 'integrate-wpcf7' );
 
-define( 'GTM4WP_OPTION_INTEGRATE_WOOCOMMERCE', 'integrate-woocommerce' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCTRACKCLASSICEC', 'integrate-woocommerce-track-classic-ecommerce' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCTRACKENHANCEDEC', 'integrate-woocommerce-track-enhanced-ecommerce' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCPRODPERIMPRESSION', 'integrate-woocommerce-product-per-impression' );
@@ -104,11 +103,13 @@ define( 'GTM4WP_OPTION_INTEGRATE_WCEECCARTASFIRSTSTEP', 'integrate-woocommerce-c
 define( 'GTM4WP_OPTION_INTEGRATE_WCEINCLUDECARTINDL',    'integrate-woocommerce-cart-content-in-datalayer' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCEECBRANDTAXONOMY',    'integrate-woocommerce-brand-taxonomy' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCREMARKETING', 'integrate-woocommerce-remarketing' );
+define( 'GTM4WP_OPTION_INTEGRATE_WCBUSINESSVERTICAL', 'integrate-woocommerce-business-vertical' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCUSESKU', 'integrate-woocommerce-remarketing-usesku' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCUSEFULLCATEGORYPATH', 'integrate-woocommerce-use-full-category-path' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCREMPRODIDPREFIX', 'integrate-woocommerce-remarketing-productidprefix' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCCUSTOMERDATA', 'integrate-woocommerce-customer-data' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCORDERDATA', 'integrate-woocommerce-order-data' );
+define( 'GTM4WP_OPTION_INTEGRATE_WCORDERMAXAGE', 'integrate-woocommerce-order-max-age' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCEXCLUDETAX', 'integrate-woocommerce-exclude-tax' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCEXCLUDESHIPPING', 'integrate-woocommerce-exclude-shipping' );
 define( 'GTM4WP_OPTION_INTEGRATE_WCNOORDERTRACKEDFLAG', 'integrate-woocommerce-do-not-use-order-tracked-flag' );
@@ -120,12 +121,14 @@ define( 'GTM4WP_OPTION_INTEGRATE_WPECOMMERCE', 'integrate-wp-e-commerce' );
 
 define( 'GTM4WP_OPTION_INTEGRATE_AMPID', 'integrate-amp-id' );
 
+define( 'GTM4WP_OPTION_INTEGRATE_COOKIEBOT', 'integrate-cookiebot' );
+
 define( 'GTM4WP_PLACEMENT_FOOTER', 0 );
 define( 'GTM4WP_PLACEMENT_BODYOPEN', 1 );
 define( 'GTM4WP_PLACEMENT_BODYOPEN_AUTO', 2 );
 define( 'GTM4WP_PLACEMENT_OFF', 3 );
 
-global $gtm4wp_options, $gtm4wp_defaultoptions;
+global $gtm4wp_options, $gtm4wp_defaultoptions, $gtm4wp_entity_ids, $gtm4wp_business_verticals, $gtm4wp_business_verticals_ids;
 
 $gtm4wp_options = array();
 
@@ -137,6 +140,7 @@ $gtm4wp_defaultoptions = array(
 	GTM4WP_OPTION_ENV_GTM_PREVIEW                 => '',
 	GTM4WP_OPTION_DONOTTRACK                      => false,
 	GTM4WP_OPTION_LOADEARLY                       => false,
+	GTM4WP_OPTION_GTMDOMAIN                       => '',
 
 	GTM4WP_OPTION_INCLUDE_REMARKETING             => false,
 	GTM4WP_OPTION_INCLUDE_LOGGEDIN                => false,
@@ -170,13 +174,7 @@ $gtm4wp_defaultoptions = array(
 	GTM4WP_OPTION_INCLUDE_SITEID                  => false,
 	GTM4WP_OPTION_INCLUDE_SITENAME                => false,
 
-	GTM4WP_OPTION_EVENTS_OUTBOUND                 => false,
-	GTM4WP_OPTION_EVENTS_DOWNLOADS                => false,
-	GTM4WP_OPTION_EVENTS_DWLEXT                   => 'pdf,doc,docx,xls,xlsx,ppt,pptx,zip,rar,gz,tar',
-	GTM4WP_OPTION_EVENTS_EMAILCLICKS              => false,
-	GTM4WP_OPTION_EVENTS_SOCIAL                   => false,
-
-	GTM4WP_OPTION_EVENTS_FORMMOVE                 => true,
+	GTM4WP_OPTION_EVENTS_FORMMOVE                 => false,
 	GTM4WP_OPTION_EVENTS_NEWUSERREG               => false,
 	GTM4WP_OPTION_EVENTS_USERLOGIN                => false,
 
@@ -192,37 +190,8 @@ $gtm4wp_defaultoptions = array(
 	GTM4WP_OPTION_SCROLLER_READERTIME             => 60,
 
 	GTM4WP_OPTION_BLACKLIST_ENABLE                => 0,
-	GTM4WP_OPTION_BLACKLIST_ADADVISOR             => false,
-	GTM4WP_OPTION_BLACKLIST_ADROLL                => false,
-	GTM4WP_OPTION_BLACKLIST_AWCONV                => false,
-	GTM4WP_OPTION_BLACKLIST_AWREMARKET            => false,
-	GTM4WP_OPTION_BLACKLIST_BIZO                  => false,
-	GTM4WP_OPTION_BLACKLIST_CLICKTALE             => false,
-	GTM4WP_OPTION_BLACKLIST_COMSCORE              => false,
-	GTM4WP_OPTION_BLACKLIST_CUSTOMHTML            => false,
-	GTM4WP_OPTION_BLACKLIST_CUSTOMIMG             => false,
-	GTM4WP_OPTION_BLACKLIST_DBLCLKCOUNT           => false,
-	GTM4WP_OPTION_BLACKLIST_DBLCLKSALES           => false,
-	GTM4WP_OPTION_BLACKLIST_GACLASSIC             => false,
-	GTM4WP_OPTION_BLACKLIST_MARIN                 => false,
-	GTM4WP_OPTION_BLACKLIST_MPLEXIFRAME           => false,
-	GTM4WP_OPTION_BLACKLIST_MPLEXROI              => false,
-	GTM4WP_OPTION_BLACKLIST_MEDIA6DEG             => false,
-	GTM4WP_OPTION_BLACKLIST_TURNCONV              => false,
-	GTM4WP_OPTION_BLACKLIST_TURNDATA              => false,
-	GTM4WP_OPTION_BLACKLIST_UA                    => false,
-
-	GTM4WP_OPTION_BLACKLIST_MACRO_DOMELEMENT      => true,
-	GTM4WP_OPTION_BLACKLIST_MACRO_CUSTOMJS        => true,
-	GTM4WP_OPTION_BLACKLIST_MACRO_CONSTANT        => true,
-	GTM4WP_OPTION_BLACKLIST_MACRO_1STCOOKIE       => true,
-	GTM4WP_OPTION_BLACKLIST_MACRO_EVENTNAME       => true,
-	GTM4WP_OPTION_BLACKLIST_MACRO_JSVAR           => true,
-	GTM4WP_OPTION_BLACKLIST_MACRO_DLAYERVAR       => true,
-	GTM4WP_OPTION_BLACKLIST_MACRO_RANDOMNUM       => true,
-	GTM4WP_OPTION_BLACKLIST_MACRO_REFERRER        => true,
-	GTM4WP_OPTION_BLACKLIST_MACRO_URL             => true,
-	GTM4WP_OPTION_BLACKLIST_MACRO_AUTOEVENT       => true,
+	GTM4WP_OPTION_BLACKLIST_SANDBOXED             => false,
+	GTM4WP_OPTION_BLACKLIST_STATUS                => '',
 
 	GTM4WP_OPTION_INTEGRATE_WPCF7                 => false,
 
@@ -233,11 +202,13 @@ $gtm4wp_defaultoptions = array(
 	GTM4WP_OPTION_INTEGRATE_WCEINCLUDECARTINDL    => false,
 	GTM4WP_OPTION_INTEGRATE_WCEECBRANDTAXONOMY    => '',
 	GTM4WP_OPTION_INTEGRATE_WCREMARKETING         => false,
+	GTM4WP_OPTION_INTEGRATE_WCBUSINESSVERTICAL    => 'retail',
 	GTM4WP_OPTION_INTEGRATE_WCUSESKU              => false,
 	GTM4WP_OPTION_INTEGRATE_WCUSEFULLCATEGORYPATH => false,
 	GTM4WP_OPTION_INTEGRATE_WCREMPRODIDPREFIX     => '',
 	GTM4WP_OPTION_INTEGRATE_WCCUSTOMERDATA        => false,
 	GTM4WP_OPTION_INTEGRATE_WCORDERDATA           => false,
+	GTM4WP_OPTION_INTEGRATE_WCORDERMAXAGE           => 30,
 	GTM4WP_OPTION_INTEGRATE_WCEXCLUDETAX          => false,
 	GTM4WP_OPTION_INTEGRATE_WCEXCLUDESHIPPING     => false,
 	GTM4WP_OPTION_INTEGRATE_WCNOORDERTRACKEDFLAG  => false,
@@ -247,27 +218,222 @@ $gtm4wp_defaultoptions = array(
 
 	GTM4WP_OPTION_INTEGRATE_WPECOMMERCE           => false,
 
-	GTM4WP_OPTION_INTEGRATE_AMPID                 => ''
+	GTM4WP_OPTION_INTEGRATE_AMPID                 => '',
+
+	GTM4WP_OPTION_INTEGRATE_COOKIEBOT             => false
 );
 
+$gtm4wp_business_verticals = array(
+	'retail' => 'Retail',
+	'education' => 'Education',
+	'flights' => 'Flights',
+	'hotel_rental' => 'Hotel rental',
+	'jobs' => 'Jobs',
+	'local' => 'Local deals',
+	'real_estate' => 'Real estate',
+	'travel' => 'Travel',
+	'custom' => 'Custom'
+);
+
+$gtm4wp_business_verticals_ids = array(
+	'flights' => 'destination',
+	'travel' => 'destination'
+);
+
+$gtm4wp_entity_ids = array(
+	'tags' => array(
+		'abtGeneric' => 'AB TASTY Generic Tag',
+		'ta' => 'AdAdvisor Tag',
+		'adm' => 'Adometry Tag',
+		'asp' => 'AdRoll Smart Pixel Tag',
+		'awct' => 'Google Ads Conversion Tracking Tag',
+		'sp' => 'Google Ads Remarketing Tag',
+		'awc' => 'Affiliate Window Conversion Tag',
+		'awj' => 'Affiliate Window Journey Tag',
+		'baut' => 'Bing Ads Universal Event Tracking',
+		'bb' => 'Bizrate Insights Buyer Survey Solution',
+		'bsa' => 'Bizrate Insights Site Abandonment Survey Solution',
+		'cts' => 'ClickTale Standard Tracking Tag',
+		'csm' => 'comScore Unified Digital Measurement Tag',
+		'mpm' => 'Conversant Mediaplex - IFRAME MCT Tag',
+		'mpr' => 'Conversant Mediaplex - Standard IMG ROI Tag',
+		'gclidw' => 'Conversion Linker',
+		'cegg' => 'Crazy Egg Tag',
+		'crto' => 'Criteo OneTag',
+		'html' => 'Custom HTML Tag',
+		'img' => 'Custom Image Tag',
+		'dstag' => 'DistroScale Tag',
+		'flc' => 'Floodlight Counter Tag',
+		'fls' => 'Floodlight Sales Tag',
+		'm6d' => 'Dstillery Universal Pixel Tag',
+		'ela' => 'Eulerian Analytics Tag',
+		'ga' => 'Google Analytics Tag (classic, legacy)',
+		'ua' => 'Google Analytics Tag (universal, latest)',
+		'gcs' => 'Google Consumer Surveys Website Satisfaction',
+		'opt' => 'Google Optimize',
+		'ts' => 'Google Trusted Stores Tag',
+		'hjtc' => 'Hotjar Tracking Code',
+		'infinity' => 'Infinity Call Tracking Tag',
+		'sca' => 'Intent Media - Search Compare Ads',
+		'k50Init' => 'K50 tracking tag',
+		'll' => 'LeadLab',
+		'bzi' => 'LinkedIn Tag',
+		'ljs' => 'Lytics JS Tag',
+		'ms' => 'Marin Software Tag',
+		'mpm' => 'Mediaplex - IFRAME MCT Tag',
+		'mpr' => 'Mediaplex - Standard IMG ROI Tag',
+		'messagemate' => 'Message Mate',
+		'mf' => 'Mouseflow Tag',
+		'ta' => 'Neustar Pixel',
+		'ndcr' => 'Nielsen DCR Static Lite Tag',
+		'nudge' => 'Nudge Content Analytics Tag',
+		'okt' => 'Oktopost Tracking Code',
+		'omc' => 'Optimise Conversion Tag',
+		'messagemate' => 'OwnerListens Message Mate',
+		'pa' => 'Perfect Audience Pixel',
+		'pc' => 'Personali Canvas',
+		'pntr' => 'Pinterest',
+		'placedPixel' => 'Placed',
+		'pijs' => 'Pulse Insights Voice of Customer Platform',
+		'qcm' => 'Quantcast Audience Measurement',
+		'qpx' => 'Quora Pixel',
+		'fxm' => 'Rawsoft FoxMetrics',
+		'scjs' => 'SaleCycle JavaScript Tag',
+		'scp' => 'SaleCycle Pixel Tag',
+		'sfc' => 'SearchForce JavaScript Tracking for Conversion Page',
+		'sfl' => 'SearchForce JavaScript Tracking for Landing Page',
+		'sfr' => 'SearchForce Redirection Tracking Tag',
+		'shareaholic' => 'Shareaholic',
+		'svw' => 'Survicate Widget',
+		'tdlc' => 'Tradedoubler Lead Conversion Tag',
+		'tdsc' => 'Tradedoubler Sale Conversion Tag',
+		'tc' => 'Turn Conversion Tracking Tag',
+		'tdc' => 'Turn Data Collection Tag',
+		'twitter_website_tag' => 'Twitter Universal Website Tag',
+		'uslt' => 'Upsellit Global Footer Tag',
+		'uspt' => 'Upsellit Confirmation Tag',
+		'vei' => 'Ve Interactive JavaScript Tag',
+		'veip' => 'Ve Interactive Pixel',
+		'vdc' => 'VisualDNA Conversion Tag',
+		'xpsh' => 'Xtremepush',
+		'yieldify' => 'Yieldify',
+		'zone' => 'Zones'
+	),
+	'triggers' => array(
+		'evl' => 'Element Visibility Listener/Trigger',
+		'cl' => 'Click Listener/Trigger',
+		'fsl' => 'Form Submit Listener/Trigger',
+		'hl' => 'History Listener/Trigger',
+		'jel' => 'JavaScript Error Listener/Trigger',
+		'lcl' => 'Link Click Listener/Trigger',
+		'sdl' => 'Scroll Depth Listener/Trigger',
+		'tl' => 'Timer Listener/Trigger',
+		'ytl' => 'YouTube Video Listener/Trigger'
+	),
+	'variables' => array(
+		'k' => '1st Party Cookie',
+		'c' => 'Constant',
+		'ctv' => 'Container Version Number',
+		'e' => 'Custom Event',
+		'jsm' => 'Custom JavaScript Variable',
+		'v' => 'Data Layer Variable',
+		'dbg' => 'Debug Mode',
+		'd' => 'DOM Element',
+		'vis' => 'Element Visibility',
+		'f' => 'HTTP Referrer',
+		'j' => 'JavaScript Variable',
+		'smm' => 'Lookup Table',
+		'r' => 'Random Number',
+		'remm' => 'RegEx Table',
+		'u' => 'URL'
+	)
+);
+
+function gtm4wp_migrate_blacklist_whitelist( $current_options ) {
+	if ( ( array_key_exists( GTM4WP_OPTION_BLACKLIST_ENABLE, $current_options ) )
+		  && ( $current_options[ GTM4WP_OPTION_BLACKLIST_ENABLE ] > 0 )
+		) {
+		$_gtmrestrictlistitems = array();
+
+		// IDs from https://developers.google.com/tag-manager/devguide#security
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_ADADVISOR ] ) {
+			$_gtmrestrictlistitems[] = 'ta';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_ADROLL ] ) {
+			$_gtmrestrictlistitems[] = 'asp';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_AWCONV ] ) {
+			$_gtmrestrictlistitems[] = 'awct';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_AWREMARKET ] ) {
+			$_gtmrestrictlistitems[] = 'sp';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_BIZO ] ) {
+			$_gtmrestrictlistitems[] = 'bzi';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_CLICKTALE ] ) {
+			$_gtmrestrictlistitems[] = 'cts';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_COMSCORE ] ) {
+			$_gtmrestrictlistitems[] = 'csm';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_CUSTOMHTML ] ) {
+			$_gtmrestrictlistitems[] = 'html';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_CUSTOMIMG ] ) {
+			$_gtmrestrictlistitems[] = 'img';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_DBLCLKCOUNT ] ) {
+			$_gtmrestrictlistitems[] = 'flc';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_DBLCLKSALES ] ) {
+			$_gtmrestrictlistitems[] = 'fls';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_GACLASSIC ] ) {
+			$_gtmrestrictlistitems[] = 'ga';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_MARIN ] ) {
+			$_gtmrestrictlistitems[] = 'ms';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_MPLEXIFRAME ] ) {
+			$_gtmrestrictlistitems[] = 'mpm';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_MPLEXROI ] ) {
+			$_gtmrestrictlistitems[] = 'mpr';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_MEDIA6DEG ] ) {
+			$_gtmrestrictlistitems[] = 'm6d';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_TURNCONV ] ) {
+			$_gtmrestrictlistitems[] = 'tc';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_TURNDATA ] ) {
+			$_gtmrestrictlistitems[] = 'tdc';
+		}
+		if ( $current_options[ GTM4WP_OPTION_BLACKLIST_UA ] ) {
+			$_gtmrestrictlistitems[] = 'ua';
+		}
+
+		$current_options[ GTM4WP_OPTION_BLACKLIST_STATUS ] = implode( ',', $_gtmrestrictlistitems );
+	}
+
+	return $current_options;
+}
+
 function gtm4wp_reload_options() {
-	global $gtm4wp_defaultoptions;
+	global $gtm4wp_defaultoptions, $gtm4wp_business_verticals;
 
 	$storedoptions = (array) get_option( GTM4WP_OPTIONS );
 	if ( ! is_array( $gtm4wp_defaultoptions ) ) {
 		$gtm4wp_defaultoptions = array();
 	}
 
-	// update WooCommerce settings from 0.7.x to 0.8
-	if ( isset( $storedoptions[ GTM4WP_OPTION_INTEGRATE_WOOCOMMERCE ] ) && ! isset( $storedoptions[ GTM4WP_OPTION_INTEGRATE_WCTRACKCLASSICEC ] ) ) {
-		$storedoptions[ GTM4WP_OPTION_INTEGRATE_WCTRACKCLASSICEC ]  = $storedoptions[ GTM4WP_OPTION_INTEGRATE_WOOCOMMERCE ];
-		$storedoptions[ GTM4WP_OPTION_INTEGRATE_WCTRACKENHANCEDEC ] = false;
-		$storedoptions[ GTM4WP_OPTION_INTEGRATE_WCREMARKETING ]     = $storedoptions[ GTM4WP_OPTION_INTEGRATE_WOOCOMMERCE ];
-
-		unset( $storedoptions[ GTM4WP_OPTION_INTEGRATE_WOOCOMMERCE ] );
+	if ( !isset( $storedoptions[ GTM4WP_OPTION_BLACKLIST_STATUS ] ) ) {
+		$storedoptions = gtm4wp_migrate_blacklist_whitelist( $storedoptions );
 	}
 
 	$return_options = array_merge( $gtm4wp_defaultoptions, $storedoptions );
+	$return_options[ GTM4WP_OPTION_BLACKLIST_STATUS ] = explode( ',', $return_options[ GTM4WP_OPTION_BLACKLIST_STATUS ] );
 
 	if ( defined( 'GTM4WP_HARDCODED_GTM_ID' ) ) {
 		$return_options[ GTM4WP_OPTION_GTM_CODE ] = GTM4WP_HARDCODED_GTM_ID;
@@ -279,6 +445,10 @@ function gtm4wp_reload_options() {
 
 	if ( defined( 'GTM4WP_HARDCODED_GTM_ENV_PREVIEW' ) ) {
 		$return_options[ GTM4WP_OPTION_ENV_GTM_PREVIEW ] = GTM4WP_HARDCODED_GTM_ENV_PREVIEW;
+	}
+
+	if ( !array_key_exists( $return_options[ GTM4WP_OPTION_INTEGRATE_WCBUSINESSVERTICAL ], $gtm4wp_business_verticals ) ) {
+		$return_options[ GTM4WP_OPTION_INTEGRATE_WCBUSINESSVERTICAL ] = $gtm4wp_defaultoptions[ GTM4WP_OPTION_INTEGRATE_WCBUSINESSVERTICAL ];
 	}
 
 	return $return_options;

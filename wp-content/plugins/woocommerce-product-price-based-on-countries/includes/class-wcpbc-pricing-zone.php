@@ -185,7 +185,7 @@ class WCPBC_Pricing_Zone {
 	 * @return float
 	 */
 	public function get_real_exchange_rate() {
-		return $this->get_currency() === wcpbc_get_base_currency() ? 1 : floatval( $this->get_exchange_rate() );
+		return $this->get_currency() === wcpbc_get_base_currency() ? 1 : $this->get_exchange_rate();
 	}
 
 	/**
@@ -194,7 +194,7 @@ class WCPBC_Pricing_Zone {
 	 * @param float $exchange_rate Zone exchange_rate.
 	 */
 	public function set_exchange_rate( $exchange_rate ) {
-		$this->set_prop( 'exchange_rate', wc_format_decimal( $exchange_rate ) );
+		$this->set_prop( 'exchange_rate', is_float( $exchange_rate ) ? wcpbc_float_to_string( $exchange_rate ) : wc_format_decimal( $exchange_rate ) );
 	}
 
 	/**

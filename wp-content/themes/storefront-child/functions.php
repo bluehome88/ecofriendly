@@ -252,3 +252,6 @@ if ( !function_exists('custom_related_posts')) {
 }
 
 add_action('storefront_post_content_after', 'custom_related_posts');
+
+add_filter('wpcf7_skip_spam_check', '__return_true');
+

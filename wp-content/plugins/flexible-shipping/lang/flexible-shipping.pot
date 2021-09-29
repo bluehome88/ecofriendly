@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Flexible Shipping plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Flexible Shipping 4.5.0\n"
+"Project-Id-Version: Flexible Shipping 4.7.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/flexible-shipping\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-05-11T13:41:56+00:00\n"
+"POT-Creation-Date: 2021-07-22T11:03:58+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: flexible-shipping\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: classes/table-rate/settings/flexible-shipping.php:33
 #: classes/table-rate/shipping-method.php:95
 #: src/WPDesk/FS/TableRate/ShippingMethod/CommonMethodSettings.php:151
-#: src/WPDesk/FS/TableRate/ShippingMethodSingle.php:64
+#: src/WPDesk/FS/TableRate/ShippingMethodSingle.php:61
 msgid "Flexible Shipping"
 msgstr ""
 
@@ -42,127 +42,169 @@ msgstr ""
 msgid "https://flexibleshipping.com/?utm_source=fs&utm_medium=link&utm_campaign=plugin-list-author"
 msgstr ""
 
+#: classes/class-flexible-shipping-plugin.php:281
+msgid "Hey, we are curious how would you grade your first impression on Flexible Shipping so far?"
+msgstr ""
+
+#: classes/class-flexible-shipping-plugin.php:282
+msgid "Wow, it's awesome!"
+msgstr ""
+
+#: classes/class-flexible-shipping-plugin.php:283
+msgid "Really poor"
+msgstr ""
+
+#: classes/class-flexible-shipping-plugin.php:286
+msgid "By using the 'Send feedback' button I hereby agree and consent to the terms of %1$sPrivacy Policy%2$s."
+msgstr ""
+
 #. Translators: link.
-#: classes/class-flexible-shipping-plugin.php:696
+#: classes/class-flexible-shipping-plugin.php:735
 msgid "How can We make Flexible Shipping better for you? %1$sJust write to us.%2$s"
 msgstr ""
 
-#: classes/class-flexible-shipping-plugin.php:773
+#: classes/class-flexible-shipping-plugin.php:816
 msgid "Settings"
 msgstr ""
 
-#: classes/class-flexible-shipping-plugin.php:777
+#: classes/class-flexible-shipping-plugin.php:820
 msgid "Docs"
 msgstr ""
 
-#: classes/class-flexible-shipping-plugin.php:778
+#: classes/class-flexible-shipping-plugin.php:821
 msgid "Support"
 msgstr ""
 
-#: classes/class-flexible-shipping-plugin.php:784
+#: classes/class-flexible-shipping-plugin.php:827
 msgid "Upgrade"
 msgstr ""
 
-#: classes/manifest/functions.php:16
-#: classes/wp-wpdesk-fs-shipment/manifest/functions.php:16
-msgid "Shipping manifest %s, %s"
+#: classes/notices/abstract-rate.php:25
+#: classes/notices/rate-notice-implementation.php:15
+msgid "%1$sOk, you deserved it%2$s"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:72
+#: classes/notices/abstract-rate.php:30
+#: classes/notices/rate-notice-implementation.php:20
+msgid "%1$sNope, maybe later%2$s"
+msgstr ""
+
+#: classes/notices/abstract-rate.php:35
+#: classes/notices/rate-notice-implementation.php:25
+msgid "%1$sI already did%2$s"
+msgstr ""
+
+#: classes/notices/admin-notices.php:89
+msgid "Flexible Shipping requires at least version 2.7 of Active Payments plugin."
+msgstr ""
+
+#: classes/notices/admin-notices.php:104
+msgid "Flexible Shipping requires at least version 1.2 of eNadawca plugin."
+msgstr ""
+
+#: classes/notices/admin-notices.php:119
+msgid "Flexible Shipping requires at least version 1.1 of Paczka w Ruchu plugin."
+msgstr ""
+
+#: classes/notices/rate-notice-implementation.php:57
+msgid "Awesome, you've been using Flexible Shipping for more than 2 weeks. Could you please do me a BIG favor and give it a 5-star rating on WordPress? ~FS Team"
+msgstr ""
+
+#: classes/table-rate/bulk-actions.php:78
 msgid "New"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:73
-#: classes/table-rate/bulk-actions.php:192
+#: classes/table-rate/bulk-actions.php:79
+#: classes/table-rate/bulk-actions.php:198
 #: classes/wp-wpdesk-fs-shipment/metabox/ajax.php:55
 msgid "Created"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:74
-#: classes/table-rate/bulk-actions.php:193
+#: classes/table-rate/bulk-actions.php:80
+#: classes/table-rate/bulk-actions.php:199
 msgid "Confirmed"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:75
+#: classes/table-rate/bulk-actions.php:81
 msgid "Manifest"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:76
+#: classes/table-rate/bulk-actions.php:82
 msgid "Failed"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:190
-#: classes/table-rate/bulk-actions.php:217
+#: classes/table-rate/bulk-actions.php:196
+#: classes/table-rate/bulk-actions.php:223
 msgid "Error"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:191
+#: classes/table-rate/bulk-actions.php:197
 msgid "New shipment"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:194
+#: classes/table-rate/bulk-actions.php:200
 msgid "Manifest created"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:248
 #: classes/table-rate/bulk-actions.php:254
+#: classes/table-rate/bulk-actions.php:260
 msgid "Shipping"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:268
+#: classes/table-rate/bulk-actions.php:274
 msgid "Send shipment"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:269
+#: classes/table-rate/bulk-actions.php:275
 msgid "Get labels"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:271
+#: classes/table-rate/bulk-actions.php:277
 msgid "Create shipping manifest"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:301
+#: classes/table-rate/bulk-actions.php:307
 msgid "Shipment created."
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:314
+#: classes/table-rate/bulk-actions.php:320
 msgid "No action performed."
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:347
+#: classes/table-rate/bulk-actions.php:353
 msgid "Unable to create temporary zip archive for labels. Check temporary folder configuration on server."
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:349
+#: classes/table-rate/bulk-actions.php:355
 msgid "Unable to create temporary file for labels. Check temporary folder configuration on server."
 msgstr ""
 
 #. Translators: manifests count and integration.
-#: classes/table-rate/bulk-actions.php:404
+#: classes/table-rate/bulk-actions.php:412
 msgid "Created manifest: %s (%s). If download not start automatically click %shere%s."
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:415
+#: classes/table-rate/bulk-actions.php:423
 msgid "Manifest creation error: %s (%s)."
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:426
+#: classes/table-rate/bulk-actions.php:434
 msgid "No manifests created."
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:446
+#: classes/table-rate/bulk-actions.php:454
 msgid "Bulk send shipment - processed orders: %d"
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:453
+#: classes/table-rate/bulk-actions.php:461
 msgid "Bulk labels - processed orders: %d. No labels for processed orders."
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:464
+#: classes/table-rate/bulk-actions.php:472
 msgid "Bulk labels - processed orders: %d. If download not start automatically click %shere%s."
 msgstr ""
 
-#: classes/table-rate/bulk-actions.php:477
+#: classes/table-rate/bulk-actions.php:485
 msgid "Bulk shipping manifest - processed orders: %d"
 msgstr ""
 
@@ -301,7 +343,7 @@ msgid "Shipping method %s updated."
 msgstr ""
 
 #: classes/table-rate/shipping-method.php:562
-#: src/WPDesk/FS/TableRate/ShippingMethodSingle.php:273
+#: src/WPDesk/FS/TableRate/ShippingMethodSingle.php:274
 msgid "Shipping cost added."
 msgstr ""
 
@@ -392,8 +434,6 @@ msgstr ""
 
 #: classes/table-rate/views/html-orders-filter-form.php:5
 #: classes/table-rate/views/html-shipping-method-settings.php:15
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:161
-#: classes/wp-wpdesk-fs-shipment/manifest/views/filter-form.php:5
 #: src/WPDesk/FS/TableRate/ShippingMethod/CommonMethodSettings.php:172
 msgid "Integration"
 msgstr ""
@@ -436,7 +476,7 @@ msgstr ""
 #: src/WPDesk/FS/TableRate/Rule/Condition/None.php:62
 #: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:252
 #: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:258
-#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:268
+#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:269
 msgid "yes"
 msgstr ""
 
@@ -594,146 +634,11 @@ msgid "Please let us know how we can improve our plugin"
 msgstr ""
 
 #: classes/views/deactivation_thickbox.php:116
-#: classes/wp-wpdesk-fs-shipment/manifest/views/column-actions.php:2
 msgid "Cancel"
 msgstr ""
 
 #: classes/views/deactivation_thickbox.php:117
 msgid "Skip &amp; Deactivate"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/admin-notices.php:89
-msgid "Flexible Shipping requires at least version 2.7 of Active Payments plugin."
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/admin-notices.php:104
-msgid "Flexible Shipping requires at least version 1.2 of eNadawca plugin."
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/admin-notices.php:119
-msgid "Flexible Shipping requires at least version 1.1 of Paczka w Ruchu plugin."
-msgstr ""
-
-#. Translators: order id and integration.
-#: classes/wp-wpdesk-fs-shipment/class-order-add-shipping.php:44
-msgid "Shipment for order %1$s, %2$s"
-msgstr ""
-
-#. Translators: shipment id.
-#: classes/wp-wpdesk-fs-shipment/class-order-add-shipping.php:60
-msgid "Added new shipment via metabox. Shipment ID: %1$s"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/class-order-add-shipping.php:89
-msgid "Select integration"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/class-order-add-shipping.php:98
-msgid "Add shipping"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/label/class-single-label-file-dispatcher.php:95
-msgid "Integration doesn't exists."
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/label/class-single-label-file-dispatcher.php:101
-msgid "Label error"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:60
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:62
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:64
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:97
-msgid "Shipping Manifests"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:61
-msgid "Shipping Manifest"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:65
-msgid "View Shipping Manifests"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:66
-msgid "Add new Shipping Manifest"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:67
-msgid "Add new Shipping Manifests"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:68
-msgid "Edit Shipping Manifest"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:69
-msgid "Save Shipping Manifest"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:70
-msgid "Search Shipping Manifests"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:71
-msgid "Shipping Manifests not found"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:72
-msgid "Shipping Manifests not found in trash"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:74
-msgid "Shipping Manifests."
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:116
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:50
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:52
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:54
-msgid "Shipments"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:160
-msgid "Date"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:162
-msgid "Number"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:163
-msgid "Shipments count"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:164
-msgid "Actions"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:219
-#: classes/wp-wpdesk-fs-shipment/manifest/cpt-shipping-manifest.php:243
-msgid "Invalid nonce!"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/views/column-actions.php:1
-msgid "Download"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/views/filter-form.php:4
-msgid "All manifests"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/views/manifest-metabox.php:7
-#: classes/wp-wpdesk-fs-shipment/manifest/views/manifest-metabox.php:47
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:51
-#: templates/email/after_order_table.php:12
-#: templates/myaccount/after_order_table.php:15
-msgid "Shipment"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/manifest/views/manifest-metabox.php:10
-#: classes/wp-wpdesk-fs-shipment/manifest/views/manifest-metabox.php:50
-msgid "Order"
 msgstr ""
 
 #: classes/wp-wpdesk-fs-shipment/metabox/ajax.php:22
@@ -754,125 +659,6 @@ msgstr ""
 
 #: classes/wp-wpdesk-fs-shipment/metabox/ajax.php:52
 msgid "Saved"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/rate-notices/abstract-rate.php:25
-#: classes/wp-wpdesk-fs-shipment/rate-notices/rate-notice-implementation.php:15
-msgid "%1$sOk, you deserved it%2$s"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/rate-notices/abstract-rate.php:30
-#: classes/wp-wpdesk-fs-shipment/rate-notices/rate-notice-implementation.php:20
-msgid "%1$sNope, maybe later%2$s"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/rate-notices/abstract-rate.php:35
-#: classes/wp-wpdesk-fs-shipment/rate-notices/rate-notice-implementation.php:25
-msgid "%1$sI already did%2$s"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/rate-notices/rate-notice-implementation.php:57
-msgid "Awesome, you've been using Flexible Shipping for more than 2 weeks. Could you please do me a BIG favor and give it a 5-star rating on WordPress? ~FS Team"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/class-shipment.php:387
-msgid "Please override shipping_column method!"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:55
-msgid "View Shipments"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:56
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:57
-msgid "Add new Shipment"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:58
-msgid "Edit Shipment"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:59
-msgid "Save Shipment"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:60
-msgid "Search Shipments"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:61
-msgid "Shipment not found"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:62
-msgid "Shipment not found in trash"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:64
-msgid "Shipments."
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:85
-msgctxt "Shipment status"
-msgid "New"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:90
-msgid "New <span class=\"count\">(%s)</span>"
-msgid_plural "New <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:93
-msgctxt "Shipment status"
-msgid "Created"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:98
-msgid "Created <span class=\"count\">(%s)</span>"
-msgid_plural "Created <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:101
-msgctxt "Shipment status"
-msgid "Confirmed"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:106
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:114
-msgid "Confirmed <span class=\"count\">(%s)</span>"
-msgid_plural "Confirmed <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:109
-msgctxt "Shipment status"
-msgid "Manifest created"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:117
-msgctxt "Shipment status"
-msgid "Failed"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:122
-msgid "Failed <span class=\"count\">(%s)</span>"
-msgid_plural "Failed <span class=\"count\">(%s)</span>"
-msgstr[0] ""
-msgstr[1] ""
-
-#: classes/wp-wpdesk-fs-shipment/shipment/cpt-shipment.php:152
-msgid "Shipment data"
-msgstr ""
-
-#. Translators: order id and integration.
-#: classes/wp-wpdesk-fs-shipment/shipment/functions.php:59
-msgid "Shipment for order %s, %s"
-msgstr ""
-
-#: classes/wp-wpdesk-fs-shipment/views/html-order-add_shipping-metabox.php:15
-msgid "Add"
 msgstr ""
 
 #: inc/functions.php:68
@@ -1142,7 +928,7 @@ msgid "No shipping method handled by Flexible Shipping found in the %1$s shippin
 msgstr ""
 
 #. Translators: cart value and shop link.
-#: src/WPDesk/FS/TableRate/FreeShipping/FreeShippingNotice.php:107
+#: src/WPDesk/FS/TableRate/FreeShipping/FreeShippingNotice.php:156
 msgid "You only need %1$s more to get free shipping! %2$sContinue shopping%3$s"
 msgstr ""
 
@@ -1322,7 +1108,7 @@ msgstr ""
 #: src/WPDesk/FS/TableRate/Rule/Condition/None.php:62
 #: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:252
 #: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:258
-#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:268
+#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:269
 msgid "no"
 msgstr ""
 
@@ -1396,27 +1182,27 @@ msgstr ""
 msgid "weight to"
 msgstr ""
 
-#: src/WPDesk/FS/TableRate/Rule/Cost/AbstractAdditionalCost.php:106
+#: src/WPDesk/FS/TableRate/Rule/Cost/AbstractAdditionalCost.php:105
 msgid "additional cost:"
 msgstr ""
 
 #. Translators: cost per.
-#: src/WPDesk/FS/TableRate/Rule/Cost/AbstractAdditionalCost.php:108
+#: src/WPDesk/FS/TableRate/Rule/Cost/AbstractAdditionalCost.php:107
 msgid "%1$s per %2$s"
 msgstr ""
 
 #. Translators: based on.
-#: src/WPDesk/FS/TableRate/Rule/Cost/AbstractAdditionalCost.php:110
+#: src/WPDesk/FS/TableRate/Rule/Cost/AbstractAdditionalCost.php:109
 msgid "based on: %1$s"
 msgstr ""
 
 #. Translators: input data.
-#: src/WPDesk/FS/TableRate/Rule/Cost/AbstractAdditionalCost.php:112
+#: src/WPDesk/FS/TableRate/Rule/Cost/AbstractAdditionalCost.php:111
 msgid "input data: %1$s"
 msgstr ""
 
 #. Translators: calculated.
-#: src/WPDesk/FS/TableRate/Rule/Cost/AbstractAdditionalCost.php:114
+#: src/WPDesk/FS/TableRate/Rule/Cost/AbstractAdditionalCost.php:113
 msgid "calculated: %1$s"
 msgstr ""
 
@@ -1491,7 +1277,7 @@ msgid "special action"
 msgstr ""
 
 #: src/WPDesk/FS/TableRate/ShippingMethod/CommonMethodSettings.php:34
-#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:338
+#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:354
 msgid "Free"
 msgstr ""
 
@@ -1516,7 +1302,7 @@ msgid "Free Shipping Label"
 msgstr ""
 
 #: src/WPDesk/FS/TableRate/ShippingMethod/CommonMethodSettings.php:81
-msgid "Enter additional label for shipment when free shipment available."
+msgid "Enter the text for the additional shipping method's label which will be displayed once the free shipping is triggered or calculated."
 msgstr ""
 
 #: src/WPDesk/FS/TableRate/ShippingMethod/CommonMethodSettings.php:85
@@ -1643,36 +1429,36 @@ msgid "Used and displayed in the cart/checkout after filters: %1$s"
 msgstr ""
 
 #. Translators: cost, currency.
-#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:264
+#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:265
 msgid "Calculated shipping cost: %1$s %2$s"
 msgstr ""
 
 #. Translators: free shipping.
-#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:268
+#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:269
 msgid "Free shipping: %1$s"
 msgstr ""
 
 #. Translators: shipping cost after free shipping.
-#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:273
+#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:274
 msgid "Shipping cost after free shipping applied: %1$s"
 msgstr ""
 
 #. Translators: method id.
-#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:277
+#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:278
 msgid "Shipping method ID: %1$s"
 msgstr ""
 
 #. Translators: method title.
-#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:281
+#: src/WPDesk/FS/TableRate/ShippingMethod/RateCalculator.php:282
 msgid "Shipping method title: %1$s"
 msgstr ""
 
-#: src/WPDesk/FS/TableRate/ShippingMethodSingle.php:65
+#: src/WPDesk/FS/TableRate/ShippingMethodSingle.php:62
 msgid "A single Flexible Shipping method."
 msgstr ""
 
 #. Translators: docs link.
-#: src/WPDesk/FS/TableRate/ShippingMethodSingle.php:70
+#: src/WPDesk/FS/TableRate/ShippingMethodSingle.php:67
 msgid "A single Flexible Shipping method. Learn %1$show to configure FS shipping method &rarr;%2$s"
 msgstr ""
 
@@ -1694,6 +1480,29 @@ msgstr ""
 
 #: src/WPDesk/FS/TableRate/views/shipping-method-settings-rules.php:67
 msgid "This is where the rules table should be displayed. If it's not, it is usually caused by the conflict with the other plugins you are currently using, JavaScript error or the caching issue. Clear your browser's cache or deactivate the plugins which may be interfering."
+msgstr ""
+
+#. Translators: username.
+#: src/WPDesk/FS/Tracker/TrackerNotices.php:42
+msgid "Hey %s,"
+msgstr ""
+
+#. Translators: strong tag.
+#: src/WPDesk/FS/Tracker/TrackerNotices.php:49
+msgid "We are constantly doing our best to %1$simprove our plugins%2$s. That’s why we kindly ask for %1$syour help%2$s to make them even more useful not only for you but also for other %1$s100.000+ users%2$s. Collecting the data on how you use our plugins will allow us to set the right direction for the further development. You can stay asured that no sensitive data will be collected. Can we count on you?"
+msgstr ""
+
+#: src/WPDesk/FS/Tracker/TrackerNotices.php:55
+msgid "Learn more »"
+msgstr ""
+
+#: src/WPDesk/FS/Tracker/TrackerNotices.php:56
+msgid "Thank you in advance!%1$s~ Flexible Shipping Team"
+msgstr ""
+
+#: templates/email/after_order_table.php:12
+#: templates/myaccount/after_order_table.php:15
+msgid "Shipment"
 msgstr ""
 
 #: templates/email/after_order_table.php:15

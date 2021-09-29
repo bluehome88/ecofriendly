@@ -21,13 +21,13 @@ define( 'WP_CACHE', true ) ;
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'ecohygieneaustra_dev' );
+define( 'DB_NAME', 'ecofrien_ecohygieneaustra_wp1' );
 
 /** MySQL database username */
-define( 'DB_USER', 'root' );
+define( 'DB_USER', 'ecofrien_wp1' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', 'root' );
+define( 'DB_PASSWORD', 'W.kOererDOC3GtH05uh18' );
 
 /** MySQL hostname */
 define( 'DB_HOST', 'localhost' );
@@ -95,6 +95,7 @@ $table_prefix = 'wp_';
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
 define( 'WP_DEBUG', false );
+define( 'AUTOSAVE_INTERVAL', 6000);
 
 /* That's all, stop editing! Happy publishing. */
 

@@ -3,7 +3,7 @@ $membership_type = WPMUDEV_Dashboard::$api->get_membership_type();
 $hide_footer     = false;
 $footer_text     = sprintf( __( 'Made with %s by WPMU DEV', 'wpmudev' ), ' <i class="sui-icon-heart"></i>' );
 if ( 'full' === $membership_type ) {
-	$whitelabel_settings = WPMUDEV_Dashboard::$site->get_whitelabel_settings();
+	$whitelabel_settings = WPMUDEV_Dashboard::$whitelabel->get_settings();
 	$hide_footer         = $whitelabel_settings['footer_enabled'];
 	$footer_text         = apply_filters( 'wpmudev_branding_footer_text', $footer_text );
 }
@@ -73,6 +73,13 @@ $footer_nav_links[] = array(
 	'href' => 'https://incsub.com/privacy-policy/',
 	'name' => __( 'Privacy Policy', 'wpmudev' ),
 );
+
+/**
+ * Action hook to render something before SUI footer.
+ *
+ * @since 4.11
+ */
+do_action( 'wpmudev_dashboard_ui_before_footer' );
 ?>
 <div class="sui-footer"><?php echo $footer_text ?></div>
 
@@ -97,4 +104,11 @@ $footer_nav_links[] = array(
 			</a>
 		</li>
 	</ul>
-<?php endif; ?>
+<?php endif;
+/**
+ * Action hook to render something after SUI footer.
+ *
+ * @since 4.11
+ */
+do_action( 'wpmudev_dashboard_ui_after_footer' );
+?>

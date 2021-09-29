@@ -1,10 +1,10 @@
 === Table Rate for WooCommerce by Flexible Shipping ===
-Contributors: wpdesk,dyszczo,grola,piotrpo,marcinkolanko,mateuszgbiorczyk,sebastianpisula
+Contributors: wpdesk,dyszczo,grola,piotrpo,marcinkolanko,mateuszgbiorczyk,sebastianpisula,bartj
 Donate link: https://flexibleshipping.com/products/flexible-shipping-pro-woocommerce/?utm_source=wordpress&utm_medium=link&utm_campaign=wordpress
 Tags: table rate, table rate shipping, conditional shipping, shipping method, woocommerce shipping, flexible shipping, woocommerce table rate shipping, cart based shipping, weight shipping, weight based shipping, totals based shipping, order based shipping, shipping zones, shipping classes, shipping, free shipping, advanced shipping
 Requires at least: 4.5
-Tested up to: 5.7
-Stable tag: 4.5.0
+Tested up to: 5.9
+Stable tag: 4.7.1
 Requires PHP: 7.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -90,6 +90,12 @@ Flexible Shipping Import Export Add-On allows you to allows you to easily import
 Multi Vendor Shipping for WooCommerce Add-on extends the Flexible Shipping plugin by adding rules based on Product Author (Vendor). This allows you to assign shipping methods to vendors or set additional shipping costs to them. It works with both, free and PRO versions so you can buy it separately if you do not need the PRO features.
 
 [Buy Multi Vendor Shipping for WooCommerce Add-On now &rarr;](https://flexibleshipping.com/products/multi-vendor-shipping-woocommerce/?utm_source=wordpress-mvs&utm_medium=link&utm_campaign=wordpress)
+
+= Conditional Shipping Methods =
+
+Conditionally display and hide the shipping methods in your WooCommerce store. Define the rules when the specific shipping methods should be available to pick and when not to. Extend the Flexible Shipping plugin's capabilities with conditional logic for displaying shipping methods.
+
+[Buy Conditional Shipping Methods now &rarr;](https://flexibleshipping.com/products/conditional-shipping-methods-woocommerce/?utm_source=wordpress-cm&utm_medium=link&utm_campaign=wordpress)
 
 = Docs =
 
@@ -192,6 +198,25 @@ We provide a limited support for the free version of our Flexible Shipping plugi
 If you are upgrading from the old Flexible Shipping version (1.3.2, woo-flexible-shipping) make sure to completely delete the old version first. If you install the new version without deleting the old one it may break your WordPress installation.
 
 == Changelog ==
+
+= 4.7.1 - 2021-07-22 =
+* Fixed fatal error on subscription renewal
+
+= 4.7.0 - 2021-07-20 =
+* Changed functionality for shipping integrations: DPD UK, InPost and others
+* Fixed free shipping label when negative cost calculated and set as 0 (zero)
+
+= 4.6.1 - 2021-06-21 =
+* Changed notice type for Left Free Shipping message
+* Fixed fatal error with CoCart plugin: added parameters types verification in Free Shipping Notice
+
+= 4.6.0 - 2021-06-07 =
+* Added NPS
+
+= 4.5.1 - 2021-06-02 =
+* Added additional costs methods to tracking
+* Fixed calculation additional costs
+* Fixed initial checkout validation when free shipping notice displayed
 
 = 4.5.0 - 2021-05-11 =
 * Added support for shipping method settings in condition

@@ -9,64 +9,80 @@
     */
 
     "use strict";
-	function getSelector(el){
-	  var $el = jQuery(el);
+    function getSelector(el){
+      var $el = jQuery(el);
+  
+      var id = $el.attr("id");
+      if (id) { //"should" only be one of these if theres an ID
+          return "#"+ id;
+      }
+  
+      var selector = $el.parents()
+                  .map(function() { return this.tagName; })
+                  .get().reverse().join(" ");
+  
+      if (selector) {
+          selector += " "+ $el[0].nodeName;
+      }
+  
+      var classNames = $el.attr("class");
+      if (classNames) {
+          selector += "." + jQuery.trim(classNames).replace(/\s/gi, ".");
+      }
+  
+      var name = $el.attr('name');
+      if (name) {
+          selector += "[name='" + name + "']";
+      }
+      if (!name){
+          var index = $el.index();
+          if (index) {
+              index = index + 1;
+              selector += ":nth-child(" + index + ")";
+          }
+      }
+      return selector;
+    }
 
-	  var id = $el.attr("id");
-	  if (id) { //"should" only be one of these if theres an ID
-	      return "#"+ id;
-	  }
+    function enableMobileMenuElementPicker(){
+      const p = new Picker({
+          elm: document.getElementById('elm1'),
+          mode: 'cover',
+          excludeElmName: ['body'],
+          events: [{
+              key: 'contextmenu',
+              fn(event) {
+                  event.preventDefault();
+              },
+          }],
+          onInit() {
+          },
+          onClick(event) {
+            var selector = getSelector(event.target).toLowerCase();
+            window.parent.receivePickedElement(selector);
+            jQuery(selector).hide();
+          },
+          onHover(event) {
+          },
+      });
 
-	  var selector = $el.parents()
-	              .map(function() { return this.tagName; })
-	              .get().reverse().join(" ");
+      document.getElementById('m_on').addEventListener('click', () => {
+          p.on();
+      });
 
-	  if (selector) {
-	      selector += " "+ $el[0].nodeName;
-	  }
+      document.getElementById('m_off').addEventListener('click', () => {
+          p.off();
+      });
 
-	  var classNames = $el.attr("class");
-	  if (classNames) {
-	      selector += "." + jQuery.trim(classNames).replace(/\s/gi, ".");
-	  }
+      document.getElementById('m_cover').addEventListener('click', () => {
+          p.changeMode('cover');
+      });
 
-	  var name = $el.attr('name');
-	  if (name) {
-	      selector += "[name='" + name + "']";
-	  }
-	  if (!name){
-	      var index = $el.index();
-	      if (index) {
-	          index = index + 1;
-	          selector += ":nth-child(" + index + ")";
-	      }
-	  }
-	  return selector;
-	}
-	function enableMobileMenuElementPicker(){
-		const p = new Picker({
-		    elm: document.getElementById('elm1'),
-		    mode: 'cover',
-		    excludeElmName: ['body'],
-		    events: [{
-		        key: 'contextmenu',
-		        fn(event) {
-		            event.preventDefault();
-		        },
-		    }],
-		    onInit() {
-		    },
-		    onClick(event) {
-		      var selector = getSelector(event.target).toLowerCase();
-		      window.parent.receivePickedElement(selector);
-		      jQuery(selector).hide();
-		    },
-		    onHover(event) {
-		    },
-		});
+      document.getElementById('m_target').addEventListener('click', () => {
+          p.changeMode('target');
+      });
 
-	}
-
+    }
     jQuery( document ).ready( function($) {
 
       const urlParams = new URLSearchParams( window.location.search );
@@ -94,7 +110,7 @@
         } else {  
           submenu.hide();
         }
-  
+
         if ( ! $('body').hasClass('mob-menu-sliding-menus') ) {
           $( menu ).find('.open-icon').toggleClass('hide');
           $( menu ).find('.close-icon').toggleClass('hide');
@@ -104,7 +120,6 @@
         
 
       }
-  
 
       if ( $( 'body' ).find( '.mobmenu-push-wrap' ).length <= 0 &&  $( 'body' ).hasClass('mob-menu-slideout') ) {
 
@@ -124,7 +139,6 @@
       // Double Check the the menu display classes where added to the body.
       var menu_display_type = $( '.mob-menu-header-holder' ).attr( 'data-menu-display' );
 
-      
       if ( menu_display_type != '' && !$( 'body' ).hasClass( 'mob-menu-slideout' ) && !$( 'body' ).hasClass( 'mob-menu-slideout-over' ) && !$( 'body' ).hasClass( 'mob-menu-slideout-top' ) && !$( 'body' ).hasClass( 'mob-menu-overlay' ) ) {
         $( 'body' ).addClass( menu_display_type );
       }

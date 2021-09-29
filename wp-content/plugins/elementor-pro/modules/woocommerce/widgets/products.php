@@ -3,6 +3,7 @@ namespace ElementorPro\Modules\Woocommerce\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Controls_Stack;
+use Elementor\Core\Breakpoints\Manager as Breakpoints_Manager;
 use ElementorPro\Modules\QueryControl\Controls\Group_Control_Query;
 use ElementorPro\Modules\Woocommerce\Classes\Products_Renderer;
 use ElementorPro\Modules\Woocommerce\Classes\Current_Query_Renderer;
@@ -111,25 +112,28 @@ class Products extends Products_Base {
 			]
 		);
 
+		$devices_required = [];
+
+		// Make sure device settings can inherit from larger screen sizes' breakpoint settings.
+		foreach ( Breakpoints_Manager::get_default_config() as $breakpoint_name => $breakpoint_config ) {
+			$devices_required[ $breakpoint_name ] = [
+				'required' => false,
+			];
+		}
+
 		$this->add_responsive_control(
 			'columns',
 			[
 				'label' => __( 'Columns', 'elementor-pro' ),
 				'type' => Controls_Manager::NUMBER,
-				'prefix_class' => 'elementor-products-columns%s-',
+				'prefix_class' => 'elementor-grid%s-',
 				'min' => 1,
 				'max' => 12,
 				'default' => Products_Renderer::DEFAULT_COLUMNS_AND_ROWS,
+				'tablet_default' => '3',
+				'mobile_default' => '2',
 				'required' => true,
-				'render_type' => 'template',
-				'device_args' => [
-					Controls_Stack::RESPONSIVE_TABLET => [
-						'required' => false,
-					],
-					Controls_Stack::RESPONSIVE_MOBILE => [
-						'required' => false,
-					],
-				],
+				'device_args' => $devices_required,
 				'min_affected_device' => [
 					Controls_Stack::RESPONSIVE_DESKTOP => Controls_Stack::RESPONSIVE_TABLET,
 					Controls_Stack::RESPONSIVE_TABLET => Controls_Stack::RESPONSIVE_TABLET,
@@ -232,6 +236,8 @@ class Products extends Products_Base {
 		$content = $shortcode->get_content();
 
 		if ( $content ) {
+			$content = str_replace( '<ul class="products', '<ul class="products elementor-grid', $content );
+
 			echo $content;
 		} elseif ( $this->get_settings( 'nothing_found_message' ) ) {
 			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $this->get_settings( 'nothing_found_message' ) ) . '</div>';

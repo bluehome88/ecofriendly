@@ -1,0 +1,10 @@
+<?php
+
+namespace FSVendor;
+
+/**
+ * Class WPDesk_Flexible_Shipping_Send_Shipment_Exception
+ */
+class WPDesk_Flexible_Shipping_Cancel_Shipment_Exception extends \RuntimeException
+{
+}

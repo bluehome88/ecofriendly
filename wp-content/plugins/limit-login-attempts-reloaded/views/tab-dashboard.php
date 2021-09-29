@@ -3,6 +3,7 @@
 if( !defined( 'ABSPATH' ) ) exit();
 
 $active_app = $this->get_option( 'active_app' );
+$active_app = ($active_app === 'custom' && $this->app) ? 'custom' : 'local';
 
 $retries_chart_title = '';
 $retries_chart_desc = '';
@@ -338,8 +339,8 @@ if( $active_app === 'local' ) {
 
 			$stats_global_dates[] = date( $date_format, $timest );
 		}
-
-		$countries_list = require LLA_PLUGIN_DIR . '/resources/countries.php';
+		
+		$countries_list = LLA_Helpers::get_countries_list();
         ?>
         <div class="info-box-1">
             <div class="section-title">

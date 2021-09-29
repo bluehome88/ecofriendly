@@ -21,7 +21,7 @@ class WCPBC_Widget_Country_Selector extends WC_Widget {
 	 *
 	 * @var string
 	 */
-	private static $_other_countries_text = '';
+	private static $_other_countries_text = ''; // phpcs:ignore
 
 	/**
 	 * Constructor
@@ -51,7 +51,9 @@ class WCPBC_Widget_Country_Selector extends WC_Widget {
 			)
 		);
 
-		add_action( 'woocommerce_widget_field_wcpbc_remove_other_countries_pro', array( $this, 'remove_other_countries_field' ), 10, 4 );
+		if ( ! has_action( 'woocommerce_widget_field_wcpbc_remove_other_countries_pro', array( __CLASS__, 'remove_other_countries_field' ) ) ) {
+			add_action( 'woocommerce_widget_field_wcpbc_remove_other_countries_pro', array( __CLASS__, 'remove_other_countries_field' ), 10, 4 );
+		}
 
 		parent::__construct();
 	}

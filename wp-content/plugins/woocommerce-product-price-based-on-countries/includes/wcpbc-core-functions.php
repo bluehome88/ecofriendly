@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
  * @return WCPBC_Pricing_Zone
  */
 function wcpbc_the_zone() {
-	if ( wcpbc()->current_zone ) {
+	if ( wcpbc()->current_zone && is_a( wcpbc()->current_zone, 'WCPBC_Pricing_Zone' ) ) {
 		return wcpbc()->current_zone;
 	}
 	return false;
@@ -623,6 +623,36 @@ function wcpbc_get_parent_product_types() {
  */
 function wcpbc_get_screen_ids() {
 	return apply_filters( 'wc_price_based_country_screen_ids', wc_get_screen_ids() );
+}
+
+/**
+ * Convert a float to a string without locale formatting which PHP adds when changing floats to strings. Remove scientific notation.
+ *
+ * @since 2.0.21
+ * @param  float $float Float value to format.
+ * @return string
+ */
+function wcpbc_float_to_string( $float ) {
+	if ( ! is_float( $float ) ) {
+		return $float;
+	}
+
+	$string = strtoupper( strval( $float ) );
+	$locale = localeconv();
+	$string = str_replace( array( $locale['decimal_point'], $locale['mon_decimal_point'] ), '.', $string );
+
+	$e_pos = strpos( $string, 'E' );
+	if ( false !== $e_pos ) {
+		// Remove scientific notation.
+		$dp          = intval( substr( $string, $e_pos + 1 ) );
+		$decimal_pos = strpos( $string, '.' );
+		if ( false !== $decimal_pos ) {
+			$dp -= strlen( substr( $string, $decimal_pos + 1, $e_pos - $decimal_pos - 1 ) );
+		}
+		$string = number_format( $float, $dp * ( -1 ), '.', '' );
+	}
+
+	return $string;
 }
 
 /**
