@@ -255,3 +255,21 @@ add_action('storefront_post_content_after', 'custom_related_posts');
 
 add_filter('wpcf7_skip_spam_check', '__return_true');
 
+
+// Add back to store button on WooCommerce cart page
+add_action('woocommerce_checkout_before_customer_details', 'amano_back_to_store');
+
+
+function amano_back_to_store() {
+ $shop_page_url = '/cart/';
+ 
+ echo '<div class="">';
+ echo ' <a href="'.$shop_page_url.'" class="button">Return to Cart →</a>';
+ echo '</div>';
+}
+
+// Changing the message "Returning customer?"
+add_filter( 'woocommerce_checkout_login_message', 'bbloomer_return_customer_message' );
+function bbloomer_return_customer_message() {
+	return 'Have an account?';
+}
