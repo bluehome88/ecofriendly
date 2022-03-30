@@ -209,6 +209,7 @@ h2.woo-product-category {
     #yith-wacp-popup .yith-wacp-content a.button{
         margin: 5px 0;
         font-size: 16px;
+        color:white !important;
     }
     .yith-wacp-content h3.cart-list-title{
         font-size: 22px;

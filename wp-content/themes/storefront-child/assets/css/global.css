@@ -17,8 +17,8 @@ a, a:focus, a:hover, a:visited {
   text-decoration: none !important;
 }
 
-a, .page-title {
-  /* color: #4EAF50 !important; */
+p a, .page-title {
+   color: #4EAF50 !important; 
 }
 
 /* woo default */
