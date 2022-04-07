@@ -17,7 +17,7 @@ a, a:focus, a:hover, a:visited {
   text-decoration: none !important;
 }
 
-p a, .page-title {
+.page-title {
    color: #4EAF50 !important; 
 }
 
